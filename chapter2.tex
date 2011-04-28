@@ -1,0 +1,1602 @@
+\chapter{Some UFDs of algebraic integers}\label{UFD}
+
+%----------------------------------
+% FIRST SECTION: gaussian integers
+%----------------------------------
+\section{Unique factorization in the ring of
+Gaussian integers}\label{gaussians}
+
+%---------------------------------------------
+% DEFINITION OF THE RING OF GAUSSIAN INTEGERS
+%---------------------------------------------
+\begin{defn}\label{def1}
+The ring $G$ of Gaussian integers consists of
+all complex numbers $x+iy$ where $x,y$ are
+rational integers, \ie
+% ==> it's essential not to leave a blank line here!
+\begin{equation}\label{gauss}
+G:= \Z[i] = \left\{x + iy :\ x,y \in \Z \right\}
+\end{equation}
+\end{defn}
+Clearly $G$ is a normed domain in the sense of
+definition~(\ref{normedDomain}), with
+$G^\ast =\{1,-1,i,-i\}$.
+
+\bigskip
+First we make an important remark: in the rest
+of this section we will denote by\, $\Norm{\cdot}$
+\,the usual complex norm\, $\Normop:\, \C
+\longrightarrow \left[\, 0, +\infty \right[$;
+however this will cause no confusion since, as
+$G = \Z[i] \subseteq \QQM{1}$, we easily have that the
+complex norm and the norm in the sense of
+definition~(\ref{normdef}) coincide for $G$.
+
+\bigskip
+The aim of this Section is to prove that $G$
+is a UFD, without using the well known fact that
+$G$ is an euclidean domain. To this purpose it will
+be useful the following result.
+
+%--------------------------------------------------
+% VERY IMPORTANT LEMMA (ANCESTOR OF "PROPERTY(#)")
+%--------------------------------------------------
+\begin{lem}\label{lemmaGaussian} Let
+$\tau \in \Czero$ be such that $\Norm{\tau}
+\leq 1$. Then there exists $\epsilon \in G^\ast$
+such that $\Norm{\tau + \epsilon} < 1$.
+\end{lem}
+
+\begin{proof}
+%
+First note that, for every $\epsilon_1, \epsilon_2
+\in G^\ast$, it results \;$\Norm{\epsilon_1\tau} \leq 1$\,
+(since $\Norm{\epsilon_1\tau} = \Norm{\tau}$\, and\,
+$\Norm{\tau} \leq 1$);\; moreover, if
+$\Norm{\epsilon_1\tau + \epsilon_2} < 1$, we have then:
+
+$\Norm{\tau + \epsilon} < 1 \textrm{,\; with \,} \epsilon:=
+\epsilon_1^{-1}\epsilon_2 \in G^\ast$.
+
+So we need to prove our assert only for $\epsilon\tau$,
+where $\epsilon \in G^\ast$ is an arbitrary unit of $G$.
+
+We can now use this observation to simplify our problem.
+Let $\tau = a + ib$. Multiplying $\tau$ by $i\in G^\ast$,
+if necessary, we may assume $\abs{a} \geq \abs{b}$. Moreover,
+with a further multiplication by $\pm 1 \in G^\ast$ (with sign
+appropriatly chosen), we may assume $ a \geq 0 $.
+Summarizing we can assume without loss of generality that
+$a \geq \abs{b}$.
+
+We distinguish now 2 cases:
+
+\smallskip
+
+\textbf{Case 1:} $a > \abs{b}$. Clearly $a \not= 0$, and
+$a \leq 1$ (since $a^2 + b^2 = \Norm{\tau} \leq 1$); hence,
+letting $\epsilon:= -1 \in G^\ast$, we have:\,
+$\Norm{\tau + \epsilon} -1 = \Norm{a + ib - 1} - 1 =
+(a - 1)^2 + b^2 - 1 = a^2 + b^2 - 2a < 2a^2 - 2a =
+2a(a - 1)\leq 0$.
+Thus $\Norm{\tau + \epsilon} < 1$.
+
+\smallskip
+
+\textbf{Case 2:} $a = \abs{b}$. We have then $a^2 = b^2$,
+and so $2a^2 = a^2 + b^2 = \Norm{\tau} \textrm{ with }
+\Norm{\tau} \leq 1 \textrm{ and } \Norm{\tau} \not= 0
+\then 0 < a \leq \frac{1}{\sqrt 2} < 1 \then a(a - 1) < 0$.
+Hence, letting $\epsilon:= -1 \in G^\ast$, we have:\,
+$\Norm{\tau + \epsilon} -1 = \Norm{a + ib - 1} - 1 =
+(a - 1)^2 + b^2 - 1 = a^2 + b^2 - 2a = 2a^2 - 2a =
+2a(a - 1) < 0$. Thus $\Norm{\tau + \epsilon} < 1$.
+% 
+\end{proof}
+
+%--------------------------------------------------
+% A GEOMETRIC INTERPRETATION OF THE PREVIOUS LEMMA
+% (due to Maxim Vsemirnov)
+%--------------------------------------------------
+\medskip
+The following picture provides a geometric interpretation of the
+previous lemma, as it shows visually that the union of the four
+unitary \emph{open\/} circles with center respectively
+\,\mbox{$(-1,0)$, $(0,-1)$, $(1,0)$, $(0,1)$}\,
+covers completely the unitary \emph{closed\/} circle centered
+in $(0,0)$, deprived of the center \,(\,\ie the point $(0,0)$\,).
+
+\vspace{6pt}
+
+\begin{picture}(360,160)(-50, +20)
+\put(150, 60){\circle{40}}
+\put(150, 80){\circle{40}}
+\put(150, 100){\circle{40}}
+\put(130, 80){\circle{40}}
+\put(170, 80){\circle{40}}
+\put(70, 80){\vector(1,0){170}}
+\put(150, 10){\vector(0,1){150}}
+\put(230,70){\mbox{\textit{x}}}
+\put(155,150){\mbox{\textit{y}}}
+\end{picture}
+
+\vspace{36pt}
+Now we return to our main topic.
+Our central theorem may be enunciated as follows:
+
+%-----------------------------------------
+% THE RING OF GAUSSIAN INTEGERS IS AN UFD
+%-----------------------------------------
+\begin{thm}\label{gaussUFD}
+The ring $G$ is an UFD.
+\end{thm}
+
+To prove this theorem, we need some preliminary
+observations and one further lemma.
+
+%-----------------------------------------------------
+% PRELIMINARY LEMMAS AND OBSERVATIONS USEFUL TO PROVE
+% THAT GAUSSIAN INTEGERS FORM AN UFD
+%-----------------------------------------------------
+First, in the notation of section~\ref{notations}, our aim is to show
+that $H = \emptyset$, \ie the set of elements of $G$ which do not admit
+an essentially unique factorization is empty.
+
+We will argue by contradiction assuming that
+$H \neq \emptyset$.
+
+Recalling that $I \cup G^\ast \subseteq K$, we have that
+any factorization into irreducible of an arbitrary element
+of $H$ consists of at least two (not necessarily distinct)
+factors.
+
+As $G$ is a normed domain, we know from
+lemma~(\ref{factorizationIntoIrreducibles}) that
+every $\alpha \in G\minz$ can be written as a product
+of a finite number of irreducible.
+
+By the assumption $H \not= \emptyset$, we may choose
+$\xi_0\in H$ such that $\Norm{\xi_0} = \min{\Norm{H}}$,
+where (of course) $\Norm{H}:=\left\{\,\Norm{h}:\ h \in H\right\}$.
+
+By definition of $H$ we have, in particular,
+\begin{equation}\label{two_factorizations_1}
+\xi_0 = \pi_1\pi_2\cdots\pi_r = \sigma_1\sigma_2\cdots\sigma_s
+\end{equation}
+with $r,s \geq 2$, for suitable $\pi_k,\sigma_h \in I$
+which make the two factorizations essentially distinct.
+
+Our proof will be based on the following two Lemmas.
+
+\begin{lem}\label{lemmaFactorsNotAssociate}
+Referring to the equation \eqref{two_factorizations_1},
+we have that for every\/ $i,j \in \N$\/ with\/ $1 \leq i \leq r$\/ and\/
+$1 \leq j \leq s$,\, $\pi_i$\/ and\/ $\sigma_j$\/ are not associated.
+\end{lem}
+
+\begin{proof}
+%
+Assume that our claim is false. Then, up to a reordering
+of the factors, we may suppose that $\sigma_1$ is
+associate to $\pi_1$, \ie $\sigma_1 = \epsilon \pi_1$,
+with $\epsilon \in G^\ast$.
+Letting $\xi := \pi_2 \cdots \pi_r$ and simplifing
+\eqref{two_factorizations_1} by $\pi_1$, we get:
+\begin{equation}\label{two_factorizations_1_semplified}
+\xi = \pi_2\cdots\pi_r = (\epsilon\sigma_2)\cdots\sigma_s.
+\end{equation}
+Since the two factorizations of $\xi_0$ in
+\eqref{two_factorizations_1} are essentially distinct,
+and since $\epsilon$ is a unit of $G$, it can easily be
+shown that also the two factorizations of $\xi$ in
+\eqref{two_factorizations_1_semplified} are essentially
+distinct, \ie that $\xi \in H.$
+Noting that we have also $\Norm{\xi} < \Norm{\xi_0}$
+(since $\xi_0 = \pi_1\xi$ and $\Norm{\pi_1} > 1$) and
+$\Norm{\xi_0} = \min{\Norm{H}}$
+(by definition of $\xi_0$), we get the desired
+contradiction.
+%
+\end{proof}
+
+It's also clear that we may suppose without loss of
+generality that $\Norm{\pi_1} \le \Norm{\sigma_1}$;
+at this stage we can finally give:
+
+%---------------------------
+% PROOF THAT G IS AN UFD
+%---------------------------
+\begin{proof}[Proof of theorem~(\ref{gaussUFD}).]
+
+Let \,$\tau:= \frac{\pi_1}{\sigma_1}$;\, clearly
+$\Norm{\tau} \leq 1$ and $\tau \neq 0$, so we have by
+lemma~(\ref{lemmaGaussian}) that:
+%
+\begin{equation*}
+\exists\ \epsilon \in G^\ast :\ \Norm{\tau + \epsilon} < 1,
+\quad\!\! \textrm{\ie such that:} \quad
+\Norm{\epsilon\sigma_1 + \pi_1} < \Norm{\sigma_1}.
+\end{equation*}
+%
+Define now
+$\psi:= \epsilon \xi_0 + \pi_1 \sigma_2 \cdots \sigma_s$;
+from equation~(\ref{two_factorizations_1}) it derives:
+
+~~$\bullet\quad \psi = \pi_1 \left( \epsilon\pi_2\cdots\pi_r +
+\sigma_2\cdots\sigma_s \right) = \pi_1\omega,
+\ \,\omega \in G\, \then\, \pi_1 \divides \psi$
+
+~~$\bullet\quad \psi = \left( \epsilon\sigma_1 + \pi_1 \right)
+\left( \sigma_2\cdots\sigma_s  \right)$
+
+From the last equality it follows in particular that
+$\psi \not= 0$, since $\epsilon \sigma_1 + \pi_1 \neq 0$
+as $\pi_1, \sigma_1$ not associate.
+
+Moreover:
+\begin{equation*}
+\Norm{\psi} =
+   \Norm{\epsilon\sigma_1 + \pi_1}
+   \Norm{\sigma_2\cdots\sigma_s} 
+< \Norm{\sigma_1}\Norm{\sigma_2\cdots\sigma_s}
+= \Norm{\sigma_1\cdots\sigma_s} = \Norm{\xi_0}
+\end{equation*}
+so that:
+\begin{equation*}
+\Norm{\psi} < \Norm{\xi_0} = \min{\Norm{H}} \then
+\psi \notin H \then \psi \in K 
+\end{equation*}
+
+Thus $\psi$ has an essentially unique factorization into
+irreducibles. Since:
+
+~~$\bullet\quad \pi_1 \divides \psi\,,\;$ and:
+
+~~$\bullet\quad \psi = \left( \epsilon\sigma_1 + \pi_1 \right)
+\left( \sigma_2\cdots\sigma_s  \right),\:$ and:
+
+~~$\bullet\quad \pi_1$ is not associate with any $\sigma_j\,,$
+
+it follows from corollary~(\ref{basic_property_of_K}) that\,
+$\pi_1 \divides \left( \epsilon\sigma_1 + \pi_1 \right)$,\,
+and then\, $\pi_1 \divides \epsilon\sigma_1$.
+
+Since $\pi_1,\sigma_1$ are irreducible and $\epsilon$ is a
+unit of $G$, this means that $\pi_1$ and $\sigma_1$ are
+associate, which, according to
+lemma~(\ref{lemmaFactorsNotAssociate}),
+gives us the desired contradiction.
+%
+\end{proof}
+
+
+%-----------------------------------------------------------
+% SECOND SECTION:
+% EXSTENSION OF METHODS GIVEN ABOVE TO OTHER NORMED DOMAINS
+%-----------------------------------------------------------
+\section{Exstensions to a class of normed domains}\label{ext}
+
+In this section we will extend and generalize the methods and
+concepts seen so far, and use them to show that some well-known
+real and complex normed domains are UFDs.%
+\footnote{Regarding the domains we're going to analyze, we must
+say that it's known that all them are, in fact,\/
+\emph{euclidean domains\/}, and so, a fortiori, UFDs.
+But we won't make direct use of this fact; instead, we will retrieve
+this well-known class of domains in an original way, and only later
+we will find, state and prove the well-known result asserting that
+their norm is an euclidean function. More observation about these
+facts will be given later.}
+
+\medskip
+In the rest of this section, we'll limit our attention to that normed
+domains $D$ which satisfy an analogue of lemma~(\ref{lemmaGaussian});
+more precisely, from now on and until the end of this section, we will
+denote by $D \subseteq \QQ{m}$ a normed domain which satisfy the
+following:
+
+%-------------------------
+% PROPERTY (#) ENUNCIATED
+%-------------------------
+\begin{property}\label{property_sharp} 
+$\,\forall \tau \in \QQ{m}\minz$\,
+such that\, $\Norm{\tau} \leq 1$\,
+and\, $\tau \notin D^\ast,\; \exists\; \theta \in D$
+\,such that\, $\Norm{\theta\tau + 1} < 1$.
+\end{property}
+
+Our aim is to prove that, in such hypothesis, $D$
+is an UFD, \ie in the notation of section~(\ref{notations})
+of chapter~(\ref{preliminary}), that $K = D\minz$,
+or equivalently that $H = \emptyset$ (note that we have no
+need to prove that every $\alpha \in D$ can be written as a
+finite product of irreducibles, since, being $D$ is a normed
+domain, this fact already assured by
+lemma~(\ref{factorizationIntoIrreducibles})).
+
+Here is our proposition in a precise form:
+
+%--------------------------------------------------------------------
+% PROPERTY (#) IMPLIES UNIQUENESS OF FACTORIZATION INTO IRREDUCIBLES
+%--------------------------------------------------------------------
+\begin{thm}\label{property_sharp_implies_UFD}
+Let $D \subseteq \QQ{m}$ be a normed domain such that:
+$$
+\forall \tau \in \QQ{m}\minz \text{ with }\, \Norm{\tau} \leq 1
+\textrm{ \,and\, }
+\tau \notin D^\ast,\ \, \exists\; \theta \in D:\;
+ \Norm{\theta\tau + 1} < 1
+$$
+(\ie $D$ satisfies property~(\ref{property_sharp})).
+Then $D$ is an UFD.
+\end{thm}
+
+\begin{proof}
+%
+The proof is very similar to that seen in the previous
+section for the theorem~(\ref{gaussUFD}).
+
+Argue by contradiction, supposing $H \neq \emptyset$.
+By this assumption we may choose $\xi_0\in H$ such that
+$\Norm{\xi_0} = \min{\Norm{H}}$.
+
+Since $\xi_0 \in H$, by definition of $H$ we have in
+particular:
+\begin{equation}\label{two_factorizations_2}
+\xi_0 = \pi_1\pi_2\cdots\pi_r =
+\sigma_1\sigma_2\cdots\sigma_s
+\end{equation}
+with $r,s \geq 2$, for suitable $\pi_k,\sigma_h \in I$
+which make the two factorizations essentially distinct.
+
+Exactly as seen in the proof of lemma~(\ref{lemmaFactorsNotAssociate}),
+it can be proved that, in the two factorizations given by
+equation~(\ref{two_factorizations_2}), no $\pi_k$ is associate
+with any $\sigma_h$.
+Moreover, we can clearly assume without loss of generality
+that $\Norm{\pi_1} \le \Norm{\sigma_1}$.
+
+Let now \,$\tau:= \frac{\pi_1}{\sigma_1} \in
+\QQ{m}$;\, clearly $\Norm{\tau} \leq 1$,
+and, since $\pi_1$ and $\sigma_1$ are not associate,
+$\tau \notin D^\ast$; so we have by property~(\ref{property_sharp})
+that:
+\begin{equation*}
+\exists\ \theta \in D
+~~\textrm{such that}~~
+\Norm{\tau\theta + 1} < 1,
+~\:\textrm{\ie such that}~~
+\Norm{\sigma_1 + \theta\pi_1} < \Norm{\sigma_1}.
+\end{equation*}
+Define now
+$\psi:= \xi_0 + \theta\pi_1\sigma_2\cdots\sigma_s$;
+from~(\ref{two_factorizations_2}) it derives:
+
+~~$\bullet$~~\:$\psi = \pi_1 \left( \pi_2\cdots\pi_r +
+\theta\sigma_2\cdots\sigma_s \right) = \pi_1\omega,\;
+\omega \in G\, \then\, \pi_1 \divides \psi$
+
+~~$\bullet$~~\:$\psi = \left( \sigma_1 + \theta\pi_1 \right)
+\left( \sigma_2\cdots\sigma_s  \right)$
+
+From the last equality it follows in particular that
+$\psi \neq 0$, since $\sigma_1 + \theta\pi_1 \not= 0$
+(as $\pi_1 \notdivides \sigma_1$ because $\pi_1, \sigma_1$
+are irreducible and not associate).
+
+Moreover:
+\begin{equation*}
+\Norm{\psi} =
+   \Norm{\sigma_1 + \theta\pi_1}
+   \Norm{\sigma_2\cdots\sigma_s} 
+< \Norm{\sigma_1}\Norm{\sigma_2\cdots\sigma_s}
+= \Norm{\sigma_1\cdots\sigma_s} = \Norm{\xi_0}
+\end{equation*}
+so that:
+\begin{equation*}
+\Norm{\psi} < \Norm{\xi_0} = \min{\Norm{H}} \then
+\psi \notin H \then \psi \in K 
+\end{equation*}
+%
+Thus $\psi$ has an essentially unique factorization into
+irreducibles. Since:
+
+~~$\bullet$~~\:$\pi_1 \divides \psi\,$,\; and:
+
+\nopagebreak
+~~$\bullet$~~\:$\psi = \left( \sigma_1 + \theta\pi_1 \right)
+\left( \sigma_2\cdots\sigma_s  \right)$,\; and:
+
+\nopagebreak
+~~$\bullet$~~\:$\pi_1$ is not associate with any $\sigma_j$,
+
+it follows from corollary~(\ref{basic_property_of_K}) that\,
+$\pi_1 \divides \left( \sigma_1 + \theta\pi_1 \right),$\,
+and so\, $\pi_1 \divides \sigma_1$.
+
+Since $\pi_1,\sigma_1$ are irreducible, this means that
+$\pi_1$ and $\sigma_1$ are associate, which, according to
+what proved previously, gives us the desired contradiction.
+%
+\end{proof}
+%
+%------------------------------------------------------
+% CONCRETE EXAMPLE OF APPLICATION OF PREVIOUS THEOREM:
+% h(sqrt(2)) is UFD
+%------------------------------------------------------
+Now we consider a concrete exemple of normed domain which
+satisfies theorem~(\ref{property_sharp_implies_UFD}).
+
+What we want to prove here is that the real normed
+domain\, \mbox{$\hh{2} = \ZZ{2}$}\, is an UFD, showing
+that it satisfies property~(\ref{property_sharp}).
+
+Suppose that $\tau = a + b\sqrt{2} \in
+\QQ{2} \setminus \left( \ZZ{2}^\ast \cup \{0\} \right)
+\subseteq \Rzero$
+(with $a, b \in \Q$ not both zero, since $\tau \not= 0$)
+and such that\, $\Norm{\tau} \leq 1$\,
+(\ie $\abs{a^2 - 2b^2} \leq 1$\,).
+
+Since $a,b \in \Q$ are not both zero, it results $a^2 - 2b^2 \neq 0$.
+So we can find $x,y \in \Z$ such that:
+%
+\begin{equation}\label{x_and_y_limits}
+\left\{ \begin{array}{l}
+   \abs{x + \frac{a}{a^2 - 2b^2}} \leq \frac{1}{2}
+   \\
+   \\
+   \abs{y - \frac{b}{a^2 - 2b^2}} \leq \frac{1}{2}
+\end{array}
+\right.
+\end{equation}
+
+Let now\, $\theta:= x + y \sqrt{2} \in \ZZ{2}$;\,
+we want to show that:\, $\Norm{\theta\tau + 1} < 1$.
+
+This follows from simple (yet tedious) calculations:
+
+%----------------------
+% HORRIBLE CALCULATIONS
+%----------------------
+$
+~~~\Norm{\theta\tau + 1} = \Norm{ (x + y\sqrt{2})
+  (a + b\sqrt{2}) + 1 } = \\[3pt]
+~~~~\abs{(ax + 2by + 1)^2 - 2(ay + bx)^2} = \\[6pt]
+%
+~~~~\abs{ a^2 x^2 + 4 b^2 y^2 + 1 + 4abxy + 2ax + 4by
+          - 2 a^2 y^2 - 2 b^2 x^2 - 4abxy} = \\[6pt]
+~~~~\abs{ x^2 (a^2 - 2b^2) - 2y^2 (a^2 - 2b^2) + 1 +
+    2(ax + 2by) } = \\[6pt]
+%
+~~~~\abs{a^2 - 2b^2 } \cdot
+    \abs{ x^2 - 2y^2 + \dfrac{1}{a^2 - 2b^2}
+          + \dfrac{2(ax + 2by)}{a^2 - 2b^2}
+        } 
+   \leq \\[4pt]
+%
+~~~~\abs{ x^2 - 2y^2 + \dfrac{1}{a^2 - 2b^2}
+          + \dfrac{2(ax + 2by)}{a^2 - 2b^2}
+        }
+    = \\[5pt]
+%
+~~~~\abs{ \left( x^2 + 2 \cdot \dfrac{ax}{a^2 - 2b^2} +
+          \dfrac{a^2}{\left( a^2 - 2b^2 \right)^2} \right)
+          - 2\left( y^2 - 2 \cdot \dfrac{by}{a^2 - 2b^2} +
+          \dfrac{b^2}{\left(a^2 - 2b^2\right)^2} \right)
+        } = \\[4pt]
+%
+~~~~\abs{ \left(x + \dfrac{a}{a^2 - 2b^2}\right)^2
+          - 2 \left(y - \dfrac{a}{a^2 - 2b^2}\right)^2
+        }
+    \leq \\[4pt]
+%
+~~~~\left(x + \dfrac{a}{a^2 - 2b^2}\right)^2
+          + 2 \left(y - \dfrac{a}{a^2 - 2b^2}\right)^2
+    \leq\,
+    \dfrac{1}{4} + 2 \cdot \dfrac{1}{4} = \dfrac{3}{4} < 1.
+$
+
+\medskip
+
+So property~(\ref{property_sharp}) is valid for
+$\hh{2}$, which then is an UFD.
+
+
+%-------------------------------------------------
+% THIRD SECTION: equivalent forms for property (#)
+%-------------------------------------------------
+\section{Equivalent forms for our results}\label{equiv}
+
+%-------------------------------------------
+% INTRODUCTION OF NEW FORMS FOR PROPERTY(#)
+%-------------------------------------------
+In this section we'll give two altenative equivalent forms
+for property~(\ref{property_sharp}).
+Then, we'll see how it is possible to express such property
+in a slighty stronger way, which is however much more manageable.
+In this weaker form it will be easy to recognize the
+fundamental property of those normed domains which are
+``euclidean with respect to the norm'' (or, more briefly,
+``norm-euclidean'').
+So we see as it's possibile to retrieve by an unusual way the
+well-known class of euclidean real or complex domains of quadratic
+numbers.
+
+\medskip
+In what follows, $m$ is of course a non-square integer
+and $D$ is a normed domain with $D \subseteq \QQ{m}$.
+
+\medskip
+%--------------------------
+% PROPERTY (#1) ENUNCIATED
+%--------------------------
+\begin{property}\label{property_sharp_1}
+$\forall\, \tau \in \QQ{m}$ such that\/ $\Norm{\tau} \geq 1$,
+$\, \exists\; \theta \in D$\/ such that\/
+$\Norm{\tau - \theta} < \Norm{\tau}$.
+\end{property}
+
+We have immediatly:
+
+%----------------------------------------------
+% PROPERTY (#1) IS EQUIVALENT TO PROPERTY (#) 
+%----------------------------------------------
+\begin{thm}\label{sharp1_equivalent_sharp}
+If $D \subseteq \QQ{m}$ is a normed domain, then it satisfies
+property~(\ref{property_sharp}) if and only if it satisfies
+property~(\ref{property_sharp_1}).
+\end{thm}
+
+\begin{proof}
+%
+We'll prove the two implication separately.
+
+\begin{enumerate}
+
+\item[\textbf{1.}]
+Let us prove that property~(\ref{property_sharp})
+implies property~(\ref{property_sharp_1}).
+
+Suppose $\tau \in \QQ{m}$ such that
+$\Norm{\tau} \geq 1$ . If $\tau \in D^{\ast}$, than
+\textit{a fortiori} $\tau \in D$; so, letting
+$\theta:= \tau \in D$, we obtain
+$\Norm{\tau - \theta} = 0 < \Norm{\tau}$.
+If $\tau \notin D^{\ast}$, then is also
+$\tau_1:= \left(-\tau\right)^{-1} \notin D^{\ast}$,
+and moreover is $\Norm{\tau_1} =
+\left(\Norm{\tau}\right)^{-1} \leq 1$,
+so that we obtain from property~(\ref{property_sharp})
+that \,$\exists\: \theta \in D:\,
+\Norm{\theta\tau_1 + 1} < 1 \then \Norm{\tau - \theta}
+= \Norm{\tau}\Norm{1 -\theta\tau^{-1}} = 
+\Norm{\tau}\left(\Norm{1 +\theta\tau_1}\right)
+< \Norm{\tau}$.
+
+\item[\textbf{2.}]
+Let us prove that property~(\ref{property_sharp_1})
+implies property~(\ref{property_sharp}).
+
+Suppose $\tau \in \QQ{m} \setminus \left(D^\ast \cup \{0\}\right)$
+such that\, $\Norm{\tau} \leq 1$. Letting
+$\tau_1:= -\left(\tau^{-1}\right)$,\, it results\,
+$\Norm{\tau_1} = \Norm{-\left(\tau^{-1}\right)}
+= \Norm{\tau^{-1}} = \left(\Norm{\tau}\right)^{-1}\geq 1$,
+\,so that we immediately obtain from
+property~(\ref{property_sharp_1}) that\,
+$\exists\: \theta \in D:\, \Norm{\theta - \tau_1} <
+\Norm{\tau_1} \then \Norm{\tau\theta + 1} =
+\Norm{\tau} \Norm{\theta +\tau^{-1}}
+= \Norm{\tau} \Norm{\theta - \tau_1} <
+\Norm{\tau}\Norm{\tau_1} = \Norm{\tau \tau_1}
+=\Norm{-1} = 1$.
+
+\end{enumerate}
+The two implications prove the theorem.
+%
+\end{proof}
+
+Let's now see another property which is (almost)
+equivalent to property~(\ref{property_sharp}):
+
+%--------------------------
+% PROPERTY (#2) ENUNCIATED
+%--------------------------
+\begin{property}\label{property_sharp_2}
+$\,\forall\, \alpha, \beta \in D\minz$\,
+such that\, $\Norm{\alpha} \geq \Norm{\beta}$,\:
+$\exists\; \theta,\rho \in D$\, such that\,
+$\alpha = \beta\theta + \rho$\, and\,
+$\Norm{\rho} < \Norm{\alpha}$.
+\end{property}
+
+
+The following result holds:
+%------------------------------------------------------
+% PROPERTY (#2) IS (ALMOST) EQUIVALENT TO PROPERTY (#) 
+%------------------------------------------------------
+\begin{thm}\label{sharp2_almost_equivalent_sharp}
+If $D \subseteq \QQ{m}$ is a normed
+domain such that $D \not\subseteq \Q$, then it satisfies
+property~(\ref{property_sharp}) if and only if it
+satisfies property~(\ref{property_sharp_2}).
+\end{thm}
+
+\begin{proof}
+%
+First, since $D \not \subseteq \Q$, there exist\,
+$r,s \in \Q:\: r + s\sqrt{m} \in D,\: s \ne 0$ .
+From this, it's quite easy to deduce that the field of
+quotients of $D$ is $\QQ{m}$, so that:
+$$
+\forall \xi \in \QQ{m}:\: \exists\: \lambda_1,
+\lambda_2 \in D\ \,\textrm{such\ that}\, \ \lambda_2
+\ne 0\ \textrm{and}\ \xi = \frac{\lambda_1}{\lambda_2}
+$$
+%
+At this point, note that thanks to the
+theorem~(\ref{sharp1_equivalent_sharp})
+we need only to prove that:
+\begin{equation*}
+\textrm{(property~(\ref{property_sharp_1}) holds for $D$)}
+\iff
+\textrm{(property~(\ref{property_sharp_2}) holds for $D$)}.
+\end{equation*}
+
+We'll do this in two steps.
+
+\begin{enumerate}
+
+\item[\textbf{1.}]
+Let us prove that property~(\ref{property_sharp_1})
+implies property~(\ref{property_sharp_2}).
+
+Let $\alpha,\beta \in D\minz$ with\, $\Norm\alpha \geq \Norm\beta$,
+and put\, $\tau:= \frac{\alpha}{\beta} \in \QQ{m}$, so that
+\,$\Norm\tau \geq 1$.
+Then for property~(\ref{property_sharp_1}) we have that
+$\exists\; \theta \in D$\, with\,
+$\Norm{\tau - \theta} < \Norm{\tau}$, \ie
+$\Norm{\alpha - \theta\beta} = \Norm{\beta}\Norm{\tau - \theta}
+< \Norm{\beta}\Norm{\tau} = \Norm{\beta\tau} = \Norm{\alpha}$.
+So it's enough to put $\rho:= (\alpha - \beta\theta) \in D$
+to get the desired result.
+
+\item[\textbf{2.}]
+Let us prove that property~(\ref{property_sharp_2})
+implies property~(\ref{property_sharp_1}).
+
+Let $\tau \in \QQ{m}$ such that\, $\Norm{\tau} \geq 1$;\,
+we know that $\tau$ can be written as
+$\tau = \frac{\alpha}{\beta}$ for suitable $\alpha,\beta
+\in D$ with $\beta \neq 0$. So by our hypotesis it results:
+$$ \Norm{\tau} \geq 1 \then \Norm{\alpha} \geq \Norm{\beta} $$
+and thus, from property~(\ref{property_sharp_2}):
+$$
+\exists\: \theta,\rho \in D \textrm{ such that }\,
+\Norm{\rho} < \Norm{\alpha} \textrm{ and }
+\alpha = \beta\theta + \rho
+$$
+so that:
+\begin{eqnarray*}
+\Norm{\tau - \theta} & = &
+\Norm{\beta^{-1}} \Norm{\beta\tau - \beta\theta} =
+\left(\Norm{\beta}\right)^{-1}
+\Norm{\alpha - \beta\theta} = \\
+& = & \frac{\Norm{\rho}}{\Norm{\beta}} <
+\frac{\Norm{\alpha}}{\Norm{\beta}} =
+\Norm{\frac{\alpha}{\beta}} = \Norm{\tau}.
+\end{eqnarray*}
+Thus\, $\Norm{\tau - \theta} < \Norm{\tau}$,\,
+as required.
+\end{enumerate}
+The two implications prove the theorem.
+%
+\end{proof}
+
+
+\smallskip
+Let's finally see a stonger but handier form of
+property~(\ref{property_sharp})\footnote{%
+but we'll see in chapter~\ref{limits} that
+property~(\ref{property_sharp_weaker}) is only
+apparently stronger than property~(\ref{property_sharp}),
+the two being essentially equivalent.}:
+
+%----------------------------------
+% PROPERTY (#-weaker) ENUNCIATED
+%----------------------------------
+\begin{property}\label{property_sharp_weaker}
+$\,\forall\, \psi \in \QQ{m},\:
+\exists\: \theta \in D$ such that\,
+$\Norm{\psi - \theta} < 1$.
+\end{property}
+
+The following useful result holds:
+%--------------------------------------------
+% PROPERTY (#-weaker) IMPLIES PROPERTY (#)
+%--------------------------------------------
+\begin{thm}\label{property_sharp_weaker_implies_property_sharp}
+If $D \subseteq \QQ{m}$ is a normed domain which satisfies
+property~(\ref{property_sharp_weaker}), then it also satisfies
+property~(\ref{property_sharp}).
+In particular, every normed domain $D$ which satisfies
+property~(\ref{property_sharp_weaker}) is an UFD.
+\end{thm}
+
+\begin{proof}
+%
+Since property~(\ref{property_sharp}) is equivalent to
+property~(\ref{property_sharp_1}), it's enough to prove that
+property~(\ref{property_sharp_1}) follows from
+property~(\ref{property_sharp_weaker}).
+
+Let $\tau \in \QQ{m}$\, such that\,
+$\Norm{\tau} \geq 1$; then, from property~(\ref{property_sharp_weaker})
+we can say that $\exists\: \theta \in D$\, such that\,
+$\Norm{\tau - \theta} < 1 \then \Norm{\tau - \theta} <
+\Norm{\tau}$ since $1 \leq \Norm{\tau}$.
+So $D$ satisfies property~(\ref{property_sharp_1}).
+%
+\end{proof}
+
+\medskip
+
+%----------------------------------------------------------
+% EQUIVALENCE BETWEEN PROPERTY(#-weaker) AND NORM-EUCLIDEAN
+%----------------------------------------------------------
+Finally we see that property~(\ref{property_sharp_weaker})
+is equivalent to the fact that the domain $D$ is
+\emph{norm-euclidean} (at least in the case
+$D \not\subseteq \Q$).
+
+Obiouvsly, we say that a normed domain $D$ is norm-euclidean
+if its norm\, $\Normop: D \longrightarrow \N$ is an
+euclidean function, \ie if:
+$$
+\forall \alpha,\beta \in D,\,\beta \ne 0:\, \exists\:
+\theta,\rho \in D\,\ \textrm{such that}\ \, 
+\alpha = \beta \theta + \rho\,\ \textrm{and}\,\
+(\rho = 0\ \textrm{or}\ \Norm{\rho} < \Norm{\beta})
+$$
+
+\smallskip
+The following result holds:
+
+\begin{thm}\label{sharp-weaker_equivalent_norm-euclidean}
+If $D \subseteq \QQ{m}$ is a normed
+domain such that $D \not\subseteq \Q$, then it satisfies
+property~(\ref{property_sharp_weaker}) if and only if
+it is norm-euclidean.
+\end{thm}
+
+\begin{proof}
+%
+Again, from $D \not\subseteq \Q$ we can immediatly conclude
+that the field of quotients of $D$ is $\QQ{m}$, so that:
+$$
+\forall \xi \in \QQ{m}:\: \exists\: \lambda_1,
+\lambda_2 \in D\ \,\textrm{such\ that}\, \ \lambda_2
+\ne 0\ \textrm{and}\ \xi = \frac{\lambda_1}{\lambda_2}
+$$
+Suppose first that $D$ is norm-euclidean.
+Then, given\, $\psi \in \QQ{m}$\, and writing
+\,$\psi = \frac{\alpha}{\beta}$ for suitable $\alpha,\beta \in D$
+with $\beta \ne 0$,\, we have that there exist $\theta,\rho
+\in D$ such that $\alpha = \beta \theta + \rho$, with
+$\Norm{\rho} < \Norm{\beta}$\footnote{%
+in principle, there is also the separate case $\rho = 0$, which
+however still implies $\Norm{\rho} = 0 < \Norm{\beta}$, since
+$\beta \ne 0$.}.
+We have then:
+$$
+\Norm{\psi - \theta} =
+\Norm{\frac{\alpha - \theta\beta}{\beta}}
+= \Norm{\frac{\rho}{\beta}}
+= \frac{\Norm{\rho}}{\Norm{\beta}}
+< \frac{\Norm{\beta}}{\Norm{\beta}} = 1
+$$
+so that $D$ satisfies property~(\ref{property_sharp_weaker}).
+
+Conversly, suppose now that $D$ satisfies
+property~(\ref{property_sharp_weaker}).
+Then, given\, $\alpha,\beta \in D$ with $\beta \ne 0$,\,
+letting\, $\psi:= \frac{\alpha}{\beta} \in \QQ{m}$,
+\,we can find $\theta \in D$ such that\,
+$\Norm{\psi - \theta} < 1$,\, \ie such that
+$\Norm{\alpha - \beta\theta} < \Norm{\beta}$.
+Thus, defining $\rho:= \alpha - \beta\theta$, we
+obtain:
+$$
+\alpha = \beta\theta + \rho, \quad
+\Norm{\rho} < \Norm{\beta}
+$$
+and so \emph{a fortiori}:
+$$
+\alpha = \beta\theta + \rho, \quad
+\Norm{\rho} < \Norm{\beta}\ \,\textrm{or}\,\ \rho = 0.
+$$
+so that $D$ satisfies property~(\ref{property_sharp_weaker}).
+%
+\end{proof}
+
+%----------------------------------------------------
+% FOURTH SECTION: CONCRETE APPLICATION OF OUR METHODS
+%----------------------------------------------------
+\section{Some concrete applications}\label{apps}
+
+At this point we can retrieve the classical:
+
+%------------------------------------------
+% Proof that h(sqrt(m)) is an U.F.D for
+% m = -1, +2, -2, +3, -3, +5, -7, -11, +13
+%------------------------------------------
+\begin{thm}\label{normed_UFDs_1}
+The complex normed domains:
+$$
+\hhm{1} = \Z\left[\,i\,\right],\ \hhm{2} = \ZZM{2},
+\ \hhm{3},\ \hhm{7},\ \hhm{11}
+$$
+and the real normed domains:
+$$
+\hh{2} = \ZZ{2},\ \hh{3} = \ZZ{3},\ \hh{5},\ \hh{13}
+$$
+are UFDs.
+\end{thm}
+
+\begin{proof}
+%
+We want to show that the domains listed in the statement
+of the thorem all satisfy property~(\ref{property_sharp_weaker}),
+so from theorem~(\ref{property_sharp_weaker_implies_property_sharp})
+it will follow immediatly that all these domains are UFDs.
+
+We distinguish two cases.
+
+\smallskip
+
+% FIRST CASE: m = 2 or 3 (mod 4)
+%-------------------------------
+\textbf{Case 1:} $ D = \ZZ{m}$, for $m = -1,\: -2,\: +2,\: +3$.
+
+This case comprises all the $m$ such that $m \congruent 2$ or $3 \pmod 4$.
+
+Given\, $\psi \in \QQ{m}$, it results
+\,$\psi = a + b\sqrt{m}$\, for appropriate\, $a,b\in\Q$.
+\,If we take $x,y \in \Z$ such that\,
+$\abs{a - x} \leq \frac{1}{2}$\, and\,
+$\abs{b - y} \leq \frac{1}{2}$,\, and define\,
+$\theta := x + y\sqrt{m}$,\, then we have clearly\,
+$\theta \in D$.
+
+Moreover:
+$$
+\Norm{\psi - \theta} = \Norm{(a - x) + (b - y)\sqrt{m}}
+= \abs{(a - x)^2 - m(b - y)^2}.
+$$
+
+If $m = -1,\; -2,\; +2$ we have then:
+$$
+\Norm{\psi - \theta} \leq (a - x)^2 + \abs{m}(b - y)^2
+\leq \frac{1}{4} + \abs{m} \cdot \frac{1}{4}
+= \frac{1 + \abs{m}}{4} \leq \frac{1 + 2}{4} =
+\frac{3}{4} < 1
+$$
+\ie \,$\Norm{\psi - \theta} < 1.$
+
+If $m = 3$, we must reason in a slighty different way.
+There are the two following possibilities:
+
+$$
+\abs{(a - x)^2 - m (b - y)^2} = (a - x)^2 - m (b - y)^2
+\leq (a - x)^2 \leq \frac{1}{4} < 1
+$$
+
+or:
+$$
+\abs{(a - x)^2 - m (b - y)^2} = m (b - y)^2 - (a - x)^2
+\leq m(b - y)^2 \leq \frac{m}{4} = \frac{3}{4} < 1
+$$
+
+In both these cases we have:
+$$
+\Norm{\psi - \theta} = \abs{(a - x)^2 - m (b-y)^2} < 1
+$$
+as required.
+
+\smallskip
+
+% SECOND CASE: m = 1 (mod 4)
+%---------------------------
+\textbf{Case 2:} $ D = \hh{m}$,\,
+                   for $m = -3,\, -7,\, -11,\, +5,\, +13$.
+
+This case comprises all the $m$ such that $m \congruent 1 \pmod 4$.
+
+Given\, $\psi \in \QQ{m}$, we can obviously find\, $a,\,b\in\Q$
+such that $\psi = \frac{a + b\sqrt{m}}{2}$.
+If we take $y \in \Z$ such that\,
+$\abs{b - y} \leq \frac{1}{2}$,\, and then $x \in \Z$
+such that\, $\abs{\frac{a - y}{2} - x} \leq \frac{1}{2}$\,
+and define\, \mbox{$\theta:= \frac{(2x+y) + y\sqrt{m}}{2}$,}
+\,then we have\, $\theta \in D$
+(since $ 2x + y \congruent y $ (mod 2)).
+
+Moreover:
+$$
+\Norm{\psi - \theta} =
+\Norm{\frac{(a -y - 2x) + (b - y)\sqrt{m}}{2}} =
+\abs{\frac{1}{4}(a -y - 2x)^2 - \frac{1}{4} m (b - y)^2}
+$$
+
+\smallskip
+If\, $m = -3,\; -7,\; -11,\; +5$\, we have then:
+\smallskip
+%
+\begin{eqnarray*}
+\Norm{\psi - \theta} & \leq &
+\left( \frac{a -y - 2x} {2} \right)^2 +
+  \frac{1}{4} \abs{m} (b - y)^2
+\leq \left(\frac{1}{2}\right)^2
++ \frac{\abs{m}}{4}\left(\frac{1}{2}\right)^2 = \\
+& & \\
+& = & \frac{1}{4} + \abs{m}\cdot\frac{1}{16} =
+\frac{4+\abs{m}}{16}
+\leq \frac{4 + 11}{16} = \frac{15}{16} < 1
+\end{eqnarray*}
+
+\smallskip
+\ie \,$\Norm{\psi - \theta} < 1.$
+%
+
+\smallskip
+If $m = 13$, we must reason in a slighty different way.
+
+In this case, we can have either:
+%
+\begin{eqnarray*}
+\abs{ \frac{1}{4}(a -y - 2x)^2 - \frac{1}{4} m (b - y)^2 }
+& = & \frac{1}{4}(a - y - 2x)^2 - \frac{1}{4} m (b - y)^2 \leq \\[7pt]
+& \leq & \frac{1}{4}(a - y - 2x)^2 = \left(\frac{a -y - 2x}{2}\right)^2
+\leq \frac{1}{4} < 1
+\end{eqnarray*}
+
+or: \smallskip
+%
+\begin{eqnarray*}
+\abs{ \frac{1}{4}(a -y - 2x)^2 - \frac{1}{4} m (b - y)^2 }
+& = & \frac{1}{4} m (b - y)^2 - \frac{1}{4}(a -y - 2x)^2 \leq \\[6pt]
+& \leq & \frac{1}{4} m (b - y)^2 \leq
+\frac{m}{4} \cdot \left(\frac{1}{2}\right)^2 =
+\frac{m}{16} = \frac{13}{16} < 1
+\end{eqnarray*}
+
+In both cases it results:
+$$
+\Norm{\psi - \theta} =
+\abs{ \frac{1}{4}(a - y - 2x)^2 - \frac{1}{4} m(b - y)^2 }
+< 1
+$$
+
+as required.
+%
+\end{proof}
+
+%-----------------
+% SOME REFERENCES
+%-----------------
+More information about normed domains $D$ of the form
+$\hh{m}$ which satisfy (or do not satisfy)
+property~(\ref{property_sharp_weaker})\, (which is
+effectively equivalent to say that the domain $D$ is
+euclidean with respect to the norm) can be found in
+Chapter XIV of~\cite{H&W}. In particular, see
+\mbox{theorems\, (246)\,--\,(247)\,--\,(248)\,--\,(249).}
+
+%
+\bigskip
+Now we see two results that, taken together, give a
+slighty stronger version of theorem (248) of~\cite{H&W}.
+They also improve theorem~(\ref{normed_UFDs_1}), at
+least for positive values of $m$.
+
+%---------------------------------------
+% Proof that h(sqrt(m)) is an U.F.D for
+% m = 2, 3, 6, 7, 11
+%---------------------------------------
+\medskip
+The first result is:
+
+\begin{thm}\label{normed_UFDs_2}
+The domain $\hh{m}$ is norm-euclidean for the following values of $m$:
+$$ m\, =\, 2,\, 3,\, 6,\, 7,\, 11. $$
+\end{thm}
+
+\begin{proof}
+%
+Note that in what follows is $\hh{m} = \ZZ{m}$ since every $m$ here
+is $\not\congruent 1\ (\mathrm{mod}\ 4)$.
+
+Argue by contradiction, assuming that $\hh{m}$ is not norm-euclidean.
+Then it's easy to see that there must exist\, $r, s \in \Q$\, such that:
+\begin{equation}\label{r_and_s_basic_eq}
+\forall\: x,y \in \Z: \quad
+\abs{ (r - x)^2 - m(s - y)^2 } \geq 1
+\end{equation}
+
+First, note that the expression\,
+$E(x, y, r, s):= \abs{ (r - x)^2 - m (s - y)^2 }$\,
+is unaltered by the substitution:
+%
+\begin{equation}
+\varrho\,:\:\left\{ \begin{array}{l}
+r \mapsto \epsilon_1 r + u \\[4pt]
+x \mapsto \epsilon_1 x + u \\[4pt]
+s \mapsto \epsilon_2 s + v \\[4pt]
+y \mapsto \epsilon_2 y + v \\[4pt]
+\end{array}
+\right.
+\end{equation}
+%
+where\, $\epsilon_1, \epsilon_2 \in \{+1, -1\}$\, and
+$u,v$ are arbitrary integers,
+Moreover (and this is a fundamental fact), if $x,y$ run
+over all the rational integers, $\varrho(x)$ and $\varrho(y)$
+do the same.
+
+At this point it's clear that we can suppose without loss of
+generality that \,$0 \leq r \leq \frac{1}{2}$ and
+$0 \leq s \leq \frac{1}{2}$\, (since for every\, $q \in \Q$\,
+there exist\, $\epsilon \in \{+1, -1\}$ and $z \in \Z$\, such
+that\, $0 \leq z + \epsilon q \leq \frac{1}{2}$\,).
+
+Now, from~(\ref{r_and_s_basic_eq}) it derives that
+for every $x, y \in \Z$ one of the following
+statements must hold:
+%
+\begin{eqnarray}
+\left[P(x,y)\right]\::\quad (r - x)^2 \geq 1 + m(s - y)^2
+\\[4pt]
+\left[N(x,y)\right]\::\quad m(s - y)^2 \geq 1 + (r - x)^2
+\end{eqnarray}
+%
+Some particular inequalities which we shall use are:
+\begin{equation*}
+\begin{array}{llll}
+\left[P(0,0)\right]\:: & r^2 \geq 1 + ms^2 &
+\quad\quad
+\left[N(0,0)\right]\:: & ms^2 \geq 1 + r^2
+\\[7pt]
+\left[P(1,0)\right]\:: & (1 - r)^2 \geq 1 + ms^2 &
+\quad\quad
+\left[N(1,0)\right]\:: & ms^2 \geq 1 + (1 - r)^2
+\\[7pt]
+\left[P(-1,0)\right]\:: & (1 + r)^2 \geq 1 + ms^2 &
+\quad\quad
+\left[N(-1,0)\right]\:: & ms^2 \geq 1 + (1 + r)^2
+\end{array}
+\end{equation*}
+%
+We know that one inequality at least in each of these
+pair of inequalities is true; we also know that\,
+$0 \leq r \leq \frac{1}{2}$\, and\,
+$0 \leq s \leq \frac{1}{2}$.
+
+First, if\, $r = s = 0$,\, then $P(0,0)$ and $N(0,0)$
+are both false, so this possibility is excluded.
+Moreover we have:
+$$
+1 \leq 1 + ms^2 \quad\: \textrm{and}
+\quad\: r^2 \leq \frac{1}{4}
+$$
+so that $P(0,0)$ is false.
+But also $P(0,1)$ is false, because from it derives:
+$$
+1 \geq (1 - r)^2 \geq 1 + ms^2 \geq 1 \,\then\,
+\left\{
+\begin{array}{lll}
+1 + ms^2 & = & 1 \\
+(1 - r)^2 & = & 1
+\end{array}
+\,\then\,
+r = s = 0
+\right.
+$$
+a possibility already excluded.
+
+Thus it's assured that $P(0,0)$ and $P(1,0)$ are both
+false, so that $N(0,0)$ and $N(1,0)$ are true.
+If $P(-1, 0)$ were true, then $N(1, 0)$ and
+$P(-1, 0)$ combined would give:
+$$
+(1 + r)^2 \geq 1 + ms^2 \geq 2 + (1 - r)^2 \then
+4r \geq 2 \then r \geq \frac{1}{2}
+$$
+so that $r = \frac{1}{2}$, and consequentely:
+$$
+\frac{9}{4} = (1 + r)^2 \geq 1 + ms^2 \geq
+2 + (1 - r)^2 = \frac{9}{4} \:\then\:
+1 + ms^2 = \frac{9}{4} \:\then\: ms^2 = \frac{5}{4}
+$$
+But this is impossible, since writing
+$s = \frac{p}{q},\,$ for $p, q \in \N$ coprime,
+it would give:
+$$
+4mp^2 = 5q^2 \then p^2 \divides 5 \then p = 1
+\then 5q^2 = 4m \then 5 \divides m
+$$
+with\, $m = 2,\, 3,\, 6,\, 7\ \textrm{or}\ 11$,\,
+a contradiction.
+
+We have thus proved that $P(-1, 0)$ is false, so that
+$N(-1, 0)$ holds. This gives:
+%
+\begin{equation}\label{m*s^2 basic bound}
+ms^2 \geq 1 + (1 + r)^2 \geq 2
+\end{equation}
+and so, since $s^{-2} \geq 4$:
+$$ m \geq 2s^{-2} \geq 8 $$
+so that the only case we have to deal with from now on
+is\, $m = 11$.
+
+Let us consider the inequalities:
+$$
+\left[P(2,0)\right]\::\; (2 - r)^2 \geq 1 + 11s^2
+\quad\quad
+\left[N(2,0)\right]\::\; 11s^2 \geq 1 + (2 - r)^2
+$$
+We know that at least one of them must hold.
+But $N(2,0)$ is false, since it implies:
+$$
+11s^2 \geq 1 + (2 - r)^2 \geq 1 + \left(2 - \frac{1}{2}\right)^2
+= 1 + \left(\frac{3}{2}\right)^2 = \frac{13}{4}
+\;\then\; 11 \geq s^{-2}\cdot \frac{13}{4} \geq 13,
+$$
+a contradiction. So $P(2,0)$ is true, \ie:\:
+$(2 - r)^2 \geq 1 +ms^2$.\\
+From this and from (\ref{m*s^2 basic bound}) we deduce\,
+$(2 - r)^2 \geq 1 + 11s^2 \geq 2 + (1 + r)^2$,\, and so:
+%%%
+$$
+2 \leq (2 - r)^2 - (1 + r)^2 = 3 - 6r \then - 6r \geq -1
+$$
+\ie:
+\begin{equation}\label{r_upper_bound_1}
+r \leq \frac{1}{6}
+\end{equation}
+%
+Let us now consider the inequalities:
+$$
+\left[P(-2,1)\right]\::\; (2 + r)^2 \geq 1 + 11(1 - s)^2
+\quad\quad
+\left[N(-2,1)\right]\::\; 11(1 - s)^2 \geq 1 + (2 + r)^2
+$$
+We know that at least one of them must hold.
+If this were $N(-2, 1)$, we would have:
+$$
+11(1 - s)^2 \geq 1 + (2 + r)^2 \geq 5 \then
+1 - s \geq \sqrt{\frac{5}{11}} \then
+s \leq 1 - \sqrt{\frac{5}{11}} < \frac{1}{3}.
+$$
+\medskip
+But then, from (\ref{m*s^2 basic bound}) would derive:
+$$
+1 + \frac{11}{9}= 1 + 11 \cdot \left(\frac{1}{3}\right)^2 >
+1 + 11s^2 \geq 2 + (1 + r)^2 \geq 3
+\then \frac{20}{9} \geq 3,
+$$
+a contradiction.
+
+Thus $N(-2, 1)$ is false, so that $P(-2, 1)$ must hold, \ie:
+\begin{equation}\label{N(-1,2)}
+(2 + r)^2 \geq 1 + 11(1 - s)^2
+\end{equation}
+%
+Now we must consider the two following further inequalities:
+$$
+\left[P(2,1)\right]\::\; (2 - r)^2 \geq 1 + 11(1 - s)^2
+\quad\quad
+\left[N(2,1)\right]\::\; 11(1 - s)^2 \geq 1 + (2 - r)^2
+$$
+Again, we know that at least one of them must hold.
+If $N(2,1)$ were hold, we'd get from (\ref{N(-1,2)}):
+$$
+(2 + r)^2 \geq 1 + 11(1 - s)^2 \geq 2 + (2 - r)^2
+\then 4 + 4r + r^2 \geq 2 + 4 - 4r + r^2 \then 8r \geq 2
+$$
+and so\, $r \geq \frac{1}{4}$,\, which contradicts
+(\ref{r_upper_bound_1}).
+
+Thus $P(2,1)$ holds, and so, being\, $1 - s \geq \frac{1}{2}$\,,\,
+we obtain:
+$$
+(2 - r)^2 \geq 1 +11(1 - s)^2 \geq 1 + \frac{11}{4}
+= \frac{15}{4} \then 2 - r \geq \frac{\sqrt{15}}{2} \then
+r \leq \frac{4 - \sqrt{15}}{2} < \frac{1}{15}.
+$$
+\medskip
+So we have a further upper bound for\, $r$\,:
+\begin{equation}\label{r_upper_bound_2}
+r < \frac{1}{15}
+\end{equation}
+%
+From (\ref{N(-1,2)}) we deduce now:
+$$
+1 + 11(1 - s)^2 \leq (2 + r)^2 < (2 + \frac{1}{15})
+= \left(\frac{31}{15}\right)^2 \then (1 - s)^2 <
+\frac{1}{11}\left(\left(\frac{31}{15}\right)^2-1\right)
+$$
+so that, since\: $(0.55)^2 \geq
+\left(\dfrac{\left(\frac{31}{15}\right)^2 - 1}{11}\right)$%
+,\, we have the following lower bound for $s$\,:
+\begin{equation}\label{s_lower_bound_1}
+1 - s < 0.55 \;\then\; s > 0.45
+\end{equation}
+Finally, let us consider the following pairs of inequalities:
+$$
+\left[P(5,-1)\right]\::\; (5 - r)^2 \geq 1 + 11(1 + s)^2
+\quad\quad
+\left[N(5,-1)\right]\::\; 11(1 + s)^2 \geq 1 + (5 - r)^2
+$$
+If $P(5, -1)$ were true, we would get from
+(\ref{s_lower_bound_1}):\\
+$$
+20.25 = \frac{81}{4} = \left(5 - \frac{1}{2}\right)^2 \geq
+(5 - r)^2 \geq 1 + 11(1 + s)^2 > 1 + 11\cdot(1.45)^2 =
+24.1275,
+$$
+a contradiction.
+So $N(5, -1)$ must hold.
+Using (\ref{r_upper_bound_2}), we get then:
+$$
+\frac{99}{4} = 11\left(1 + \frac{1}{2}\right)^2 \geq
+11(1 + s)^2 \geq1 + (5 - r)^2 >
+1 + \left(5 - \frac{1}{15}\right)^2 = \frac{5701}{225}
+$$
+so that\, $22275 = 99 \cdot 225 > 4 \cdot 5701 = 22804$,\,
+a contradiction.
+
+\medskip
+Thus we can eventually conclude that also $\hh{11} = \ZZ{11}$
+is norm-euclidean, and the theorem is proved.
+%
+\end{proof}
+
+%---------------------------------------
+% Proof that h(sqrt(m)) is an U.F.D for
+% m = 5, 13, 17, 21, 29, 33, 37, 41
+%---------------------------------------
+Now we can see an analogue of the previous theorem for
+the case $m \congruent 1$ (mod $4$). The argumentations
+will be very similar.
+
+\begin{thm}\label{normed_UFDs_3}
+The domain $\hh{m}$ is norm-euclidean for the following
+values of $m$:
+$$ m\, =\, 5,\, 13,\, 17,\, 21,\, 29,\, 33,\, 37,\, 41. $$
+\end{thm}
+
+\begin{proof}
+%
+First note that here every $m$ here is $\congruent 1 \pmod 4$, so that:
+$$
+\hh{m} = \left\{\dfrac{(2x + y) + y\sqrt{m}}{2}:\: x, y \in \Z\right\}.
+$$
+We'll argue by contradiction, assuming that $\hh{m}$ is not
+norm-euclidean.
+
+Then it's easy to see that, written\, $n := \frac{1}{4}m$,
+\,must exist\, $r, s \in \Q$\, such that:
+\begin{equation}\label{new_r_and_s_basic_eq}
+\forall\: x,y \in \Z: \quad
+\abs{ \left(r - x - \frac{y}{2}\right)^2 - n(s - y)^2 }
+\geq 1
+\end{equation}
+(to prove this, write the generic element $\tau \in \QQ{m}$
+as $\tau = r + \frac{1}{2}s\sqrt{m}$,\, with $r, s \in \Q$)
+
+First, note that the expression\, $E(x, y, r, s):=
+\abs{ \left(r - x - \frac{y}{2}\right)^2 - n (s - y)^2 }$\,
+is unaltered by any of the following four substitutions:
+%
+\begin{equation}
+\varrho_1:
+\left\{ \begin{array}{l}
+r \mapsto \epsilon r + u  \\[4pt]
+x \mapsto \epsilon x + u  \\[4pt]
+s \mapsto s                 \\[4pt]
+y \mapsto y                 \\[4pt]
+\end{array}
+\right.
+\end{equation}
+%
+\begin{equation}
+\varrho_2:
+\left\{ \begin{array}{l}
+r \mapsto r      \\[4pt]
+x \mapsto x - v  \\[4pt]
+s \mapsto s + 2v \\[4pt]
+y \mapsto y + 2v \\[4pt]
+\end{array}
+\right.
+\end{equation}
+\begin{equation}
+\varrho_3:
+\left\{ \begin{array}{l}
+r \mapsto r     \\[4pt]
+x \mapsto x + y \\[4pt]
+s \mapsto -s    \\[4pt]
+y \mapsto -y    \\[4pt]
+\end{array}
+\right.
+\end{equation}
+\begin{equation}
+\varrho_4:
+\left\{ \begin{array}{l}
+r \mapsto \frac{1}{2} - r \\[4pt]
+x \mapsto -x              \\[4pt]
+s \mapsto 1 - s           \\[4pt]
+y \mapsto 1 - y           \\[4pt]
+\end{array}
+\right.
+\end{equation}
+%
+where\, $\epsilon \in \{+1, -1\}$\, and $u,v$ are
+arbitrary integers.
+Moreover (and this is a fundamental fact), for any of the transormations
+$\sigma_i$ given above, if $x,y$ run over all the rational integers,
+${\varrho_i}(x)$ and ${\varrho_i}(y)$ do the same.
+
+Now, using this observation, we're going now to prove that it
+can be assumed without loss of generality that\,
+$0 \leq r \leq \frac{1}{2}$\, and\,
+$0 \leq s \leq \frac{1}{2}$.
+
+We firt use $\varrho_1$ to make
+$0 \leq r \leq \frac{1}{2}$, then $\varrho_2$ to make
+$-1 \leq s \leq 1$; and then, if necessary, $\varrho_3$
+to make $0 \leq s \leq 1$. If $0 \leq s \leq \frac{1}{2}$,
+the reduction is completed. On the other hand, if
+$\frac{1}{2}\leq s\leq 1$, we end by using $\varrho_4$,
+as we can do because $\frac{1}{2} - r$ lies between $0$
+and $\frac{1}{2}$ if $r$ does so.
+
+Now, from (\ref{new_r_and_s_basic_eq}) it derives that
+for every $x, y \in \Z$ one of the following
+statements must hold:
+%
+\begin{eqnarray}
+\left[P(x,y)\right]\::\quad \left(r-x-\frac{y}{2}\right)^2
+\geq 1 + n(s - y)^2 \\[4pt]
+\left[N(x,y)\right]\::\quad n(s - y)^2 \geq
+1 + \left(r - x - \frac{y}{2}\right)^2
+\end{eqnarray}
+%
+Some particular inequalities which we shall use are:
+\begin{equation*}
+\begin{array}{llll}
+\left[P(0,0)\right]\:: & r^2 \geq 1 + ns^2 &
+\quad\quad
+\left[N(0,0)\right]\:: & ns^2 \geq 1 + r^2
+\\[7pt]
+\left[P(1,0)\right]\:: & (1 - r)^2 \geq 1 + ns^2 &
+\quad\quad
+\left[N(1,0)\right]\:: & ns^2 \geq 1 + (1 - r)^2
+\\[7pt]
+\left[P(-1,0)\right]\:: & (1 + r)^2 \geq 1 + ns^2 &
+\quad\quad
+\left[N(-1,0)\right]\:: & ns^2 \geq 1 + (1 + r)^2
+\end{array}
+\end{equation*}
+%
+We know that one inequality at least in each of these
+pair of inequalities is true; we also know that\,
+$0 \leq r \leq \frac{1}{2}$\, and\,
+$0 \leq s \leq \frac{1}{2}$.
+
+First, if\, $r = s = 0$,\, then $P(0,0)$ and $N(0,0)$
+are both false, so this possibility is excluded.
+Moreover we have:
+$$
+1 \leq 1 + ns^2 \quad\: \textrm{and}
+\quad\: r^2 \leq \frac{1}{4}
+$$
+so that $P(0,0)$ is false.
+But also $P(1,0)$ is false, because from it derives:
+$$
+1 \geq (1 - r)^2 \geq 1 + ns^2 \geq 1 \,\then\,
+\left\{
+\begin{array}{lll}
+1 + ns^2 & = & 1 \\
+(1 - r)^2 & = & 1
+\end{array}
+\,\then\,
+r = s = 0
+\right.
+$$
+a possibility already excluded.
+
+Thus it's assured that $P(0,0)$ and $P(1,0)$ are both
+false, so that $N(0,0)$ and $N(1,0)$ are true.
+If $P(-1, 0)$ were true, then $N(1, 0)$ and
+$P(-1, 0)$ combined would give:
+$$
+(1 + r)^2 \geq 1 + ns^2 \geq 2 + (1 - r)^2 \then
+4r \geq 2 \then r \geq \frac{1}{2}
+$$
+so that $r = \frac{1}{2}$, and consequentely:
+$$
+\frac{9}{4} = (1 + r)^2 \geq 1 + ns^2 \geq
+2 + (1 - r)^2 = \frac{9}{4} \:\then\:
+1 + ns^2 = \frac{9}{4} \:\then\: ns^2 = \frac{5}{4}
+$$
+But this is impossible, since writing
+$s = \frac{p}{q},\,$ for $p, q \in \N$ coprime,
+it would give:
+$$
+mp^2 = 4np^2 = 5q^2 \then p^2 \divides 5 \then p=1
+\then 5q^2 = m \then 5 \divides m
+$$
+with\, $m = 5,\, 13,\, 17,\, 21,\, 29,\, 33,\, 37
+\ \textrm{or} \ 41$,\, so that:
+$$
+m = 5 \then q^2 = 1 \then p = q = 1 \then
+s = \frac{p}{q} = 1,
+$$
+a contradiction.
+
+We have thus proved that $P(-1, 0)$ is false, so that
+$N(-1, 0)$ holds. This gives:
+%
+\begin{equation}\label{shared}
+ns^2 \geq 1 + (1 + r)^2 \geq 2
+\end{equation}
+and so, since $s^{-2} \geq 4$:
+$$
+\frac{1}{4}m = n \geq 2s^{-2} \geq 8 \then
+m \geq 4 \cdot 8 = 32,
+$$
+%
+Thus, from now on, we have only to deal with the cases
+$m = 33$ or $m = 37$ or $m = 41$, so that it is surely:
+\begin{equation}\label{m_and_n_bounds}
+33 \leq m \leq 41 \quad~ \ie \quad~\!
+\frac{33}{4} \leq n \leq \frac{41}{4}
+\end{equation}
+%
+From the inequality~(\ref{shared}) we immediately get:
+$$
+\frac{41}{4}s^2 \geq ns^2 \geq 1 + (1 + r)^2 \geq 2 \then
+s^2 \geq \frac{8}{41} \then s \geq \sqrt{\frac{8}{41}} >
+0.4417
+$$
+so that:
+\begin{equation}\label{s_lower_bound}
+s > 0.4417
+\end{equation}
+and:
+$$
+(1 + r)^2 \leq ns^2 - 1 \leq \frac{41}{4} \cdot
+\left(\frac{1}{2}\right)^2 - 1 = \frac{25}{16} \then
+1 + r \leq \frac{5}{4}
+$$
+so that:
+\begin{equation}\label{r_upper_bound}
+r \leq \frac{1}{4} = 0.25
+\end{equation}
+%
+Consider now the inequality:
+$$
+\left[P(-1, 1)\right]\::\;
+\left(1 - \frac{1}{2} - r\right)^2 \geq 1 + n(1 - s)^2
+$$
+If it were true, we would get:
+$$
+\left(\frac{1}{2} + r\right)^2 \geq 1 + n(1 - s)^2 \geq
+1 + n\left(\frac{1}{2}\right)^2 = 1 + \frac{1}{4}n
+\geq 1 + \frac{1}{4} \cdot \frac{33}{4} = \frac{49}{16}
+= \left(\frac{7}{4}\right)^2
+$$
+so that:
+$$
+1 = \frac{1}{2} + \frac{1}{2}  \geq \frac{1}{2} + r \geq \frac{7}{4}
+$$
+a contradiction.
+
+Then $N(-1, 1)$ must hold, \ie:
+\begin{equation}\label{N(-1,1)}
+n(1 - s)^2 \geq 1 + \left(\frac{1}{2} + r\right)^2
+\end{equation}
+
+Consider then the following inequality:
+$$
+\left[P(1, 1)\right]\::\;
+\left(1 + \frac{1}{2} - r\right)^2 \geq 1 + n(1 - s)^2
+$$
+If it were true as a strict inequality, we would get
+from (\ref{N(-1,1)}):
+$$
+\left(\frac{3}{2} - r\right)^2 > 1 + n(1 - s)^2 \geq
+2 + \left(\frac{1}{2} + r\right)^2 \then
+\frac{9}{4} -3r + r^2 > 2 + \frac{1}{4} +r + r^2
+$$
+so that:
+$$
+- 4r > 2 + \frac{1}{4} - \frac{9}{4} = 0
+\then r < 0
+$$
+a contradiction.
+Then, if $P(1,1)$ holds, it must be\,
+$\left(\frac{3}{2} - r\right)^2 = 1 + n(1 - s)^2$.
+Moreover, if (\ref{N(-1,1)}) were true as a strict
+inequality, we would have:
+$$
+\left(\frac{3}{2} - r\right)^2 = 1 + n(1 - s)^2 >
+2 + \left(\frac{1}{2} + r\right)^2
+$$
+from which can be deduced exactly as above that $r < 0$,
+a contradiction.
+So, if $P(1,1)$ holds, it must be:
+$$
+\left(\frac{3}{2} - r\right)^2 = 1 + n(1 - s)^2
+\quad\ \textrm{and}\ \quad
+n(1 - s)^2 = 1 + \left(\frac{1}{2} + r\right)^2
+$$
+so that:
+$$
+\left(\frac{3}{2} - r\right)^2 =
+2 + \left(\frac{1}{2} + r\right)^2 \then r = 0 \then
+n (1 - s)^2 = 1 + \left(\frac{1}{2} + r\right)^2
+= \frac{5}{4}
+$$
+from which we can finally deduce, using also
+(\ref{m_and_n_bounds}):
+$$
+(1 - s)^2 = \frac{5}{4n} = \frac{5}{m} \leq \frac{5}{33}
+\then 1 - s = \sqrt{\frac{5}{33}} < 0.4 \then s > 1 - 0.4
+= 0.6 > \frac{1}{2}
+$$
+again a contradiction.
+
+Thus is now proved that $P(1, 1)$ can't hold, so that
+$N(1, 1)$ certainly holds, \ie:
+\begin{equation}\label{N(1,1)}
+n(1 - s)^2 \geq 1 + \left(\frac{3}{2} - r\right)^2
+\end{equation}
+
+Finally, consider the inequality:
+$$
+\left[P(-2, 1)\right]\::\;
+\left(2 - \frac{1}{2} - r\right)^2 \geq 1 + n(1 - s)^2
+$$
+If it were true, we would get from (\ref{N(1,1)}):
+$$
+\left(\frac{3}{2} + r\right)^2 =
+\left(2 - \frac{1}{2} - r\right)^2 \geq 1 + n(1 - s)^2
+\geq 2 + \left(\frac{3}{2} - r\right)^2
+$$
+so that:
+$$
+\frac{9}{4} + 3r + r^2 \geq 2 + \frac{9}{4} - 3r + r^2
+\then 6r \geq 2 \then r \geq \frac{1}{3} > \frac{1}{4}
+$$
+which contradicts (\ref{r_upper_bound}).
+Thus $N(-2, 1)$ must hold, \ie:
+\begin{equation}\label{N(-2,1)}
+n(1 - s)^2 \geq 1 + \left(\frac{3}{2} + r\right)^2
+\end{equation}
+From this inequality we finally deduce:
+$$
+\frac{m}{4}(1 - s)^2 = n(1 - s)^2 \geq
+1 + \left(\frac{3}{2} + r\right)^2 \geq
+1 + \frac{9}{4} = \frac{13}{4}
+$$
+which, togheter with (\ref{s_lower_bound}), lead us to the
+conclusive desired contradiction:
+$$
+13 \leq m(1 - s)^2 \leq 41(1 - s)^2
+< 41(1 - 0.4417)^2 = 12.77965449
+$$
+%
+\end{proof}

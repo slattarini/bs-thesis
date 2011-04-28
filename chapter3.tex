@@ -1,0 +1,1199 @@
+\chapter{Some non-UFDs of algebraic integers}\label{notUFD}
+
+%--------------------------------------------------------
+% FIRST SECTION.
+% We show tht many complex domains of the form h(sqrt(m))
+% and Z[sqrt(m)] are not UFD
+%--------------------------------------------------------
+\section{Some normed complex domains that are not an UFD}
+
+In this section, we'll give a quite general condition on $m > 0$
+which ensure that $\hhm{m}$ or $\ZZM{m}$ is not an UFD.
+
+\bigskip
+Let's start with a proposition about $\ZZM{m}$:
+%-------------------------------------------------
+% m = 1 or 2 (mod 4) positive non-square composite
+% implies Z[sqrt(-m)] not UFD
+%-------------------------------------------------
+\begin{thm}\label{m_neg_composite_implies_not_uniqueness_1}
+If $m \in \Z$ a composite number such that $m > 1$, then
+$\ZZM{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+Let \,$p$\, the smallest prime number with\, $p \divides m$,
+\,and let\, $m = ph$,\, with $h \in \Nzero$.
+
+Since $m$ is composite, of course\, $p < m \then h > 1
+\then m = ph \geq p^2$ (as follows easily from the
+minimality of $p$).
+
+Now, in $\ZZM{m}$ we clarly have:
+$$\left(\sqrt{-m}\right)^2 = -m = p\cdot(-h)$$
+so that in $\ZZM{m}$ is\, $p \divides \left(\sqrt{-m}\right)^2$
+\,but\, $p \notdivides \sqrt{-m}$\,
+(as one can immediately check observing that the equality
+\,$\sqrt{-m} = p(a + b \sqrt{-m})$,\, $a, b \in \Z$\: would
+imply\, $pb = 1 \then p \divides 1$,\, a contradiction).
+
+So if we prove that $p$ is irreducible in $\ZZM{m}$
+we also immediately get that $\ZZM{m}$ is not an UFD.
+
+Argue by contradiction, assuming that\, $p = \alpha\beta$\,
+for\, $\alpha, \beta \in \ZZM{m}$ not units (\ie such
+that\, $\Norm{\alpha} > 1$\, and\, $\Norm{\beta} > 1$).
+Then, writing\, $\alpha = \left(a + b\sqrt{-m}\right)$\,
+and \,$\beta = \left(c + d\sqrt{-m}\right)$ \,for\,
+$a, b, c, d \in \Z$,\, we obtain:
+$$
+m \ge p^2 = \Norm{p} = \Norm{\alpha}\Norm{\beta} >
+\Norm{\alpha} = a^2 + b^2 m \geq b^2 m
+$$
+so that:
+$$ b^2 m < m \then b = 0. $$
+
+It can also be proved in an identical manner that\,
+$d = 0$,\, so that\, $p = ac$,\, with \,$a,c \in \Z$,\,
+which implies\, $ a = \pm{1}$ or $c = \pm{1}$\, since
+$p$ is prime in $\Z$.
+
+But then also $\alpha = \pm 1$ or $\beta = \pm 1$, a contradiction
+as $\alpha$ and $\beta$ are not units.
+%
+\end{proof}
+
+Since $\hhm{m} = \ZZM{m}$ if $m \congruent 1$ or $2$ (mod $4$),
+we immediately have the following result:
+
+%-------------------------------------------------
+% m = 1 or 2 (mod 4) positive squarefree composite
+% implies h(sqrt(-m)) not UFD
+%-------------------------------------------------
+\begin{cor}\label{m_neg_composite_implies_not_uniqueness_2}
+If\, $m > 1$\, is a composite squarefree integer with\,
+\mbox{$m \congruent 1\; \textrm{or}\ 2\;\mathrm{(mod\;4)}$,}
+then $\hhm{m}$ is not an UFD.
+\end{cor}
+
+%--------------------------------------------
+% m = 3 (mod 4) positive squarefree composite
+% implies h(sqrt(-m)) not UFD
+%--------------------------------------------
+A similar result holds also for\, $m \congruent 3$ (mod $4$):
+\begin{thm}\label{m_neg_composite_implies_not_uniqueness_3}
+If\, $m > 1$\, is a composite squarefree integer with\,
+\mbox{$m \congruent 3\;\mathrm{(mod\;4)}$,} then $\hhm{m}$ is
+not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+As in the proof of previous theorem, let\, $p$\, the
+smallest prime number such that\, $p \divides m$,\, and
+write\, $m = pH$\, for\, $H \in \Nzero$\,;\, then we easily
+get\, $p^2 \geq m$.
+
+Again, in $\hhm{m}$ we have:
+$$
+\left(\sqrt{-m}\right)^2 = -m = p\cdot(-H)
+$$
+so that in\, $\hhm{m}$\, is\, $p \divides \left(\sqrt{-m}\right)^2$.
+But in\, $\hhm{m}$\, is also $p \notdivides \sqrt{-m}$,\, since the
+assumption\, $p \divides \sqrt{-m}$\, would imply that for
+suitable $a, b \in \Z$ is\footnote{%
+in fact, it must be also $a \congruent b \pmod 2$, but this is
+of no importance here.}:
+$$
+\sqrt{-m} = p\left(\frac{a + b\sqrt{-m}}{2}\right)
+\then 2 = pb \then b = 1 \textrm{ and } p = 2
+$$
+so that, since\, $p \divides\! m$,\, $m$ must be even, which
+contradicts the hypothesis that $m \congruent 3 \pmod 4$.
+
+So our aim is now to show that $p$ is irreducible in $\hhm{m}$.
+
+Let
+\begin{equation}\label{p_factorization}
+p = \left(\frac{a + b\sqrt{-m}}{2}\right)
+    \left(\frac{c + d\sqrt{-m}}{2}\right)
+\end{equation}
+
+\,for\, $a, b, c, d \in \Z$ with
+$a \congruent b$ (mod 2) and $c \congruent d$ (mod 2).
+We want first to show that\, $b = 0$\, or\, $d = 0$.
+Argue by contradiction assuming\, $ b \ne 0 \ne d $.\,
+If we write $A := \abs{bd}$,\, it results then
+$A \geq 1$, and:
+\begin{equation}\label{A_limits}
+A^2 m^2 =
+16m^2 \cdot \frac{b^2}{4} \cdot \frac{d^2}{4}
+\leq 16 \left(\frac{a^2 + b^2 m}{4}\right)
+        \left(\frac{c^2 + d^2 m}{4}\right)
+= 16\Norm{p} = 16p^2
+\end{equation}
+from which, being\, $p^4 \leq A^2 p^4 \leq A^2 m^2$,\,
+derives immediately:
+$$
+p^4 \leq 16p^2 \then p^2 \leq 16 \then p \leq 4 \then
+p = 2 \textrm{\ or\ } 3.
+$$
+Finally, since $p \divides m$ and $m$ odd, we have $p=3$.
+
+From inequality~(\ref{A_limits}), recalling that
+$m = pH = 3H$, we have now:
+$$
+16\cdot3^2 = 16p^2 \geq A^2 m^2 = A^2 \cdot 3^2 H^2 \then
+(AH)^2 \leq 16 \then H \leq AH \leq 4
+$$
+from which the possibilities:\, $H = 1,\, 2,\, 3$ or $4$.
+
+But since $m$ is odd it is\, $2 \ne H \ne 4$,\, since $m$
+is squarefree it is\, $H \ne p = 3$\, and since $m$ is
+composite it is\, $H \ne 1$,\, so that we get the desired
+contradiction which lead us to deduce that $b=0$ or $d=0$.
+
+At this point it's clear that we can suppose without loss
+of generality that $b = 0$; thus, since\, $a \congruent b$
+(mod 2),\, it results $a = 2r,\: r \in \Zzero$.
+
+The equation~(\ref{p_factorization}) becomes now:
+$$
+2p = cr + dr\sqrt{-m}
+$$
+from which, since\, $r \ne 0$,\, immediatly derives that\,
+$d = 0$ and so, being\, $c \congruent d$ (mod 2),\,
+that $c = 2s$ for an appropriate $s \in \Z$
+
+Thus we finally have:
+$$
+2p = cr = 2sr \then p = sr \then r = \pm{1}\ \textrm{or}
+\ s = \pm{1}
+$$
+and then:
+$$
+\frac{a + b\sqrt{-m}}{2} = r = \pm{1} \textrm{\quad or \quad}
+\frac{c + d\sqrt{-m}}{2} = s = \pm{1}
+$$
+which proves that $p$ is irreducible in\, $\hhm{m}$, so that we
+can conclude that $\hhm{m}$ is not an UFD.
+%
+\end{proof}
+
+%----------------------------------------------------------
+% A FIRST GENERAL RESULT:
+% m > 0 composite  ==>  h(sqrt(-m)) and Z[sqrt(-m)] not UFD
+%----------------------------------------------------------
+Summarizing the two \mbox{%
+propositions
+(\ref{m_neg_composite_implies_not_uniqueness_2})
+and
+(\ref{m_neg_composite_implies_not_uniqueness_3})%
+} we get the following:
+
+\begin{thm}\label{m_neg_composite_implies_not_uniqueness}
+If $m > 1$ is a composite squarefree integer then $\hhm{m}$
+is not an UFD.
+\end{thm}
+
+\medskip
+For the domains $\ZZM{m}$ there is another severe limitation
+to the possibility of being UFD:
+
+\begin{thm}\label{m_neg_odd_implies_not_uniqueness_1}
+If $m > 1$ is an  odd integer, then $\ZZM{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+Let us first show that 2 is irreducible in $\ZZM{m}$.
+Argue by contradiction, assuming that:\,
+$2 = \alpha\beta = \left(a + b\sqrt{-m}\right)
+\left(c + d\sqrt{-m}\right)$\, with\, $\alpha,\beta$\, not
+units in $\Z{\sqrt{-m}}$\, (\,\ie such that\,
+$\Norm{\alpha}>1$ and $\Norm{\beta}>1$\,).
+We get immediately:
+$$
+4 = \Norm{\alpha}\Norm{\beta} \then
+\Norm{\alpha} = \Norm{\beta} = 2 \then
+a^2 + mb^2 = 2
+$$
+If would be $b \ne 0$, then we should have\, $b^2 \geq 1$\,
+and so\, $2 = a^2 + mb^2 \geq mb^2 \geq m \geq 3$,\,
+contradiction. So it is\, $b = 0 \then a^2 = 2$,\, again
+a contradiction.
+Thus we can conclude that 2 is irreducible in $\ZZM{m}$.
+
+Since $m$ is odd, we have now that in $\ZZM{m}$ is:
+
+~~$\bullet\ \; 2 \notdivides \left(1 + \sqrt{-m}\right)$
+
+~~$\bullet\ \; 2 \notdivides \left(1 - \sqrt{-m}\right)$
+
+~~$\bullet\ \; 2 \divides (1 + m) = 
+\left(1 + \sqrt{-m}\right)\cdot\left(1 - \sqrt{-m}\right)$
+
+which, together with the irreducibility of 2, proves that
+$\ZZM{m}$ is not an UFD.
+%
+\end{proof}
+
+Again, since $\hhm{m} = \ZZM{m}$ for $m \congruent 1$ (mod $4$),
+we immediately get:
+
+\begin{cor}\label{m_neg_odd_implies_not_uniqueness_2}
+If\/ $m > 1$\/ is a squarefree odd integer such that\/
+$m \congruent 1\ (\mathrm{mod}\ 4)$, then $\hhm{m}$
+is not an UFD.
+\end{cor}
+
+We can give now a ``definitive'' result on the complex
+normed domains of the form $\ZZM{m}$:
+
+\begin{thm}\label{definitive_result_on_uniqueness_in_Z[sqrt(-m)]}
+If $m$ is a positive integer, then $\ZZM{m}$
+is an UFD if and only if\/ $m = 1$ or $m = 2$.
+\end{thm}
+
+\begin{proof}
+%
+From theorem~(\ref{normed_UFDs_1}) of chapter~\ref{UFD} we know that
+\,$\ZZM{1}$\, and\, $\ZZM{2}$\, are UFDs.
+
+On the contrary, if\, $m > 2$,\, it can be:
+\begin{itemize}
+ \item $m$ even and $m > 2$, so that $m$ is composite and then
+       $\ZZM{m}$ is not UFD by
+       theorem~(\ref{m_neg_composite_implies_not_uniqueness_1}),\: or:
+ \item $m > 1$ and $m$ odd, so that $\ZZM{m}$ not an UFD by
+       theorem~(\ref{m_neg_odd_implies_not_uniqueness_2}),
+\end{itemize}
+and $\ZZM{m}$ can't be an UFD in either case.
+\end{proof}
+
+Since\, $\hhm{m} = \ZZM{m}$\, when\, $m \congruent 1$ or $2$ (mod $4$),
+a trivial implication of the previous result is:
+
+\begin{cor}
+If \,$m > 2$\, is a squarefree integer such that \,$m \congruent 1$ or\,
+$2 \pmod 4$, then $\hhm{m}$ is not an UFD.
+\end{cor}
+
+The following proposition is very easy to prove too,
+using the previous corollary and the theorem
+(\ref{m_neg_composite_implies_not_uniqueness}):
+
+\begin{thm}\label{h(sqrt(-m))_UFD_constraint_m}
+If\, $m > 1$\, is a squarefree integer such that $\hhm{m}$
+is an UFD, then\, $m = 2$\, or \,$m$ is prime and
+$m \congruent 3 \pmod 4$.
+\end{thm}
+
+The previous theorem can be greatly strengthened, leading to
+the following result:
+
+\begin{thm}\label{first_theorem_on_uniqueness_in_complex_h(sqrt(-p))}
+Let $p > 3$ be an odd prime with\, $p \congruent 3 \pmod 4$, and
+suppose that there exist a prime \,$q < \frac{p}{4}$\, such that $-p$
+is a quadratic residue of $4q$; then $\hhm{p}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+Let $z \in \Z$ such that: 
+\begin{equation}\label{foo}
+z^2 \congruent -p \pmod{4q}.
+\end{equation}
+Then it's clearly\, $z \congruent 1 \pmod 2$,\, so that we have\,
+$\alpha := \left(\frac{1 + z\sqrt{-p}}{2}\right) \in \hhm{p}$.
+From~(\ref{foo}) we have
+$\Norm{\alpha} = \frac{1}{4}(z^2 + p) \in \Z$\,
+and\, $q \divides \Norm{\alpha}$\, in\, $\Z$, and
+thus, \textit{a fortiori},\, $q \divides \Norm{\alpha}
+= \alpha\cg{\alpha}$\, in\, $\hhm{p}$. But since\,
+$1 \notcongruent 0 \pmod{q}$, we immediately have\,
+$q \notdivides \alpha$ and $q \notdivides \cg{\alpha}$.
+Then, to prove that $\hhm{p}$ is not an UFD, we have only to
+show that $q$ is irreducible in $\hhm{p}$.
+
+Argue by contradiction, assuming that\, $q = \beta\gamma$
+\,for\, $\beta, \gamma \in \hhm{p}$ not units,
+\ie such that\, $\Norm{\beta} > 1$, $\Norm{\gamma} > 1$.
+From this, since $q$ is prime, we deduce:
+$$
+q^2 = \Norm{q} = \Norm{\beta\gamma} =
+\Norm{\beta} \Norm{\gamma} \then
+\Norm{\beta} = \Norm{\gamma} = q
+$$
+Writing now\, $\beta = \frac{a + b\sqrt{-p}}{2}$\, for
+suitable\, $a,b \in \Z$\, with\, $a \congruent b \pmod 2$,
+it results, supposing\, $b \ne 0$:
+$$
+4q = 4\,\Norm{\beta} = a^2 + pb^2 \geq pb^2 > 4qb^2
+\then b^2 < 1 \then b = 0
+$$
+so that we surely have\, $b = 0$.\, But then\, $a^2 = 4q$,
+\,which, being\, $q$\, prime, is a contradiction.
+%
+\end{proof}
+
+As consequence of previous theorem we have:
+\begin{cor}\label{second_theorem_on_uniqueness_in_complex_h(sqrt(-p))}
+Let\, $p > 3$\, be an odd prime such that
+$p \congruent 3 \pmod 4$\, and\, such that $\hhm{p}$
+is an UFD; then there exists a prime\, $q$\, such that\,
+$p = 4q - 1$.
+In particular, it must be\, $p = 7$\, (if\, $q = 2$) or\,
+$p \congruent 3 \pmod 8$\, (if\, $q$ odd).
+\end{cor}
+
+\begin{proof}
+%
+Argue by contradiction, assuming that\, $\frac{1}{4}(p + 1)$
+\,-- which is an integer since \mbox{$p \congruent 3 \pmod 4$}
+and greater than $1$ since $p > 3$ -- is composite, and let $r$
+be one of its prime divisors.
+Then we can write\, $\frac{1}{4}(p + 1) = rA$\, for\,
+$A \in \N$, $A > 1$, from which we deduce:
+
+\begin{itemize}
+
+\item 
+$\frac{1}{4}(p + 1) = rA \geq 2r \then
+r \leq \frac{1}{8}(p + 1) < \frac{1}{8} \cdot 2p
+\then r < \frac{1}{4}p$
+
+\item
+$r \left|\, \frac{1}{4}(p + 1)\right.
+\then 4r \divides (p + 1)$
+
+\end{itemize}
+
+We have then:
+$$
+-p \congruent 1^2\ (\mathrm{mod}\ 4r), \quad
+1 < r < \frac{1}{4}p, \quad
+r\,\ \textrm{prime}
+$$
+so that, by
+theorem~(\ref{first_theorem_on_uniqueness_in_complex_h(sqrt(-p))}),
+we have immediately that\, $\hhm{p}$ is not an UFD, a contradiction.
+%
+\end{proof}
+
+Finally, we can see an immediate consequence of previous
+result:
+
+\begin{cor}\label{corollary_on_uniqueness_in_complex_h(sqrt(-p))}
+Let\, $1 < p < 200$\, be a prime such that\, $\hhm{p}$\, is an
+UFD;\, then\, $p$ must be one of the following numbers:
+$$ 2,\;3,\;7,\;11,\;19,\;43,\;67,\;163 $$
+\end{cor}
+
+\begin{proof}
+%
+The only $p$ primes with\, $p < 200$\, such that\,
+$p \leq 7$ \,or\, $p \congruent 3$ (mod 8)\, are:
+$$
+2,\; 3,\; 7,\; 11,\; 19,\; 43,\; 59,\; 67,\;
+83,\; 107,\; 131,\; 139,\; 163,\; 179
+$$
+Moreover:
+\begin{itemize}
+
+\item $\frac{59 + 1}{4} = 15 = 3 \cdot 5$
+
+\item $\frac{83 + 1}{4} = 21 = 3 \cdot 7$
+
+\item $\frac{107 + 1}{4} = 27 = 3^3$
+
+\item $\frac{131 + 1}{4} = 33 = 3 \cdot 11$
+
+\item $\frac{139 + 1}{4} = 35 = 5 \cdot 7$
+
+\item $\frac{179 + 1}{4} = 45 = 3^2 \cdot 5$
+
+\end{itemize}
+
+Thus our claim follows immediately from
+corollary~(\ref{second_theorem_on_uniqueness_in_complex_h(sqrt(-p))}).
+%
+\end{proof}
+
+%------------------------------------------------------
+% SECOND SECTION.
+% We show that many real domains of the form h(sqrt(m))
+% and Z[sqrt(m)] are not UFD
+%------------------------------------------------------
+\section{Some normed real domains that are not UFD}
+
+In this section, we'll give a quite general condition on $m > 0$
+ensuring that $\hh{m}$ or $\ZZ{m}$ is not an UFD.
+
+The results that we'll can obtain about real domains will be
+weaker then those found about complex domains, and our proofs
+will be obiouvsly more elaborated.
+
+\bigskip
+
+Let's start with a proposition about $\ZZ{m}$:
+\begin{thm}\label{basic_negative_result_for_uniqueness_1}
+Let $m > 1$ be a non-square integer, and suppose that
+there exists a prime $p$ such that:
+
+~~$\bullet\quad\!\!\! \pm{p}$ are both quadratic non-residues
+of $m$;
+
+~~$\bullet\quad\!\! m$ is a quadratic residue of $p$.
+
+Then $\ZZ{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof} 
+%
+By hypothesis we can find\, $t \in \Z$\, such that
+$t^2 \congruent m$ (mod $p$)\:$\then\, p \divides
+(t^2 - m) = (t + \sqrt{m})(t - \sqrt{m})$,\, but\,
+$p \notdivides (t + \sqrt{m})$ and
+$p \notdivides (t - \sqrt{m})$
+(as one can immediately check observing that the
+equality: \,$t \pm{\sqrt{m}} = p(a + b \sqrt{m})$,\,
+$a, b \in \Z$\: would imply\, $pb = \pm{1} \then
+p \divides 1$,\, a contradiction).
+So, if $p$ is irreducible in $\ZZ{m}$, this domain
+can't be an UFD.
+
+Argue by contradiction, assuming that\,
+$p = \alpha \beta$\, with\, $\alpha,\beta \in \ZZ{m}$
+not units, \ie such that $\Norm{\alpha} > 1,\;
+\Norm{\beta} > 1$.\, If\, $\alpha = a + b\sqrt{m}$\, with\,
+$a,b \in \Z$,\, we get then, for an appropriate choice of
+sign:
+$$
+p^2 = \Norm{\alpha}\Norm{\beta} \then \Norm{\alpha} =
+\Norm{\beta} = p \then \pm{p} = \pm{\,\Norm{\alpha}} = 
+a^2 - mb^2 \congruent a^2\ (\mathrm{mod}\ m),
+$$
+a contradiction, as \,$\pm p$\, are both quadratic non-residues
+of \,$m$.
+%
+\end{proof}
+
+%
+From previous result and from the equality $\hh{m} = \ZZ{m}$, holding
+for $m \congruent 2$ or $3 \pmod 4$, we immediately get:
+
+\begin{cor}\label{basic_negative_result_for_uniqueness_1'} 
+Let $m > 1$ be a squarefree integer such that\, $m \congruent 2$ or\,
+$3 \pmod 4$, and suppose that there exists a prime $p$ such that:
+
+~~$\bullet\quad\!\! \pm{p}$ are both quadratic non-residues
+of $m$;
+
+~~$\bullet\quad\! m$ is a quadratic residue of $p$.
+
+Then $\hh{m}$ is not an UFD.
+\end{cor}
+%
+
+\medskip
+A similar result holds also for $m \congruent 1$ (mod $4$):
+%
+\begin{thm}\label{basic_negative_result_for_uniqueness_2}
+Let $m > 1$ be a squarefree integer  such that $m \congruent 1 \pmod 4$,
+and suppose that there exists a prime $p > 2$ such that:
+
+~~$\bullet\quad\!\! \pm{p}$ are both quadratic non-residues
+of $m$;
+
+~~$\bullet\quad\! m$ is a quadratic residue of $p$.
+
+Then $\hh{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+By hypothesis we can find\, $t \in \Z$\, such that:
+$$
+t^2 \congruent m\ (\mathrm{mod}\ p)\then p \divides
+(t^2 - m) = (t + \sqrt{m})(t - \sqrt{m}),
+$$
+but\, $p \notdivides (t + \sqrt{m})$ and
+$p \notdivides (t - \sqrt{m})$,\, since the assumption\,
+$p \divides \left(t \pm{\sqrt{m}}\right)$\, would
+imply that for suitable $a, b \in \Z$ is\footnote{%
+in fact, it must be also $a \congruent b \pmod 2$, but this is
+of no importance here.}:
+$$
+t \pm{\sqrt{m}} = p\left(\frac{a + b\sqrt{m}}{2}\right)
+\then \pm{2} = pb \then p \divides 2
+$$
+which contradicts our assumption that $p > 2$.
+
+So, in order to prove that $\hh{m}$ is not an UFD, we
+have only to show that $p$ is irreducible in $\hh{m}$.
+
+Argue by contradiction, assuming that\,
+$p = \alpha \beta$\, with\, $\alpha,\beta \in \hh{m}$
+not units, \ie such that\,
+$\Norm{\alpha} > 1,\;\: \Norm{\beta} > 1$.\,
+Writing\, $\alpha = \frac{a + b\sqrt{m}}{2}$,\, with\,
+$a,\,b \in \Z,\ a \congruent b \pmod 2$,\, we
+get then, for an appropriate choice of sign:
+\begin{displaymath} \begin{split}
+p^2 = \Norm{\alpha}\Norm{\beta} & \then \Norm{\alpha} =
+\Norm{\beta} = p \\
+& \then \pm{4p} = \pm{4\:\Norm{\alpha}} 
+= a^2 - mb^2 \congruent a^2\ (\mathrm{mod}\ m)
+\end{split} \end{displaymath}
+Since\, $\gcd{m}{4} = 1$\, (as $m$ is odd), from the
+last congruence it immediately derives that at least one
+between $+p$ and $-p$ is a quadratic residue of $m$,
+which gives us the desired contradiction.
+%
+\end{proof}
+%
+Let's now see another useful general result about $\ZZ{m}$:
+
+\begin{thm}\label{basic_negative_result_for_uniqueness_3}
+If $m > 1$ is a non-square integer such that $m \congruent 1 \pmod 4$,
+then $\ZZ{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+Since $m$ is odd, it results:
+$$
+2 \divides (1 - m) = (1 + \sqrt{m})(1 - \sqrt{m})
+$$
+while obiouvsy\, $2 \notdivides (1 + \sqrt{m})$\,
+and\, $2 \notdivides (1 - \sqrt{m})$\, in\, $\ZZ{m}$.
+So, by proving that $2$ is irreducible in $\ZZ{m}$,
+we'll also prove that this domain is not an UFD.
+
+Argue by contradiction, assuming that $2 = \alpha \beta$
+for $\alpha, \beta \in \ZZ{m}$ not units.
+Then\, $\Norm{\alpha} > 1,\: \Norm{\beta} > 1$, so that,
+writing\, $\alpha = a + b\sqrt{m}$\, for $a, b \in \Z$,
+we obtain:
+$$
+4 = \Norm{2} = \Norm{\alpha}\Norm{\beta} \then
+\Norm{\alpha} = \Norm{\beta} = 2 \then \pm{2} =
+a^2 - mb^2
+$$
+
+From this equality, since $m$ is odd, follows immediately
+that\, $a \congruent b$ (mod 2),\, and so that
+$a^2 \congruent b^2$ (mod $4$). But then:
+$$
+2 \congruent \pm{2} = a^2 - mb^2 \congruent a^2 - b^2
+\congruent 0\ (\mathrm{mod}\ 4)
+$$
+a contradiction.
+%
+\end{proof}
+
+\bigskip
+Now we want to apply the results seen so far to three simple
+but concrete examples.
+
+\medskip
+\textsf{Example 1.}  Let $m = 10$, which is obiouvsly
+squarefree; since $10 \congruent 2$ (mod $4$), is\,
+$$
+\hh{10} = \ZZ{10} =
+\left\{a + b\sqrt{10} : a,b \in \Z\right\}.
+$$
+Moreover, $10 \congruent 0^2$ (mod $2$),
+while $\pm{2}$ are both quadratic non-residues of 10
+(as one can immediatly check by direct calculations).
+
+Since 2 is prime, by
+theorem~(\ref{basic_negative_result_for_uniqueness_1}),\,
+$\hh{10} = \ZZ{10}$\, isn't an UFD.
+
+\medskip
+\textsf{Example 2.}  Let $m = 85$, which is obiouvsly
+squarefree; since $85 \congruent 1$ (mod $4$), is\,
+$$
+\hh{85} = \left\{\frac{a + b\sqrt{85}}{2}:\:
+a,b \in \Z\ \,\textrm{and}\,\ a \congruent
+b\ \textrm{(mod\ 4)}\right\}.
+$$
+Moreover, $85 \congruent 1^2$ (mod $3$),
+while $\pm{3}$ are both quadratic non-residues of
+$85$ (as they are both quadratic non-residue of
+$5$). Since $3$ is a prime $> 2$, by
+theorem~(\ref{basic_negative_result_for_uniqueness_2}),
+$\hh{85}$ isn't an UFD.
+ 
+\medskip
+\textsf{Example 3.}  Let $m = 41$; since
+$41 \congruent 1$ (mod $4$), the domain
+$\ZZ{41}$ is not an UFD by
+thorem~(\ref{basic_negative_result_for_uniqueness_3})
+
+\bigskip
+
+%-------------------------------------------------
+% THIRD SECTION:
+% we obtain some deeper result using theorems
+% found in the previous section and the technical
+% lemma of  Chapter (1), Section (4)
+%-------------------------------------------------
+\section{Deeper results for real domains}
+
+Using the
+\mbox{results
+(\ref{basic_negative_result_for_uniqueness_1'})%
+\,--\,%
+(\ref{basic_negative_result_for_uniqueness_2})}
+seen in the previos section, we can now see some general
+and quite strong results for the real domains of the form
+$\hh{m}$ and $\ZZ{m}$.
+
+In our proofs we will heavily use the
+lemma~(\ref{basic_technical_lem})
+seen in chapter~\ref{preliminary}.
+
+\begin{thm}\label{deeper_1}
+Let \,$q_1, q_2, \ldots, q_n$\, (\/$n \geq 2$\/) be pairwise distinct
+odd primes such that $q_1 \congruent 1 \pmod 4$,\, and let\,
+$m = q_1 q_2 \cdots q_n$.
+Then $\hh{m}$ and \,$\ZZ{m}$ are not UFDs.
+\end{thm}
+
+\begin{proof}
+%
+Since the primes $q_i$ are pairwise distinct and all odd, we
+easily deduce from lemma~(\ref{basic_technical_lem}) that there
+exists a prime $p$ such that:
+
+\begin{itemize}
+
+\item $p \congruent 1$ (mod $4$)
+
+\item $p$\, is a quadratic non-residue
+(mod $q_1$) and (mod $q_2$)
+
+\item $p$\, is a proper quadratic residue (mod $q_i$),
+$\forall\: i \in \{3, \ldots, n\}$
+
+\end{itemize}
+
+So, as\, $q_1 \congruent 1$ (mod $4$),\, we obtain:
+$$
+\Leg{\pm{p}}{q_1} = \Leg{\pm{1}}{q_1}\Leg{p}{q_1}
+= (+1) \cdot (-1) = -1
+$$
+But \,$q_1 \divides m$,\, so that,
+\emph{a fortiori},\, $+p$ and $-p$ are both
+quadratic non-residues of $m$;\, moreover, since\,
+$p \congruent 1$ (mod $4$),\, using quadratic
+reciprocity law, we get:
+%
+{\setlength\arraycolsep{2pt}
+\begin{eqnarray*}
+\Leg{m}{p} & = &\Leg{q_1 q_2 q_3 \cdots q_n}{p} =
+\Leg{q_1}{p} \Leg{q_2}{p} \Leg{q_3}{p} \cdots
+\Leg{q_n}{p} = \\[7pt]
+& = & \Leg{p}{q_1} \Leg{p}{q_2} \Leg{p}{q_3} \cdots
+\Leg{p}{q_n} = (-1)(-1)(+1)\cdots(+1) = +1
+\end{eqnarray*}}
+{\flushleft
+so that $m$ is a quadratic residue of $p$.}
+
+Since\, $p > 2$\, (as $p$ is an odd prime), from
+theorems~(\ref{basic_negative_result_for_uniqueness_1})
+and~(\ref{basic_negative_result_for_uniqueness_2})
+and corollary~(\ref{basic_negative_result_for_uniqueness_1'}),
+we conclude that $\hh{m}$ and $\ZZ{m}$ are not UFDs.
+%
+\end{proof}
+
+
+\begin{thm}\label{deeper_2}
+Let \,$q_1, q_2, \ldots, q_n$\, ($n \geq 1$) be
+pairwise distinct odd primes such that\, $q_1 \congruent 1 \pmod 4$,\,
+and let\, $m = 2 q_1 q_2 \cdots q_n$.
+Then $\hh{m}$ and \,$\ZZ{m}$ are not UFDs.
+\end{thm}
+
+\begin{proof}
+%
+Since the primes $q_i$ are pairwise distinct and all odd, we easily
+deduce from lemma~(\ref{basic_technical_lem}) that there exists
+a prime $p$ such that:
+
+\begin{itemize}
+
+\item $p \congruent 5$ (mod 8)
+
+\item $p$\, is a quadratic non-residue (mod $q_1$)
+
+\item $p$\, is a proper quadratic residue (mod $q_i$),
+$\forall\: i \in \{2, \ldots, n\}$
+
+\end{itemize}
+
+So, as\, $q_1 \congruent 1$ (mod $4$),\, we obtain:
+$$
+\Leg{\pm{p}}{q_1} = \Leg{\pm{1}}{q_1}\Leg{p}{q_1}
+= (+1) \cdot (-1) = -1
+$$
+But $q_1 \divides m$, so that, \emph{a fortiori}, $+p$ and $-p$
+are both quadratic non-residues of $m$; moreover, since
+$p \congruent 1$ (mod $4$), using quadratic reciprocity law, we get:
+\medskip
+\setlength\arraycolsep{2pt}
+\begin{eqnarray*}
+\Leg{m}{p} & = &\Leg{2 q_1 q_2 \cdots q_n}{p} =
+\Leg{2}{p}\Leg{q_1}{p} \Leg{q_2}{p} \cdots
+\Leg{q_n}{p} = \\[7pt]
+& = & \Leg{2}{p}\Leg{p}{q_1} \Leg{p}{q_2} \cdots
+\Leg{p}{q_n} = (-1)(-1)(+1)\cdots(+1) = +1
+\end{eqnarray*}
+{\flushleft
+so that $m$ is a quadratic residue of $p$.}
+
+Since\, $p > 2$\, (as $p$ is an odd prime), from
+theorems~(\ref{basic_negative_result_for_uniqueness_1})
+and~(\ref{basic_negative_result_for_uniqueness_2})
+and corollary~(\ref{basic_negative_result_for_uniqueness_1'}),
+we conclude that $\hh{m}$ and $\ZZ{m}$ are not UFDs.
+%
+\end{proof}
+
+The two previous results can immediately be unified
+in the following theorem:
+
+\begin{thm}\label{deeper_3} 
+Let $m > 1$ be a squarefree composite integer that has
+a prime factor of the form $4k + 1$, $k \in \N$.
+Then $\hh{m}$ and \,$\ZZ{m}$ are not UFDs.
+\end{thm}
+
+\mbox{Theorems (\ref{deeper_1})\,--\,(\ref{deeper_2})}
+can easily be extended to analogous cases.
+This is what we'll do in the two following propositions.
+
+\begin{thm}\label{deeper_4}
+Let \,$q_1, q_2, \ldots, q_n$\, ($n \geq 3$)
+be pairwise distinct odd primes such that\, $q_1 \congruent 3 \pmod 4$,\,
+and let\, $m = q_1 q_2 \cdots q_n$.
+Then $\hh{m}$ and \,$\ZZ{m}$ are not UFDs.
+\end{thm}
+
+\begin{proof}
+%
+Since the primes $q_i$ are pairwise distinct and all odd,
+we easily deduce from lemma~(\ref{basic_technical_lem})
+that there exists a prime $p$ such that:
+
+\begin{itemize}
+
+\item $p \congruent 1$ (mod $4$)
+
+\item $p$\, is a quadratic non-residue
+(mod $q_2$) and (mod $q_3$)
+
+\item $p$\, is a proper quadratic residue (mod $q_i$),
+$\forall\: i \in \{1, 4, \ldots, n\}$
+
+\end{itemize}
+
+So, as\, $q_1 \congruent 3$ (mod $4$),\, we obtain:
+$$
+\Leg{p}{q_2} = -1 \quad \textrm{and} \quad
+\Leg{-p}{q_1} = \Leg{-1}{q_1} \Leg{p}{q_1}
+= (-1) \cdot (+1) = -1
+$$
+But \,$q_1 \divides m,\; q_2 \divides m$,\, so
+that, \emph{a fortiori},\, $+p$ and $-p$ are
+both quadratic non-residues of $m$;\, moreover,
+since\, $p \congruent 1$ (mod $4$),\, using
+quadratic reciprocity law, we get:
+%
+{\setlength\arraycolsep{2pt}
+\begin{eqnarray*}
+\Leg{m}{p} & = &\Leg{q_1 q_2 q_3 q_4 \cdots q_n}{p} =
+\Leg{q_2}{p} \Leg{q_3}{p} \Leg{q_1}{p} \Leg{q_4}{p}
+\cdots \Leg{q_n}{p} = \\[7pt]
+& = & \Leg{p}{q_2} \Leg{p}{q_3} \Leg{p}{q_1} \Leg{p}{q_4}
+\cdots \Leg{p}{q_n} = (-1)(-1)(+1)(+1)\cdots(+1) = +1
+\end{eqnarray*}}
+{\flushleft
+so that $m$ is a quadratic residue of $p$.}
+
+Since\, $p > 2$\, (as $p$ is an odd prime), from
+theorems~(\ref{basic_negative_result_for_uniqueness_1})
+and~(\ref{basic_negative_result_for_uniqueness_2})
+and corollary~(\ref{basic_negative_result_for_uniqueness_1'}),
+we conclude that $\hh{m}$ and $\ZZ{m}$
+are not UFDs.
+%
+\end{proof}
+
+
+\begin{thm}\label{deeper_5}
+Let \,$q_1, q_2, \ldots, q_n$\, ($n \geq 2$)
+be pairwise distinct odd primes such that\, $q_1 \congruent 3 \pmod 4$,\,
+and let\, $m = 2 q_1 q_2 \cdots q_n$. 
+Then $\hh{m}$ and \,$\ZZ{m}$ are not UFDs.
+\end{thm}
+
+\begin{proof}
+%
+Since the primes $q_i$ are pairwise distinct and all odd, we
+easily deduce from lemma~(\ref{basic_technical_lem}) that there
+exists a prime $p$ such that:
+
+\begin{itemize}
+
+\item $p \congruent 5$ (mod 8)
+
+\item $p$\, is a quadratic non-residue (mod $q_2$)
+
+\item $p$\, is a proper quadratic residue (mod $q_i$),
+$\forall\: i \in \{1, 3, \ldots, n\}$
+
+\end{itemize}
+
+So, as\, $q_1 \congruent 3$ (mod $4$),\, we obtain:
+$$
+\Leg{p}{q_2} = -1 \quad \textrm{and} \quad
+\Leg{-p}{q_1} = \Leg{-1}{q_1} \Leg{p}{q_1}
+= (-1) \cdot (+1) = -1
+$$
+But \,$q_1 \divides m,\; q_2 \divides m$,\,
+so that, \emph{a fortiori},\, $+p$ and $-p$
+are both quadratic non-residues of $m$;\,
+moreover, since\, $p \congruent 1$ (mod $4$),\,
+using quadratic reciprocity law, we get:
+\medskip
+\setlength\arraycolsep{2pt}
+\begin{eqnarray*}
+\Leg{m}{p} & = &\Leg{2 q_1 q_2 \cdots q_n}{p} =
+\Leg{2}{p}\Leg{q_2}{p} \Leg{q_1}{p} \Leg{q_3}{p}
+\cdots \Leg{q_n}{p} = \\[7pt]
+& = & \Leg{2}{p}\Leg{p}{q_2} \Leg{p}{q_1} \Leg{p}{q_3}
+\cdots \Leg{p}{q_n} = (-1)(-1)(+1)(+1)\cdots(+1) = +1
+\end{eqnarray*}
+{\flushleft
+so that $m$ is a quadratic residue of $p$.}
+
+Since\, $p > 2$\, (as $p$ is an odd prime), from
+theorems~(\ref{basic_negative_result_for_uniqueness_1})
+and~(\ref{basic_negative_result_for_uniqueness_2})
+and corollary~(\ref{basic_negative_result_for_uniqueness_1'}),
+we conclude that $\hh{m}$ and $\ZZ{m}$ are not UFDs.
+%
+\end{proof}
+
+%
+\bigskip
+\mbox{Theorems (\ref{deeper_3})\,--\,(\ref{deeper_4})\,%
+--\,(\ref{deeper_5})} can be now unified, leading to the
+following result:
+
+\begin{thm}\label{DEEPER}
+Let\, $m > 1$\, be a squarefree integer such that at least one between
+$\hh{m}$ and $\ZZ{m}$ is an UFD; then there exist two distinct primes
+$p,q$ such that $m = p$, or $m = 2p$ and
+$p \congruent 3\ \mathrm{(mod\ 4)}$, or $m = pq$ and
+$p \congruent q \congruent 3\ \mathrm{(mod\ 4)}$.
+\end{thm}
+
+\begin{proof}
+%
+If $m$ is prime, there is nothing to prove. So let's
+suppose $m$ composite.
+
+From theorem~(\ref{deeper_3}) it derives
+that $m$ has no factors of the form $4k + 1$.
+From this statement we immediately conclude that one of
+the two following possibilities holds:
+\begin{itemize}
+
+\item\: $m$ has only two prime factors, no one of the
+form $4k + 1$, \ie\,$m = 2p$ for $p$ prime such that
+$p \congruent 3$ (mod $4$),\, or\, $m = pq$ for $p,q$
+primes such that $p \congruent q \congruent 3$ (mod $4$).
+
+\item\: $m$ has one of the form indicated in
+theorems~(\ref{deeper_4})~and~(\ref{deeper_5}).
+
+\end{itemize}
+
+But if the second case hold, we could deduce from
+theorems~(\ref{deeper_4}) and~(\ref{deeper_5})
+themselves that both $\hh{m}$ and $\ZZ{m}$ aren't UFD,
+which contradicts our hypothesis.
+So, if $m$ is composite, the first case must hold,
+and this proves the thoerem.
+%
+\end{proof}
+
+%------------------------------------------
+% FOURTH SECTION:
+% we obtain some deeper results concerning
+% Z[sqrt(m)] using theorems found in
+% section 2 and the technical lemma of
+% Chapter (1), Section (4)
+%-------------------------------------------------
+% NOTE: do *not* use \ZZ here!
+\section{More general results for $\Z[\sqrt{m}]$} 
+
+At this stage, we can reinforce theorem~(\ref{DEEPER})
+if we limit our attention to the domains
+$\ZZ{m}$, for $m > 1$ squarefree.
+
+This fact is expressed in the following result:
+
+\begin{thm}\label{Z_deeper_1}
+Let $m > 1$ be a squarefree integer such that
+$\ZZ{m}$ is an UFD; then there exists
+a prime $p \congruent 3\ \mathrm{(mod\ 4)}$ such that\,
+$m = 2$\, or\, $m = p$ \,or\, $m = 2p$.
+\end{thm}
+
+\begin{proof}
+%
+From theorem~(\ref{DEEPER}) we know that, if $\ZZ{m}$ is an UFD,
+then either $m$ has one of forms listed in our statement,
+or\, $m = p \congruent 1 \pmod 4$\, ($p$ prime)\, or\,
+$m = pq$\, for\, $p,q$ primes and $p \congruent q \congruent 3 \pmod 4$.
+
+But in both these latter situations is $m \congruent 1$\!
+(mod $4$), so that $\ZZ{m}$ can't be an UFD by
+thorem~(\ref{basic_negative_result_for_uniqueness_3}).
+%
+\end{proof}
+
+\smallskip
+Now, it would be a good thing to generalize further
+theorem~(\ref{Z_deeper_1}), and see what we can say
+about the domains $\ZZ{m}$, for $m > 1$ non-square but
+not necessarly also squarefree.
+
+As a first step, we can easily adjust \mbox{%
+theorems (\ref{deeper_1})\,--\,(\ref{deeper_2})%
+} and obtain the two following propositions~(\ref{Z_deeper_2})
+and~(\ref{Z_deeper_3}):
+
+\begin{thm}\label{Z_deeper_2}
+Let $A$ be a positive integer,\, $q_1, q_2, \ldots, q_n$\,
+($n \geq 2$) be pairwise distinct odd primes such that\,
+$q_1 \congruent 1 \pmod 4$, and let\,
+$m = q_1 q_2 \cdots q_n A^2$.
+Then $\ZZ{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+We easily deduce from lemma~(\ref{basic_technical_lem})
+that there exists a prime $p$ such that:
+
+\begin{itemize}
+
+\item $p \congruent 1$ (mod $4$)
+
+\item $p > A\, \then A \not\congruent 0$ (mod $p$)
+
+\item $p$\, is a quadratic non-residue
+(mod $q_1$) and (mod $q_2$)
+
+\item $p$\, is a proper quadratic residue (mod $q_i$),
+$\forall\: i \in \{3, \ldots, n\}$
+
+\end{itemize}
+
+So, as\, $q_1 \congruent 1$ (mod $4$),\, we obtain:
+$$
+  \Leg{\pm{p}}{q_1} = \Leg{\pm{1}}{q_1}\Leg{p}{q_1}
+  = (+1) \cdot (-1) = -1
+$$
+But \,$q_1 \divides m$,\, so that,
+\emph{a fortiori},\, $+p$ and $-p$ are both
+quadratic non-residues of $m$;\, moreover, since\,
+$p \congruent 1$ (mod $4$),\, using quadratic
+reciprocity law, we get:
+%
+{\setlength\arraycolsep{2pt}
+\begin{eqnarray*}
+\Leg{m}{p} & = &\Leg{q_1 q_2 q_3 \cdots q_n A^2}{p}
+= \Leg{q_1}{p} \Leg{q_2}{p} \Leg{q_3}{p} \cdots
+\Leg{q_n}{p} \Leg{A^2}{p} = \\[7pt]
+& = & \Leg{p}{q_1} \Leg{p}{q_2} \Leg{p}{q_3} \cdots
+\Leg{p}{q_n} \Leg{A^2}{p} = 
+(-1) (-1) (+1) \cdots (+1) (+1) = +1
+\end{eqnarray*}}
+\!\!so that $m$ is a quadratic residue of $p$.
+
+From theorem~(\ref{basic_negative_result_for_uniqueness_1}),
+we conclude that $\ZZ{m}$ is not an UFD.
+%
+\end{proof}
+
+
+\begin{thm}\label{Z_deeper_3}
+Let $A$ be a positive integer,\, $q_1, q_2, \ldots,
+q_n$\, ($n \geq 1$) be pairwise distinct odd primes
+such that\, $q_1 \congruent 1 \pmod 4$, and let\,
+$m = 2 q_1 q_2 \cdots q_n A^2$.
+
+Then $\hh{m}$ and \,$\ZZ{m}$ are not UFD.
+\end{thm}
+
+\begin{proof}
+%
+The proof is essentially identical to the proofs of
+\mbox{%
+theorems (\ref{deeper_2})\,--\,(\ref{Z_deeper_1}),%
+} with the difference that the conditions on the prime
+$p$ have to be substituted with the following ones:
+\begin{itemize}
+
+\item $p \congruent 5$ (mod $8$)
+
+\item $p > A$\: (\,so that $A \not\congruent 0$
+(mod $p$)\,)
+
+\item $p$\, is a quadratic non-residue (mod $q_1$)
+
+\item $p$\, is a proper quadratic residue (mod $q_i$),
+$\forall\: i \in \{2, \ldots, n\}$
+
+\end{itemize}
+
+The argumentation proceeds in the usual way and
+quickly lead to the proof of our claim.
+%
+\end{proof}
+
+\mbox{Theorems (\ref{deeper_4})\,--\,(\ref{deeper_5})}
+can be adjusted similarly, leading to the two following
+propositions, whose proofs are now quite obvious:
+
+\begin{thm}\label{Z_deeper_4}
+Let $A$ be a positive integer, $q_1, q_2, \ldots, q_n$\,
+($n \geq 3$) be pairwise distinct odd primes
+such that\, $q_1 \congruent 3 \pmod 4$, and let\,
+$m = q_1 q_2 \cdots q_n A^2$.
+Then $\ZZ{m}$ is not an UFD.
+\end{thm}
+
+\begin{thm}\label{Z_deeper_5}
+Let $A$ be a positive integer, $q_1, q_2, \ldots,
+q_n$\, ($n \geq 2$) be pairwise distinct odd primes
+such that\, $q_1 \congruent 1 \pmod 4$,
+and let\, $m = 2 q_1 q_2 \cdots q_n A^2$.
+Then $\ZZ{m}$ is not an UFD.
+\end{thm}
+
+\smallskip
+Another step towards generalization is to improve
+theorem~(\ref{basic_negative_result_for_uniqueness_3}):
+
+\begin{thm}\label{Z_deeper_6}
+Let\, $m = 4^k m_1$,\, with $k \in \N$,\, $m_1 \in \Nzero$
+not a perfect square, and\, $m_1 \congruent 1 \pmod 4$.
+Then $\ZZ{m}$ is not an UFD.
+\end{thm}
+
+\begin{proof}
+%
+In virtue of theorem~(\ref{basic_negative_result_for_uniqueness_3}),
+we have only to analize the case $k \geq 1$.
+
+In $\ZZ{m}$ we have then:
+$$
+  2 \divides (4 - 4^k m_1) = (4 - m) =
+  (2+\sqrt{m})(2 - \sqrt{m})
+$$
+but\, $2 \notdivides (2 + \sqrt{m})$\, and\,
+$2 \notdivides (2 - \sqrt{m})$,\, so that if we
+prove the irreducibility of $2$ in $\ZZ{m}$
+we can immediately conclude that this domanin is
+not an UFD.
+
+But obiouvsly it results $\ZZ{m} \subseteq \ZZ{m_1}$,
+and $2$ is irreducible in $\ZZ{m_1}$
+(\,as shown in the proof of
+theorem~(\ref{basic_negative_result_for_uniqueness_3})\,),
+so that it is \textit{a fortiori} irreducible in
+$\ZZ{m}$.
+%
+\end{proof}
+
+\medskip
+We can finally summarize
+\mbox{%
+theorems\, (\ref{Z_deeper_2})\,--\,(\ref{Z_deeper_3})\,--\,%
+(\ref{Z_deeper_4})\,--\,(\ref{Z_deeper_5})\,--\,%
+(\ref{Z_deeper_6})\,%
+} into the following result,
+which generalizes theorem~(\ref{Z_deeper_1}):
+
+\begin{thm}\label{Z_DEEPER}
+Let $m = m_1 A^2$, with $A$ positive integer, $m_1 > 1$
+squarefree integer, and assume that $\ZZ{m}$ is an
+UFD.
+Then there exists a prime\,
+$p \congruent 3 \pmod 4$ such that\:
+$m_1 = 2$\, or\, $m_1 = p$\, or\, $m_1 = 2p$.
+\end{thm}
+
+\begin{proof}
+%
+If $m_1 = 2$, there is nothing to prove.
+Suppose now $m_1 > 2$ prime. If\,
+$m_1 \congruent1 \pmod 4$, \,writing\,
+$A = 2^k A_1$\, for $k \in \N$, $A_1 \in \N$ odd, and
+putting\, $m_2:= {m_1}{A_1}^2$, we get:
+$$ m = m_1 A^2 = 4^k m_2 $$
+where $m_2$ is not a perfect square and
+$m_2 = {m_1}{A_1}^2 \congruent 1\cdot1 \congruent 1 \pmod 4$.
+But then we deduce from theorem~(\ref{Z_deeper_6}) that
+$\ZZ{m}$ is not an UFD, a contradiction.
+
+So we can conclude that if $m_1 > 2$ is prime, it must
+be $m_1 \congruent 3$ (mod $4$).
+
+Suppose now $m_1$ composite. From \mbox{%
+theorems (\ref{Z_deeper_2})\,--\,(\ref{Z_deeper_3}),}
+we immediately deduce that $m_1$ has no prime factors of
+the form $4h + 1$. Then, of the following two
+possibilities one must hold: either $m_1$ has only two
+prime factors (and no one of this of the form $4h + 1$),
+or $m$ has one of the forms indicated in \mbox{%
+theorems (\ref{Z_deeper_2})\,--\,(\ref{Z_deeper_3}).}
+But in the latter case, these theorems themselves say us
+that $\ZZ{m}$ is not an UFD, against our
+hypothesis.
+
+So, if $m_1$ is composite, it results\, $m_1 = 2p$ or
+$m_1 = pq$,\, for suitable distinct primes $p,q$ such
+that \mbox{$p \congruent q \congruent 3$ (mod $4$).}
+
+But if the second equality holds, writing\,
+$A = 2^k A_1$,\, we deduce:
+$$ m = m_1 A^2 = 4^k {A_1}^2 pq = 4^k m_2 $$
+where
+$$
+  m_2 = pq {A_1}^2 \congruent 3 \cdot 3 \cdot 1 = 9
+  \congruent 1\ \mathrm{(mod\ 4)}
+$$
+so that, since $m_2$ is not a perfect square,
+$\ZZ{m}$ can't be an UFD in virtue of
+theorem~(\ref{Z_deeper_6}), a contradiction.
+
+Thus, if $m_1$ is prime, it must be\, $m_1 = 2$ or
+$m_1 = p \congruent 3 \pmod 4$, while if $m$
+is composite it must be\, $m = 2p$ for $p$ prime
+with $p \congruent 3 \pmod 4$, and the
+theorem is proved.
+%
+\end{proof}
+

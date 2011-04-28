@@ -1,0 +1,1199 @@
+\chapter{Limits of our methods}\label{limits}
+
+\section{Equivalence between %
+property~(\ref{property_sharp}) and %
+property~(\ref{property_sharp_weaker})%
+}\label{eucilidean_and_quasi-euclidean}
+
+%----------------------------
+% A BIT VERBOSE INTRODUCTION
+%----------------------------
+While reading chapter~\ref{UFD}, you have probably
+noted that, in order to show that property~(\ref{property_sharp})
+(defined at page~\pageref{property_sharp}) holds for the rings
+$\hh{m}$ of our interest, we have shown, as a matter of fact, that
+a (apparently) stronger property holds, \ie
+property~(\ref{property_sharp_weaker})
+(defined at page~\pageref{property_sharp_weaker}).
+
+Thus, a question that arises naturally is:
+
+``Is property~(\ref{property_sharp_weaker}) truly stronger
+than property~(\ref{property_sharp}), \ie does there exist a
+squarefree integer $m$ such that $\hh{m}$ satisfies
+property~(\ref{property_sharp}) but not
+property~(\ref{property_sharp_weaker})?''
+
+\smallskip
+In this section we'll prove that the answer to this
+question is ``no''\footnote{as a matter of fact,
+we will prove a more general result.}.
+
+\bigskip
+
+Let's begin with the following:
+
+%------------------------------
+% DEFINITION OF QUASI-EUCLIDEAN
+%------------------------------
+\begin{defn}\label{quasi-euclidean}
+Let $D$ a domain, and let\, $\Psi: D\minz
+\rightarrow \N$\, a function such that:
+$$
+\forall\: \alpha, \beta \in D\minz \text{ with \,}
+\Psi(\alpha) \geq \Psi(\beta),~\: \exists\:
+\theta, \rho \in D:\: \alpha = \beta \theta + \rho,
+\: \rho = 0 \textrm{\ or\ } \Psi(\rho) < \Psi(\alpha)
+$$
+\medskip
+Then $\Psi$ is said to be a \emph{\/quasi-euclidean function}
+and $D$ a \emph{\/quasi-euclidean domain}.
+\end{defn}
+
+%-----------------------------------------------------
+% property (#-weaker) is related to norm-euclidean and
+% property (#) is related to norm-quasi-euclidean
+%-----------------------------------------------------
+By theorems (\ref{sharp2_almost_equivalent_sharp})
+and (\ref{sharp-weaker_equivalent_norm-euclidean}), we have that for
+every normed domain $D \subseteq \QQ{m}$ such that $D \not\subseteq \Q$,
+subsistence of property (\ref{property_sharp_weaker}) is equivalent to
+the fact that $D$ is norm-euclidean, while subsistence of property
+(\ref{property_sharp}) is equivalent to the fact that $D$ is a
+norm-quasi-euclidean, \ie that its norm is a quasi-euclidean function.
+
+\smallskip
+Our main result can now be enunciated as follows:
+
+%------------------------------------------------
+% EQUIVALENCE BETWEEN EUCLIDEAN E QUASI-EUCLIDEAN
+%------------------------------------------------
+\begin{thm}\label{euclidean_equivalent_quasi-euclidean}
+Let $D$ a domain and let \,$\Psi: D\minz \rightarrow \N$.\,
+Then $\Psi$ is quasi-euclidean if and only if it is euclidean.
+\end{thm}
+
+\begin{proof}
+%
+We will prove separately the two implications.
+
+\smallskip
+\textbf{Implication 1~:}\:
+$\Psi\,\text{ euclidean } \then\, \Psi\,\text{ quasi-euclidean}$
+
+Suppose given $\alpha, \beta \in D\minz$ such
+that $\Psi(\alpha) \geq \Psi(\beta)$. Since $\beta \ne 0$
+and since $\Psi$ is an euclidean function, there exist
+$\theta, \rho \in D$ with $\alpha = \beta \theta + \rho,\ \:
+\rho = 0 \textrm{\ or\ } \Psi(\rho) < \Psi(\beta)$.
+Since $\Psi(\beta) \leq \Psi(\alpha)$, we have then:
+$$
+\alpha = \beta\theta + \rho, \quad\! \rho = 0
+\ \,\textrm{or}\ \, \Psi(\rho) < \Psi(\alpha)
+$$
+so that $\Psi$ is quasi-euclidean.
+
+\medskip
+\textbf{Implication 2~:}\:
+$\Psi\,\text{ quasi-euclidean }\then\, \Psi\,\text{ euclidean}$
+
+Suppose given $\alpha, \beta \in D$ such that $\beta \ne 0$.
+We want to prove that there exist\, $\theta, \rho \in D$\, such that\,
+$\alpha = \beta \theta + \rho$, for $\rho = 0$ or
+$\Psi(\rho) < \Psi(\beta)$.
+
+Obiouvsly, if $\beta \divides \alpha$, we can choose
+\,$\theta:= \frac{\alpha}{\beta}$\, and\, $\rho:= 0$.
+So we can suppose $\beta \notdivides \alpha$.
+
+From this point on, we will argue by contradiction,
+assuming that:
+\begin{equation}\label{violation_of_norm-euclidean}
+\forall\, \theta \in D:\:
+\Psi(\alpha - \beta\theta) \geq \Psi(\beta)
+\end{equation}
+(obiouvsly we have $\alpha - \beta\theta \ne 0$, since
+$\beta \notdivides \alpha$, so that the expression
+$\Psi(\alpha - \beta\theta)$ makes sense).
+
+Defining:
+$$
+\mathcal{A}:= \left\{\alpha - \beta\theta:\: \theta \in D
+\right\}  \subseteq D\minz,
+$$
+we have\,
+$\Psi\left(\mathcal{A}\right) =
+\left\{\Psi(\alpha - \beta\theta):
+\:\theta \in D \right\}
+\subseteq \N \then \exists\: \theta_0 \in D:\:
+\Psi(\alpha - \beta\theta_0) =
+\min \Psi\left(\mathcal{A}\right)$,\,
+%
+and so:
+%
+\begin{equation}\label{theta0_minimality}
+\forall\, \theta \in D:\:
+\Psi(\alpha - \beta\theta_0) \leq 
+\Psi(\alpha - \beta\theta)
+\end{equation}
+%
+
+But from (\ref{violation_of_norm-euclidean})
+we get\, $\Psi(\alpha - \beta\theta_0) \geq
+\Psi(\beta)$, \,and so, since $\Psi$ is
+quasi-euclidean, we have that there exist
+$\theta_1, \rho_1$ such that:
+$$
+(\alpha - \beta\theta_0) = \beta\theta_1 + \rho_1,
+\quad\! \rho_1 = 0\ \,\textrm{or}\, \ \Psi(\rho_1)
+< \Psi(\alpha - \theta_0\beta).
+$$
+Since $\beta \notdivides \alpha$, we have also
+$\beta \notdivides (\alpha - \beta\theta_0)$, so
+that $\rho_1 \ne 0$. Thus we get:
+$$
+\Psi(\alpha - \theta_0\beta) > \Psi(\rho_1) =
+\Psi\left(\alpha - \beta(\theta_0 + \theta_1)\right)
+= \Psi(\alpha - \beta\overline{\theta}),
+\quad\!\! \overline{\theta} \in D
+$$
+which, according with (\ref{theta0_minimality}), gives
+us the desired contradiction.
+%
+\end{proof}
+
+%------------------------------------------------------
+% SECTION 2: COMPLETE CLASSIFICATION OF COMPLEX DOMAINS
+% THAT ARE NORM-EUCLIDEAN
+%------------------------------------------------------
+\section{Complex domains that are not norm-euclidean}%
+\label{not_norm-euclidean_complex_domains}
+
+The basic result of this section is the following:
+
+\begin{thm}
+If $m \geq 15$ is a squarefree integer, then $\hhm{m}$ is
+not norm-euclidean
+\end{thm}
+
+\begin{proof}
+%
+First, it's obvious that $\forall m \in \Z$ squarefree is:
+$$
+\hhm{m} \subseteq T(m):=
+\left\{ \frac{x + y\sqrt{-m}}{2}\: :\ x, y \in \Z \right\}
+$$
+Suppose now by contradiction that $\hhm{m}$ is norm-euclidean;
+then for every $\psi \in \QQM{m}$ we can find a\, $\theta \in \hhm{m}$
+(and so \textit{\/a fortiori} a\, $\theta \in T(m)$)
+such that\, $\Norm{\psi - \theta} < 1$.
+
+So, letting\, $\psi := \frac{1}{4}+\frac{1}{4}\sqrt{-m}$
+\,and\, $\theta = \frac{x}{2} + \frac{y}{2}\sqrt{-m}$\,
+($x, y \in \Z$), we get: \smallskip
+$$
+(2x - 1),\: (2y - 1)\, \in \Zzero \then
+\left\{
+\begin{array}{l}
+(2x - 1)^2 \geq 1 \\[6pt]
+(2y - 1)^2 \geq 1
+\end{array}
+\right.
+$$
+and:
+%
+\begin{eqnarray*}
+1 > \Norm{\psi - \theta} & = &
+\left(\frac{x}{2} - \frac{1}{4}\right)^2 +
+m\left(\frac{y}{2} - \frac{1}{4}\right)^2 =
+\frac{1}{16}\left( (2x - 1)^2 + m(2y - 1)^2 \right)
+\geq \\[6pt]
+& \geq & \frac{1}{16}(1 + m) = \frac{1 + m}{16}
+\geq \frac{1 + 15}{16} = 1 \;\then\; 1 > 1
+\end{eqnarray*}
+%
+which give us the desired contradiction.
+%
+\end{proof}
+
+Using the previous result, it's easy to classify
+completely the complex norm-euclidean domains:
+
+\begin{thm} 
+\label{complete_classification_of_complex_normed_domains}
+If $m$ is a squarefree integer, then $\hhm{m}$ is
+norm-euclidean if and only if
+$$ m = 1,\, 2,\, 3,\, 7\ \textrm{or}\ 11. $$
+\end{thm}
+
+\begin{proof}
+%
+First, we know by theorem~(\ref{normed_UFDs_1})
+that $\hhm{m}$ is norm-euclidean if\,
+$m = 1,\, 2,\, 3,\, 7\ \textrm{or}\ 11$.
+On the other hand, from
+theorem~(\ref{definitive_result_on_uniqueness_in_Z[sqrt(-m)]})
+and from the fact that $\ZZM{m} = \hhm{m}$ if
+\mbox{$m \congruent 1$ or $2$ (mod 4)}, we know that for
+every\, $m > 2$\, with\, \mbox{$m \congruent 1$ or $2$
+(mod 4)},\, $\hhm{m}$ is not an UFD, and so \textit{\/a fortiori}
+it is not norm-euclidean.
+Moreover, from the previous theroem, we know that if $m \geq 15$
+is a squarefree integer, then $\hhm{m}$ is not norm-euclidean.
+Hence, apart from $1$ and $2$, the only values of $m$
+that can make $\hhm{m}$ norm-euclidean are\, $3,\,7$
+and $11$, and the result follows.
+%
+\end{proof}
+
+%------------------------------------------------------
+% SECTION 2: PARTIAL CLASSIFICATION OF COMPLEX DOMAINS
+% THAT ARE NORM-EUCLIDEAN -- BASICALLY LIMITED TO THE
+% CASES  m = 2 or 3 (mod 4)
+%------------------------------------------------------
+\section{Real domains that are not norm-euclidean}%
+\label{not_norm-euclidean_real_domains}
+
+\begin{subsection}{Introduction}
+
+In this section we will give a partial classification
+of those real normed domains $\hh{m}$ that are or are
+not norm-euclidean.
+
+Unfortunately, we can't give a theorem such simple as
+theorem~(\ref{complete_classification_of_complex_normed_domains}),
+but only more limited results whose proofs will be more
+elaboreted and complex.
+
+\smallskip
+As a first step, we see a simple lemma that will be useful later:
+\begin{lem}\label{intseplemma}
+If $\alpha, \beta \in \left[0, +\infty\right[$
+and $\beta > \alpha + 1$, then there exists $n \in \N$
+such that $\alpha < n < \beta$.
+\end{lem}
+\begin{proof}
+Define $n := \lfloor\alpha\rfloor + 1$; then it results:
+$$
+\alpha < \lfloor\alpha\rfloor + 1 \leq \alpha + 1 < \beta
+\then \alpha < n < \beta
+$$
+as desired.
+\end{proof}
+
+We will separate the study of the cases
+$m \congruent 2 \text{ or } 3 \pmod 4$ and
+$m \congruent 1 \pmod 4$
+in two distinct subsections.
+\end{subsection}
+
+\smallskip
+%------------------------------------------------------
+% non norm-euclidean h(sqrt(m)) for m = 2 or 3 (mod 4)
+%------------------------------------------------------
+\begin{subsection}{Not norm-euclidean $\hh{m}$ for %
+                   $m \congruent 2 \text{ or } 3 \pmod 4$}
+
+We begin analyzing three particular cases, namely $m = 23$,
+$m = 14$ and $m = 35$.
+
+%---------------------------------------------
+% Proof that h(sqrt(23) is not norm-euclidean
+%---------------------------------------------
+\begin{thm}\label{h(sqrt(23)) not norm-euclidean}
+The domain \,$\hh{23} = \ZZ{23}$ isn't norm-euclidean.%
+\footnote{this example is an adaptation of one that
+is presented chapter~XIV of~\cite{H&W}.}
+\end{thm}
+
+\begin{proof}
+%
+We're going to prove our claim by showing that
+$\ZZ{23}$ can't satisfy property~(\ref{property_sharp_1}).
+
+Define $\tau := 1 + \frac{7}{23}\sqrt{23} \in \QQ{23}$,
+so that $\Norm{\tau} = \frac{26}{23} > 1$, and let
+$\theta = x + y \sqrt{23},\ x,y \in \Z$.
+
+If\, $\Norm{\tau - \theta} < \Norm{\tau}$,\, then:
+$$
+\abs{(1 - x)^2 - 23 \cdot \left(\frac{7}{23} - y\right)^2} <
+\abs{1^2 - 23\cdot\left(\frac{7}{23}\right)^2}$$
+so that
+$$\abs{23(x - 1)^2 - (7 - 23y)^2} < 26$$
+Let now\, $N:= 23(x - 1)^2 - (7 - 23y)^2$;\, then
+$N \congruent -3 \pmod 23$) and $\abs{N} < 26$, so that
+$N$ must then be $-3$\, or\, $20$.
+
+Thus, letting\, $X:= x - 1,\: Y:= 7 - 23y$,\, we have the
+possibilities:
+%
+\begin{enumerate}
+%
+\item
+$N = -3$ \,\ie\,$23X^2 - Y^2 = -3$.
+
+Clearly neither $X$ nor $Y$ can be divisible by $3$, so that
+$X^2 \congruent Y^2 \congruent 1 \pmod 3
+\then N \congruent 22 \congruent 1 \pmod 3$,
+\,a contradiction.
+%
+\item
+$N = 20$ \,\ie\,$23X^2 - Y^2 = 20$.
+
+Clearly neither $X$ nor $Y$ can be divisible by $5$, so that
+$X^2 \congruent \pm{1},\,\ Y^2 \congruent \pm{1} \pmod 5$;\,
+moreover\, $Y^2 = 23X^2 - 20 \congruent 3X^2 \pmod 5$, and so:
+$$
+  3 \congruent Y^2\left(X^2\right)^{-1} \congruent
+  (\pm{1}) \cdot (\pm{1})^{-1} \congruent \pm{1}\!\!\! \pmod 5,
+$$
+a contradiction.
+%
+\end{enumerate}
+
+Thus $\hh{23} = \ZZ{23}$ doesn't satisfy
+property~(\ref{property_sharp_1}), so it doesen't satisfy
+property~(\ref{property_sharp_weaker}), \ie it isn't
+norm-euclidean.
+%
+\end{proof}
+
+%-----------------------------------------
+% Proof thath h(sqrt(14) is not euclidean
+%-----------------------------------------
+\begin{thm}\label{h(sqrt(14)) not norm-euclidean}
+The domain\, $\hh{14} = \ZZ{14}$ isn't norm-euclidean
+\end{thm}
+
+\begin{proof}
+%
+Take
+$$ \psi:= \frac{1}{2} + \frac{1}{2} \sqrt{14} \:\in\: \QQ{14}, $$
+and suppose that there exists\,
+$\theta = x + y\sqrt{14} \in \ZZ{14}$, with $x, y\in\Z$,
+\,such that\, $\Norm{\psi - \theta} < 1$.
+We get then:
+%
+\begin{eqnarray*}
+1 > \Norm{\psi - \theta} & = &
+\Norm{\left(x - \frac{1}{2}\right) +
+\left(y - \frac{1}{2}\right)\sqrt{14}} = \\[7pt]
+& = & \abs{\left(x - \frac{1}{2}\right)^2
+- 14\left(y - \frac{1}{2}\right)^2} =
+\abs{\frac{1}{4}\left((2x - 1)^2 - 14(2y - 1)^2\right)}
+\end{eqnarray*}
+%
+so that, letting\, $X:= 2x - 1$,\, $Y:= 2y - 1$\,
+and\, $U:= X^2 - 14Y^2$, we have:
+\begin{itemize}
+
+\item $\abs{U} < 4$
+
+\item $U \congruent 1 - 14 \congruent -13 \congruent 3 \pmod 8$\\
+(since $X,Y$ are odd and\, $z^2 \congruent 1$
+(mod $8$)\, $\forall\: z \in \Z$ odd)
+
+\end{itemize}
+
+Then:
+$$
+U = 3 \then X^2 - 14Y^2 = 3 \then
+X^2 \congruent 3\ (\mathrm{mod}\ 7)
+$$
+%
+which, as can be easily seen by direct calculation, is a contradiction.
+\end{proof}
+
+By reasoning in an almost identical way, we obtain:
+
+%-----------------------------------------
+% Proof thath h(sqrt(35) is not euclidean
+%-----------------------------------------
+\begin{thm}\label{h(sqrt(35)) not norm-euclidean}
+The domain\, $\hh{35} = \ZZ{35}$ isn't norm-euclidean
+\end{thm}
+
+\begin{proof}
+
+Take
+$$ \psi:= \frac{1}{2} + \frac{1}{2} \sqrt{35} \:\in\: \QQ{35}, $$
+and suppose that there exists\,
+$\theta = x + y\sqrt{35} \in \ZZ{35}$, with $x, y\in\Z$,
+\,such that\, $\Norm{\psi - \theta} < 1$.
+We get then:
+%
+\begin{eqnarray*}
+1 > \Norm{\psi - \theta} & = &
+\Norm{\left(x - \frac{1}{2}\right) +
+\left(y - \frac{1}{2}\right)\sqrt{35}} = \\[7pt]
+& = & \abs{\left(x - \frac{1}{2}\right)^2
+- 35\left(y - \frac{1}{2}\right)^2} =
+\abs{\frac{1}{4}\left((2x - 1)^2 - 35(2y - 1)^2\right)}
+\end{eqnarray*}
+%
+so that, letting\, $X:= 2x - 1$,\, $Y:= 2y - 1$\,
+and\, $U:= X^2 - 35Y^2$, we have:
+\begin{itemize}
+
+\item $\abs{U} < 4$
+
+\item $U \congruent 1 - 35 \congruent -2 \pmod 8$\\
+(since $X,Y$ are odd and\, $z^2 \congruent 1$
+(mod $8$)\, $\forall\: z \in \Z$ odd)
+
+\end{itemize}
+
+Then:
+$$
+U = -2 \then X^2 - 35Y^2 = -2 \then
+X^2 \congruent 5\ (\mathrm{mod}\ 7)
+$$
+%
+which, as can be easily seen by direct calculation, is a contradiction.
+\end{proof}
+
+\smallskip
+Note that the main interest of the
+theorems~(\ref{h(sqrt(23)) not norm-euclidean})
+and~(\ref{h(sqrt(14)) not norm-euclidean})
+depends on the fact that both $\hh{14}$ and $\hh{23}$ are UFDs%
+\footnote{this statement will not be proved here.}
+(as one can deduce from table~(10.4), chapter~10\linebreak of~\cite{S&T}).
+
+\bigskip
+Now we are going to prove a more general and systematic result.
+But first we need three technical yet simple lemmas.
+
+%-----------------------------%
+% TWO RATHER TECHNICAL LEMMAS %
+%-----------------------------%
+
+%---------%
+%  TECH1  %
+%---------%
+\begin{lem}\label{tech1}
+If\, $t, m, \mu \in \Z$\, satisfy\, $t \congruent 1 \pmod 2$
+\,and\, $m \congruent 2 \pmod 4$ \,and\, $\mu = 2$ \,or\, $3$,\,
+then\, $\nexists\: X, Y \in \Z$\, such that
+\begin{equation}\label{tech1_eq}
+X^2 - mY^2 \congruent t^2 - \mu m\ \mathrm{(mod\ 8)}
+\end{equation}
+\end{lem}
+
+\begin{proof}
+%
+If (\ref{tech1_eq}) holds, we have:
+\begin{eqnarray*}
+& & X^2 - t^2 \congruent m(Y^2 - \mu)\ \mathrm{(mod\ 8)}
+\then X^2 - t^2 \congruent 0\ \mathrm{(mod\ 2)}
+\ \text{(as $m$ is even)} \then
+\\[4pt]
+& & \Longrightarrow\; X,\,t\ \textrm{odd}\, \then
+X^2 - t^2 \congruent 1 - 1 \congruent 0\ \mathrm{(mod\ 8)},
+\end{eqnarray*}
+so that, writing $m = 2M$ (with $M$ odd integer), we get:
+$$
+0 \congruent 2M(Y^2 - \mu)\ \mathrm{(mod\ 8)} \then
+(Y^2  - \mu)M \congruent 0\ \mathrm{(mod\ 4)} \then
+Y^2 \congruent \mu\ \mathrm{(mod\ 4)},
+$$
+which is a contradiction since $\mu = 2$ or $3$.
+%
+\end{proof}
+
+%---------%
+%  TECH2  %
+%---------%
+\begin{lem}\label{tech2}
+If\, $t, m, \mu \in \Z$\, satisfy, $t \congruent 1 \pmod 2$
+\,and\, $m \congruent 3 \pmod 4$ \,and\, $\mu = 5$ \,or\, $6$,
+then\, $\nexists\: X, Y \in \Z$\, such that
+\begin{equation}\label{tech2_eq}
+X^2 - mY^2 \congruent t^2 - \mu m\ \mathrm{(mod\ 8)}
+\end{equation}
+\end{lem}
+
+\begin{proof}
+%
+If (\ref{tech2_eq}) holds, we have that\,
+$m(Y^2 - \mu) \congruent X^2 - t^2\ \mathrm{(mod\ 8)}$,\,
+and so, being\, $t^2 \congruent m^2 \congruent 1 \pmod 8$
+(as $m$ and $t$ are odd):
+$$
+Y^2 - \mu \congruent m^2(Y^2 - \mu) \congruent
+m(X^2 - t^2) \congruent m(X^2 - 1)\ \mathrm{(mod\ 8)}
+$$
+\ie
+$$
+Y^2 \congruent \mu + m(X^2 - 1)\ \mathrm{(mod\ 8)}.
+$$
+But, since\, $m \congruent 3$ or $7$ (mod $8$)\, and\,
+$X^2 \congruent 0,\, 1$ or $4$ (mod $8$),\, it must be\,
+$m(X^2 - 1) \congruent 0,\, 1$ or $5$ (mod $8$),\, so
+that, since\, $\mu = 5$ or $6$:
+$$
+Y^2 \congruent \mu + m(X^2 - 1) \congruent
+2,\, 3,\, 5,\, 6\ \textrm{or}\ 7\ \mathrm{(mod\ 8)},
+$$
+a contradiction.
+%
+\end{proof}
+
+%---------%
+%  TECH3  %
+%---------%
+\begin{lem}\label{tech3}
+Let\, $m$, $A$, $U$, $t$\, be integers with\, $m > 1$,\, $\abs{U} < m$,\,
+$U \congruent t \pmod m$\, and\, $Am < t < (A + 1) m$;\, then\,
+$U = t - Am$ \,or\, $U = t - (A+1)m$.
+\end{lem}
+
+\begin{proof}
+%
+Define:
+$$U_1:= t - Am\quad\ \text{and}\quad\ U_2:= t - (A+1)m$$
+From our hypotheses, we immediately get:
+$$
+  -m < U_2 < 0 < U_1 < m \quad\ \text{and} \quad
+  \ U_1 \congruent U_2 \congruent t\!\!\!\pmod m
+$$
+so that, being\, $U \congruent t \pmod m$\, and \,$\abs{U} < m$,\, it's easy
+to deduce that\, $U = U_1$\, or \,$U = U_2$,\, \ie\, $U = t - Am$\,
+or \,$U = t - (A + 1)m$.
+%
+\end{proof}
+
+%
+Now we can state and prove our theorem, which is a generalization of
+theorem~(249) in chapter~XIV of~\cite{H&W} (\,as will become clear
+after the statement of theorem~(\ref{limits_for_norm-euclidean})\,).
+
+%---------------------------------------------------
+% A GENERAL THEOREM ASSURING THAT h(sqrt(m)) IS NOT
+% EUCLIDEAN UNDER SUITABLE CONDITIONS, IN THE CASES
+% m = 2 or 3 (mod 4)
+%---------------------------------------------------
+\begin{thm}\label{BIG}
+Suppose that $m > 1$ is a squarefree integer such that:
+\begin{itemize}
+%
+\item[{\rm\textsf{(a)\:}}]
+$m \congruent 2\ \mathrm{(mod\ 4)}$\, and\,
+$\exists\: t \in \N\ \textrm{odd},\ \exists\: k \in \N$\,
+such that\, $(4k + 2)m < t^2 < (4k + 3)m$,
+%
+\end{itemize}
+or:
+\begin{itemize}
+%
+\item[{\rm\textsf{(b)\:}}]
+$m \congruent 3\ \mathrm{(mod\ 4)}$\, and\,
+$\exists\: t \in \N\ \textrm{odd},\ \exists\: k \in \N$\,
+such that\, $(8k + 5)m < t^2 < (8k + 6)m$.
+%
+\end{itemize}
+%
+Then $\hh{m} = \ZZ{m}$ can't be norm-euclidean.
+\end{thm}
+
+\begin{proof}
+%
+Argue by contradiction, assuming that $\hh{m} = \ZZ{m}$ is
+norm-euclidean. Then, defining\,
+\mbox{$\psi:=\frac{t}{m}\sqrt{m} \in \QQ{m}$,\,}
+we can say that\, $\exists\; \theta \in
+\hh{m}$\, such that\, $\Norm{\psi - \theta} < 1$,\, \ie
+writing\, $\theta = x + y\sqrt{m}$\, for suitable\,
+$x, y \in \Z$:
+%
+\begin{equation*}
+\abs{ (t - my)^2 - mx^2 } < m
+\end{equation*}
+%
+Write now\, $U:= (t - my)^2 - mx^2$;\, we immediately
+deduce that:
+\begin{equation*}
+\abs{U} < m \quad\ \text{and} \quad\ U \congruent
+t^2 \!\!\!\pmod m
+\end{equation*}
+Assuming now that there exists $A \in \N$ such that\,
+$Am < t^2 < (A + 1)m$,\, from lemma~(\ref{tech3}) we get:
+\begin{equation}\label{BIGeq}
+U = t^2 - Am \quad\ \text{or} \quad\ U = t^2 - (A + 1)m
+\end{equation}
+Now we must distinguish two cases.
+
+\medskip
+\textbf{Case 1\::}\: $m \congruent 2 \pmod 4$.
+
+Then we have from hypothesis {\rm\textsf{(a)}} that
+$A = 4k + 2$, so that from (\ref{BIGeq}) the two following
+possibilities follow\footnote{\,recall that $m$
+is even, so that $4km \congruent 0$ (mod $8$).}:
+
+\begin{itemize}
+
+\item $(t - my)^2 - mx^2 = U = t^2 - 2m - 4km \congruent
+t^2 - 2m$ (mod $8$)
+
+\item $(t - my)^2 - mx^2 = U = t^2 - 3m - 4km \congruent
+t^2 - 3m$ (mod $8$)
+
+\end{itemize}
+which, since $t$ is odd, give us a contradiction in
+virtue of lemma~(\ref{tech1}).
+
+\medskip
+\textbf{Case 2\::}\: $m \congruent 3 \pmod 4$.
+
+Then we have from hypothesis {\rm\textsf{(b)}} that
+$A = 8k + 5$, so that from (\ref{BIGeq}) the
+two following possibilities follow:
+
+\begin{itemize}
+
+\item $(t - my)^2 - mx^2 = U = t^2 - 5m - 8km \congruent
+t^2 - 5m$ (mod $8$)
+
+\item $(t - my)^2 - mx^2 = U = t^2 - 6m - 8km \congruent
+t^2 - 6m$ (mod $8$)
+
+\end{itemize}
+which, since $t$ is odd, give us a contradiction in
+virtue of lemma~(\ref{tech2}).
+%
+\end{proof}
+
+
+\medskip
+Theorem~(\ref{BIG}) can immediately be used to prove the following
+strong and interesting result:
+
+%-----------------------------------------------------
+% SEVERE LIMITATIONS TO THE POSSIBILITY FOR h(sqrt(m))
+% TO BE NORM-EUCLIDEAN; MORE PRECISLY:
+%
+% @ if  m = 2 (mod 4) and m >= 42,  then h(sqrt(m))
+%   isn't  norm-euclidean
+%
+% @ if  m = 3 (mod 4) and m >= 91,  then h(sqrt(m))
+%   isn't  norm-euclidean
+%-----------------------------------------------------
+\begin{thm}\label{limits_for_norm-euclidean}
+If $m > 1$ is a squarefree integer such that:
+
+~~$\bullet$
+$m \congruent 2\ \mathrm{(mod\ 4)}$\, and\, $m \geq 42$, or:
+
+~~$\bullet$
+$m \congruent 3\ \mathrm{(mod\ 4)}$\, and\, $m \geq 91$,\\[1.5pt]
+%
+then\, $\hh{m}$ isn't norm-euclidean.
+\end{thm}
+
+\begin{proof}
+%
+In virtue of theorem~(\ref{BIG}), to prove our theorem
+it's enough to prove that:
+
+\begin{itemize}
+
+\item
+$\forall\: m \geq 42:\ m \congruent 2\ (\mathrm{mod}\ 4),
+\,\ \exists\: t \in \Z$ odd\, such that\, $2m < t^2 <3m$
+
+\item
+$\forall\: m \geq 91:\ m \congruent 3\ (\mathrm{mod}\ 4),
+\,\ \exists\: t \in \Z$ odd\, such that\, $5m < t^2 < 6m$
+
+\end{itemize}
+%
+We can distingush two cases.
+
+%------------------------------------
+% FIRST CASE IN THE PROOF OF THEOREM
+% \ref{limits_for_norm-euclidean}
+%------------------------------------
+\medskip
+\textbf{Case 1. } $m \congruent 2$ (mod $4$)\, and\,
+$m \geq 42$.
+
+\smallskip
+It results:
+$$
+m \geq 42 > 40 = 4 \cdot (5 + 5) > 4 \cdot
+\left(5 + 2\sqrt{6}\right) = 4 \cdot \left(\sqrt{3} +
+\sqrt{2}\right)^2
+$$
+so that\, $\sqrt{m} > 2(\sqrt{3} + \sqrt{2}) \then
+\sqrt{m}(\sqrt{3} - \sqrt{2}) > 2$,\, and then:
+$$
+\left(\frac{\sqrt{3m} - 1}{2}\right) -
+\left(\frac{\sqrt{2m} - 1}{2}\right) =
+\frac{\sqrt{3m} - \sqrt{2m}}{2} = 
+\frac{1}{2}\sqrt{m} \left(\sqrt{3}-\sqrt{2}\right) > 1.
+$$
+%
+Thus, putting
+$\beta:= \frac{1}{2} \left(\sqrt{3m} - 1\right)$
+and
+$\alpha:= \frac{1}{2} \left(\sqrt{2m} - 1\right)$,
+and using lemma~(\ref{intseplemma}), we obtain:
+\begin{eqnarray*}
+& \beta - \alpha > 1 & \then \beta > \alpha + 1 \then
+\exists\: u \in \N\ \textrm{such that}\ \alpha < u <
+\beta
+\\[5pt]
+& & \then \sqrt{2m} = 2 \alpha + 1 < 2u + 1 <
+2 \beta + 1 = \sqrt{3m}.
+\end{eqnarray*}
+Finally, writing\, $t:= 2u + 1$,\, we have $t \in \N$ odd and
+\,$2m < t^2 < 3m$,\, as desired.
+
+
+%------------------------------------
+% SECOND CASE IN THE PROOF OF THEOREM
+% \ref{limits_for_norm-euclidean}
+%------------------------------------
+\medskip
+\textbf{Case 2. } $m \congruent 3$ (mod $4$)\, and\,
+$m \geq 91$.
+
+\smallskip
+It results:
+$$
+m \geq 91 > 88 = 4 \cdot (11 + 11) > 4 \cdot
+\left(11 + 2\sqrt{30}\right) = 4 \cdot \left(\sqrt{6} +
+\sqrt{5}\right)^2
+$$
+so that\, $\sqrt{m} > 2(\sqrt{6} + \sqrt{5}) \then
+\sqrt{m}(\sqrt{6} - \sqrt{5}) > 2$,\, and then:
+$$
+\left(\frac{\sqrt{6m} - 1}{2}\right) -
+\left(\frac{\sqrt{5m} - 1}{2}\right) =
+\frac{\sqrt{6m} - \sqrt{5m}}{2} = 
+\frac{1}{2}\sqrt{m} \left(\sqrt{6}-\sqrt{5}\right) > 1.
+$$
+%
+Thus, putting
+$\beta:= \frac{1}{2} \left(\sqrt{6m} - 1\right)$
+and
+$\alpha:= \frac{1}{2} \left(\sqrt{5m} - 1\right)$,
+and using lemma~(\ref{intseplemma}), we obtain:
+\begin{eqnarray*}
+& \beta - \alpha > 1 & \then \beta > \alpha + 1 \then
+\exists\: u \in \N\ \textrm{such that}\ \alpha < u <
+\beta 
+\\[5pt]
+& & \then \sqrt{5m} = 2 \alpha + 1 < 2u + 1 <
+2 \beta + 1 = \sqrt{6m}.
+\end{eqnarray*}
+Finally, writing\, $t:= 2u + 1$,\, we have $t \in \N$ odd
+and\, $5m < t^2 < 6m$,\, as desired.
+%
+\end{proof}
+
+\smallskip
+The previous theorem gives a severe limitation to the
+possibility for a given domain $\hh{m}$\,
+(with $m \congruent 2$ or $3$ (mod $4$)\,) of being
+norm-euclidean. Moreover, the result can be reinforced
+again, leading to the following theorem:
+%----------------------------------------------------------------
+% NECESSARY CONDITION THAT h(sqrt(m)) ( WITH m = 2 or 3 (mod 4) )
+% MUST SATISFIES TO BE NORM-EUCLIDEAN
+%----------------------------------------------------------------
+\begin{thm}%
+\label{first_partial_classification_of_norm-euclidean_domains}
+If $m \congruent 2 \text{ or } 3 \pmod 4$ is a squarefree
+positive integer such that the domain $\hh{m}$ is norm-euclidean,
+then it must be:
+$$ m\, = \,2,\, 3,\, 6,\, 7,\, 11\ \text{or}\ 19 $$
+\end{thm}
+
+\begin{proof}
+Of course, if\, $m \congruent 2$ (mod 4) and $m \geq 42$,\,
+or if\, $m \congruent 3$ (mod 4) and $m \geq 91$,\, then
+$\hh{m}$ isn't norm-euclidean in virtue of
+the previous theorem~(\ref{limits_for_norm-euclidean}).
+Thus we have only to show that $\hh{m}$ is not norm-euclidean
+in the finitely many cases:
+
+~~\textbf{1)}\:
+$m \congruent 2 \pmod 4$,\:
+$2 \leq m < 42$,\:
+$m$ squarefree,\:
+$m \neq 2$\, and\, $m \neq 6$
+
+~~\textbf{2)}\:
+$m \congruent 3 \pmod 4$,\:
+$3 \leq m < 91$,\:
+$m$ squarefree,\:
+$m \neq 3$,\, $m \neq 7$,\,
+$m \neq 11$,\, and \,$m \neq 19$
+
+For sake of simplicity, we'll break down our analysis
+into two parts, separating the cases
+$m \congruent 2 \pmod 4$ and $m \congruent 3 \pmod 4$.
+
+\medskip
+\textbf{Part 1.\:} $m \congruent 2 \pmod 4$.
+
+\smallskip
+
+Then $m$ has one of the following values:
+\begin{displaymath}
+m = 10,\ 14,\ 22,\ 26,\ 30,\ 34 \text{ or } 38
+\end{displaymath}
+
+For each such $m$, we must show that $\hh{m}$ is not norm-euclidean.
+
+\medskip
+This is done in the following calculations.
+
+\input{calcgen1.tex}
+
+\medskip
+\textbf{Part 2.\:} $m \congruent 3 \pmod 4$.
+
+\smallskip
+
+Since by hypotesis Then $m$ has one of the following values:
+\begin{displaymath}
+m = 15,\ 19,\ 23,\ 31,\ 35,\ 39,\ 43,\ 47,\ 51,\ 55,\ 59,\ 67,\ %
+    71,\ 79,\ 83, \text{ or } 87
+\end{displaymath}
+
+For each such $m$, we must show that $\hh{m}$ is not norm-euclidean.
+
+\medskip
+This is done in the following calculations.
+
+\input{calcgen2.tex}
+
+All the possible cases have been analyzed, and the
+theorem is proved.
+%
+\end{proof}
+
+\end{subsection}
+
+\smallskip
+%------------------------------------------------------
+% non norm-euclidean h(sqrt(m)) for m = 1 (mod 4)
+%------------------------------------------------------
+\begin{subsection}{Non norm-euclidean $\hh{m}$ for $m\congruent 1 \pmod 4$}
+
+Let's start seeing a domain of the form $\hh{m}$, with
+$m \congruent 1 \pmod 4$, which is not norm-euclidean.
+
+%----------------------------------------------
+% A PROOF THAT h(sqrt(53)) ISN'T NORM-EUCLIDEAN
+%----------------------------------------------
+\begin{thm}\label{h(sqrt(53))_not_norm-euclidean}
+The domain $\hh{53}$ isn't norm-euclidean.
+\end{thm}
+
+\begin{proof}
+%
+Argue by contradiction, assuming that $
+\hh{53} = \left\{ \frac{2x + y}{2} +
+\frac{y}{2}\sqrt{53}:\ x,y \in \Z \right\}
+$ is norm-euclidean, \ie that:
+\begin{equation}\label{h(sqrt(53))_1}
+\forall\, r,s \in \Q\quad \exists\: x,y \in \Z :\quad
+\ \abs{ \left(\frac{2x + y}{2} -r \right)^2
+- 53\left(\frac{y}{2} - s\right)^2 } < 1
+\end{equation}
+Let now $r:= 0$ and $s:= \frac{12}{53}$. Then
+(\ref{h(sqrt(53))_1}) becomes:
+\begin{equation*}
+\abs{ \frac{\left(2x + y\right)^2}{4}
+- \frac{53}{4}\left(y - \frac{24}{53}\right)^2 } < 1
+\end{equation*}
+\ie
+\begin{equation}\label{h(sqrt(53))_2}
+\abs {
+\left(53 y - 24\right)^2 - 53 \left(2x + y\right)^2
+} < 212
+\end{equation}
+%
+Write now \,$X:= 53y - 24$,\, $Y:=2x + y$,\,
+$U:=X^2 - 53Y^2$.\, We have then\,
+$X^2 \congruent 24^2 \congruent$ \mbox{$46$ (mod $53$)}
+$\then U \congruent 46$ (mod $53$),\, and\,
+$X \congruent Y \congruent$ \mbox{$y$ (mod $2$)} $\then
+U = X^2 - 53Y^2 \congruent X^2 - Y^2 \congruent 0$ (mod 4).
+Thus, using also (\ref{h(sqrt(53))_2}), we get:
+
+\begin{itemize}
+
+\item $\;U\congruent 46$ (mod 53)\, and\, $U\congruent 0$
+(mod 4) $\then U \congruent 152$ (mod 212).
+
+\item $\;\abs{U} < 212\,\then\,U = 152$\, or\, $U = -60$.
+
+\end{itemize}
+%
+We now will show that both this cases are impossible.
+%
+\begin{itemize}
+
+\item[\textbf{1. }] $U = -60 = -4 \cdot 3 \cdot 5$.\\
+Then\, $9 \notdivides U = X^2 - 53Y^2 \then 
+3 \notdivides X$\, and\, $3 \notdivides Y \then X^2
+\congruent Y^2 \congruent 1$ (mod $3$) $\then 0
+\congruent -60 = U = X^2 - 53Y^2 \congruent 1 - 53 \cdot
+1 \congruent -52 \congruent 2$ (mod $3$),\, a
+contradiction.
+
+\item[\textbf{2. }] $U = 152 = 8 \cdot 19$.\\
+Then $X^2 - 53 Y^2 = U \congruent 0$ (mod $8$). Obiouvsly
+is\, $X \congruent Y$ (mod $2$);\, if it were\,
+$X \congruent Y \congruent 1$ (mod $2$), we would get:
+$$
+0 \congruent X^2 - 53 Y^2 \congruent 1 - 53 = -52
+\congruent 4\ \mathrm{(mod\ 8)},
+$$
+a contradiction.
+Thus it must be\, $X = 2a,\ Y = 2b$\, for suitable $a, b
+\in \Z \then a^2 - 53b^2 = \frac{U}{4} = 38 \then a
+\congruent b$ (mod $2$).\, But then:
+$$
+a^2 \congruent b^2\ \mathrm{(mod\ 4)} \then
+38 = a^2 - 53b^2 \congruent a^2 - b^2 \congruent
+0\ \mathrm{(mod\ 4)},
+$$
+\end{itemize}
+%
+which gives us the final contradiction.
+%
+\end{proof}
+
+Now were going to prove a generalization of the previous result, which
+will enable us to build an infinite class of domains $\hh{m}$ with
+$m \congruent 1 \pmod 4$ which are all not norm-euclidean.
+
+Here is our result\footnote{note that this result is unfortunately much
+weaker than those obtained for $m \congruent 2$ or $3 \pmod 4$.}:
+
+\begin{thm}\label{SMALL}
+Let \,$m > 1$\, be a squarefree integer with \,$m \congruent 5 \pmod{24}$,
+and assume that there exist $A,\, t \in \N$ such that\,
+$A \congruent 6,~11,~23~\text{or}~30 \pmod{36}$, $t \congruent 3 \pmod 6$
+\,and\, $Am < t^2 < (A+1)m$.
+Then $\hh{m}$ isn't norm-euclidean.
+\end{thm}
+
+\begin{proof}
+Argue by contradiction, assuming that 
+$$\hh{m} = 
+  \left\{
+    \frac{2x + y}{2} + \frac{y}{2}\sqrt{m}:\:x,\,y \in \Z
+  \right\}$$
+is norm-euclidean.
+Then, defining \,$\psi := \frac{t}{m}\sqrt{m} \in \QQ{m}$, we can say that
+\,$\exists\;\theta \in \hh{m}$\, such that \,$\Norm{\psi - \theta} < 1$,\,
+\ie writing \,$\theta = \frac{2x + y}{2} + \frac{y}{2}\sqrt{m}$\,
+for suitable $x ,\, y \in \Z$:
+$$ \abs{\frac{(2x+y)^2}{4} - \frac{(my-2t)^2}{4m^2} \cdot m} < 1 $$
+or better:
+\begin{equation}\label{t-ineq}
+\abs{ {(2t - my)}^2 - m {(2x + y)}^2 } < 4m.
+\end{equation}
+Writing now:
+\begin{equation}\label{U-def}
+U := {(2t - my)}^2 - m {(2x + y)}^2
+\end{equation}
+we immediately deduce that \,$U \congruent 4t^2 \pmod m$\, and
+\,$U \congruent m^2 y^2 - m y^2 = m (m - 1) y^2 \congruent 0
+\congruent 4t^2 \pmod 4$\, (\,as $4 \divides (m - 1)$\,), so that,
+using also inequality~(\ref{t-ineq}) and our hypothesis on $A$\,
+we get:
+$$
+  U \congruent 4t^2\ (\mathrm{mod}\ 4m)%
+  ~~~\text{and}~~~%
+  \abs{U} < 4m%
+  ~~~\text{and}~~~%
+  A \cdot (4m) < 4t^2 < (A+1) \cdot (4m).
+$$
+At this point we can apply lemma~(\ref{tech3}) to deduce that\,
+$U = 4t^2 - A\cdot(4m)$\, or\, $U = 4t^2 - (A+1)\cdot(4m)$,\, \ie
+that:
+\begin{equation}\label{U-values}
+U = 4\left(t^2 - A m\right)
+~~\text{or}~~\,
+U = 4\left(t^2 - (A+1) m\right)
+\end{equation}
+Now, since $A \congruent 6,~11,~23~\text{or}~30 \pmod{36}$,
+from~(\ref{U-values}) easily derives%
+\footnote{it's enough to set $B = A$ and $C = A + 1$ if
+$A \congruent 11 \text{ or } 23 \pmod{36}$,\, $B = A + 1$ and
+$C = A$ if $A \congruent 6 \text{ or } 30 \pmod{36}$.}
+that must exist $B, C \in \N$ with $B \congruent 3 \pmod 4$ and
+$C \congruent 3 \text{ or } 6 \pmod 9$ such that $U = 4(t^2 - B m)$
+or $U = 4(t^2 - C m)$;\,
+moreover, from~(\ref{U-def}) easily derives that\,
+$U = X^2 - m Y^2$\, with\, $X,\,Y\in\Z$,\, $X \congruent Y \pmod 2$.
+
+Thus, summarizing what has been obtained so far, we can state that
+there exist\, $X$, $Y$, $B$, $C$, $t$, $m$ $\in \Z$ such that:
+\begin{equation}\label{XYBCtm-congruences}
+\left\{
+  \begin{array}{rcl}
+    X & \congruent & Y~(\mathrm{mod}\ 2)  \\
+    m & \congruent & 5~\;(\mathrm{mod}\ 24) \\
+    t & \congruent & 3~\;(\mathrm{mod}\ 6)  \\
+    B & \congruent & 3~\;(\mathrm{mod}\ 4)  \\
+    C & \congruent & 3\text{ or }6~\:(\mathrm{mod}\ 9)
+  \end{array}
+\right.
+\end{equation}
+and:
+\begin{equation}\label{XYBCtm-equalities}
+X^2 - m Y^2 = 4(t^2 - B m)
+~~\,\text{or}\,~~
+X^2 - m Y^2 = 4(t^2 - C m)
+\end{equation}
+Now we are going to show that, with the~(\ref{XYBCtm-congruences})
+holding, both the~(\ref{XYBCtm-equalities}) are impossible.
+
+To this purpose, we'll divide the rest of our proof into two cases.
+
+\medskip
+\textbf{Case 1.\:} Assume first that:
+\begin{equation}\label{eq-B}
+X^2 - m Y^2 = 4(t^2 - B m).
+\end{equation}
+\smallskip
+If\, $X \congruent Y \congruent 1 \pmod2$, it follows that\,
+\begin{math}
+  X^2 - m Y^2 \congruent 1 - m \congruent 4\ (\mathrm{mod}\ 8) \then
+  8 \notdivides (X^2 - m Y^2) = 4 (t^2 - B m) \then
+  2 \notdivides (t^2 - B m)
+\end{math}, which is a contradiction since $t$, $B$ and $m$ are all odd.
+
+Thus it must be\, $X \congruent Y \congruent 0 \pmod2$, and writing\,
+$X = 2W$, $Y = 2Z$\, for suitable \,$W,\:Z\in \Z$\, we obtain:
+$$
+   4\left(W^2 - m Z^2\right) = 4\left(t^2 - B m\right) \then
+   W^2 - m Z^2 = t^2 - B m.
+$$
+Now\, $t^2 - Bm \congruent 1 - 3 \cdot 5 \congruent 2 \pmod 4$,\,
+so that $2 \divides \left(W^2 -m Z^2\right)$ \,and thus\,
+$W \congruent Z \pmod 2$;\, but then:
+$$
+   2 \congruent t^2 - B m \congruent W^2 - Z^2 \congruent
+   0\ (\mathrm{mod}\ 4)
+$$
+again a contradiction.
+
+\medskip
+\textbf{Case 2.\:} Assume now that
+\begin{equation}\label{eq-C}
+X^2 - m Y^2 = 4(t^2 - C m).
+\end{equation}
+
+\smallskip
+Since\, $3 \divides t$\, and\, $C \congruent 3$ or $6 \pmod 9$,\,
+equality~(\ref{eq-C}) can be rewritten as:
+\begin{equation}\label{eq-C-1}
+X^2 - m Y^2 = 4(9r - 3sm)
+\end{equation}
+for suitable $r \in \Z$ \,and $s \in \left\{1, 2\right\}$.
+
+As \,$3 \notdivides s$\, and \,$3 \notdivides m$,\,
+from~(\ref{eq-C-1}) we get $X,\, Y \notcongruent 0 \pmod 3$,
+thus\, $X^2 \congruent Y^2 \congruent 1 \pmod 3$.
+But then, since $m \congruent 2 \pmod 3$:
+$$
+  0 \congruent 4\left(9r - 3ms\right) = X^2 - m Y^2 \congruent 1 - 2 
+  \congruent -1\ (\mathrm{mod}\ 3),
+$$
+which is plainly impossible.
+
+\medskip
+In both cases we reached a contradiction, and the result follows.
+\end{proof}
+
+As stated previously, the result just proven can be used to build an
+infinite class of domains $\hh{m}$ with $m \congruent 1 \pmod 4$ which
+are all not norm-euclidean.
+
+\begin{cor}\label{big m = 5 mod 24 not norm-euclidean}
+If\, $m \congruent 5 \pmod{24}$ and $m \geq 941\ (= 39 \cdot 24 + 5)$,
+then $\hh{m}$ isn't norm-euclidean.
+\end{cor}
+%
+\begin{proof}
+We will show that for every $m \geq 941$ there exists an $u \in \N$ such
+that\, $6m < {(6u + 3)}^2 < 7m$, from which our claim will follow
+immediately in virtue of the previous theorem~(\ref{SMALL}).
+
+First, it's easy to see that $941 > 36(13 + 2 \sqrt{42})$, so that
+if $m \geq 941$ it's also
+$$
+  m > 36\left(13 + 2 \sqrt{42}\,\right) =
+  6^2 {\left(\sqrt{7} + \sqrt{6}\,\right)}^2
+$$
+and then:
+$$
+    \sqrt{m} > 6\left(\sqrt{7} + \sqrt{6}\,\right) =
+    \frac{6}{\sqrt{7} - \sqrt{6}\phantom{\,}}
+  \ \then \ %
+    \sqrt{7m} - \sqrt{6m} > 6
+$$
+or equivalently:
+$$ \frac{\sqrt{6m} - 3}{6} + 1 < \frac{\sqrt{7m} - 3}{6} $$
+From this last inequality and from lemma~(\ref{intseplemma}) we deduce
+that $\exists\: u \in \N$ such that:
+$$\frac{\sqrt{6m} - 3}{6} < u < \frac{\sqrt{7m} - 3}{6}$$
+\ie such that:
+$$6m < {(6u + 3)}^2 < 7m$$
+and our claim follows.
+\end{proof}
+
+We conclude by an elegant result which reinforce the previous
+corollary~(\ref{big m = 5 mod 24 not norm-euclidean}):
+
+\begin{thm}%
+\label{second_partial_classification_of_norm-euclidean_domains}
+Let $m > 1$ squarefree such that\, $m \congruent 5 \pmod{24}$;
+then the domain $\hh{m}$ is norm-euclidean if and only if\,
+$m = 5$\, or\, $m = 29$.
+\end{thm}
+
+\begin{proof}
+It was already shown in theorem~(\ref{normed_UFDs_3}) that $\hh{5}$
+and $\hh{29}$ are norm-euclidean, and in the previous
+corollary~(\ref{big m = 5 mod 24 not norm-euclidean}) that $\hh{m}$
+isn't norm-euclidean for any $m$ squarefree such that $m \geq 941$
+and $m \congruent 5 \pmod{24}$; thus, to prove our claim, we only
+need to show that $\hh{m}$ isn't norm-euclidean for all $m$ squarefree
+with $m \congruent 5 \pmod{24}$ and $53 \leq m < 941$,\, \ie for:
+\begin{displaymath}
+\begin{array}{lll}
+m & = &
+53,\phantom{1}\ 77,\phantom{1}\ 101,\ 149,\ 173,\ 197,\ 221,\ %
+269,\ 293,\ 317,\ 341,\ 365,\ 389,\ 413,\ 437,\ \\[1pt]
+& &
+461,\ 485,\ 509,\ 533,\ 557,\ 581,\ 629,\ 653,\ 677,\ 701,\ 749,\ %
+773,\ 797,\ 821,\ 869,\ \\[1pt]
+& & 893,\text{ or \:}917.
+\end{array}
+\end{displaymath}
+
+This easily follows from theorem~(\ref{SMALL}) and the following
+calculations.
+
+%% DIRTY HACK TO HAVE A RIGHT SPACING AND PAGE DIVISION
+\vspace{-3pt}
+\input{calcgen3.tex}
+
+All the possible cases have been analyzed, and the
+theorem is proved.
+
+\end{proof}
+
+\end{subsection}

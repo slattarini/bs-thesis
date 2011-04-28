@@ -1,0 +1,105 @@
+\documentclass[11pt,a4paper,leqno]{book}
+
+% inclusion of mathematical packages
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+
+% forward and backward dvi search
+\usepackage[active]{srcltx}
+
+% tell if hyperref should be used or not
+\IfFileExists{howlinks.tex}{\input{howlinks.tex}}{}
+
+%**NOTE**: hyperref should be the last package to be loaded.
+\ifdefined\nolinks
+  \relax
+\else
+  \usepackage{hyperref}
+  \hypersetup{
+    backref,
+    pdfauthor={Lattarini Stefano},
+    pdftitle={Factorization problems for quadratic algebraic integers},
+    colorlinks,
+    linkcolor=blue,
+    pdfpagelabels
+ }
+\fi
+
+ % STYLE PARAMETERS
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\textwidth 14.7cm
+\topmargin -1.0cm
+\headheight 1cm
+\headsep 1.2cm
+\textheight 22.5cm
+\parindent 0.0em
+
+% NUMERATION OF CHAPTERS AND SECTIONS
+%\renewcommand{\thechapter}{\arabic{chapter}}
+%\renewcommand{\thesection}{\arabic{section}}
+
+% THEOREM-LIKE ENVIRONMENTS
+%
+\numberwithin{equation}{chapter}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thmen}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defnen}{Definition}
+\newtheorem*{rem}{Remark}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{ex}{Example}
+\newtheorem{property}{Property}
+%
+
+%--------------------------------------------------------------------------
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt}
+\fancypagestyle{plain}{%
+   \fancyhead{}
+   \renewcommand{\headrulewidth}{0pt}
+}
+
+%--------------------------------------------------------------------------
+
+\include{defs}
+
+%--------------------------------------------------------------------------
+
+\begin{document}
+\baselineskip4ex
+
+\title{Factorization problems for quadratic algebraic integers}
+\author{Stefano Lattarini}
+\date{A.A. 2006/2007}
+
+\include{frontcover}
+\newpage
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+\newpage
+
+\include{intro}
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{alpha}
+\bibliography{biblio}
+
+\end{document}

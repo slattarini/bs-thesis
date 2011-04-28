@@ -1,0 +1,802 @@
+\chapter{Preliminary results}\label{preliminary}
+
+\section{The concepts of conjugate and norm}\label{conj_and_norm}
+
+%--------------------------
+% DEFINITION OF Q(sqrt(m))
+%--------------------------
+\begin{defn}
+For all $m\in \Z$ let
+\begin{equation}\label{quadraticField}
+\QQ{m} := \left\{ a + b\sqrt m: a,b \in \Q\right\}.
+\end{equation}
+\end{defn}
+
+It is straightforward to verify that $\QQ{m}$ is a subfield of $\C$
+and that $\QQ{m} = \Q$ if and only if $m$ is a perfect square, \ie
+$m = h^2$ for an appropriate $h\in\Z$.
+So, in the rest of this section, we will denote by $m$
+a fixed non-square in $\Z$.
+
+%--------------------------------------
+% DEFINTION AN PROPERTIES OF CONJUGATE
+%--------------------------------------
+\begin{defn}\label{conjugatedef}
+For each\, $z \in \QQ{m}$, written\, $z = x + y\sqrt m$ with $x,y \in \Q$,
+we define\, $\cg z:= x - y\sqrt m$,\, and call it the {\emph{conjugate}}
+of $z$.
+\end{defn}
+
+
+The map $z\mapsto \cg z$ is an involutory automorphism of $\QQ{m}$, \ie
+%
+\begin{equation}\label{conjugate1}
+\forall z_1,z_2 \in \QQ{m}: \qquad
+\cg{z_1 + z_2}= \cg z_1 + \cg z_2, \quad
+\cg{z_1z_2} = \cg z_1\cg z_2 , \quad
+\cg1 = 1, \quad \cg{\cg{z_1}} = z_1.
+\end{equation}
+%
+It follows in particular that:
+\begin{equation}\label{conjugate2}
+\forall z\in \QQ{m}:\qquad
+\cg{z} = 0 \iff z=0,\quad\
+z\not=0 \then \cg{z^{-1}}= {({\cg z})}^{-1}.
+\end{equation}
+
+Note that when $m < 0$, the conjugate of $z \in \QQ{m}$ as defined
+above coincide with the usual complex conjugate of $z$ in $\C$.
+
+%-----------------------------------
+% DEFINITION AND PROPERTIES OF NORM
+%-----------------------------------
+\begin{defn}\label{normdef}
+For $z\in \QQ{m}$ we define $$\Norm{z}:= \abs{z \cg z}$$
+and call it the {\emph{norm}} of $z$.
+\end{defn}
+Note that for every $z\in \QQ{m}$ it is
+$z\cg{z} \in \Q$, and then\, $\Norm{z} = \abs{z \cg z}
+= \pm{z \cg z}$.
+
+
+\begin{lem}\label{norm} For all
+$z,\ z_1,\ z_2\in \QQ{m}$:
+
+\begin{itemize}
+\item[{\rm (i)}] 
+$\Norm{z} = \Norm{\cg z}$
+
+\item[{\rm (ii)}]
+$\Norm{z_1z_2} = \Norm{z_1}\Norm{z_2}$
+
+\item[{\rm (iii)}]
+$\Norm{z} = 0 \iff z = 0$
+
+\item[{\rm (iv)}]
+$z \not= 0 \then \Norm{z^{-1}} = {\Norm{z}}^{-1}$
+\end{itemize}
+\end{lem}
+
+\begin{proof}
+%
+It results:
+%
+\begin{itemize}
+
+\item
+
+$\Norm{z} = \abs{z\cg z} = \abs{\cg{\cg z}\ \cg z} =
+\abs{\cg z\ \cg{\cg z}} = \Norm{\cg z}$;
+
+\item
+
+$\Norm{z_1z_2} = \abs{(z_1z_2) (\cg{z_1z_2})} =
+\abs{z_1z_2 \cg z_1 \cg z_2} =
+\abs{(z_1\cg z_1) (z_2 \cg z_2)} = \Norm{z_1}\Norm{z_2}$;
+
+
+\item
+
+since $\cg z = 0 \iff z = 0$ we have:\\
+\mbox{$\Norm{z} = 0 \iff \abs{z\cg z} = 0 \iff
+z\cg z = 0 \iff z = 0\,\ {\rm or}\,\ \cg z = 0\ \iff
+z = 0$;}
+
+\item
+
+$z\not=0 \then \Norm{z} \Norm{z^{-1}} = \Norm{zz^{-1}} =
+\Norm{1} = 1 \then \Norm{z^{-1}} = {\Norm{z}}^{-1}$;
+
+\end{itemize}
+and the lemma is proved.
+\end{proof}
+%
+
+\section{Normed Domains}\label{normed_domains}
+
+%------------------------------
+% DEFINITION OF NORMED DOMAINS
+%------------------------------
+\begin{defn}\label{normedDomain}
+Let $D$ be a domain. We say that D is a \emph{quadratic
+normed domain\/} if there exists a fixed non-square integer
+$m$ such that $D$ is a subring of $\QQ{m}$, and:
+\begin{itemize}
+\item $\forall \alpha\in D:\: \Norm{\alpha} \in \N$
+\item $\forall \alpha\in D:\: \cg{\alpha} \in D$
+\end{itemize}
+\end{defn}
+
+Equivalently, we can say that $D$ is a \emph{quadratic
+normed domain\/} if there exists a fixed non-square intege
+ $m$ such that $D$ is a subring of $\QQ{m}$, and:
+$$ 
+\forall \alpha\in D:\: \cg{\alpha} \in D
+\textrm{\,\ and\,\ } \alpha \cg{\alpha} \in \Z
+$$
+
+From now on, for sake of conciseness, we will
+write simply \emph{normed domain\/} instead of
+\emph{quadratic normed domain\/}.
+
+\bigskip
+In the rest of this section, $m$ will be a fixed
+non-square integer; moreover, we will denote by $D$
+a given normed domain.
+
+%------------------------
+% CHARACTERIZATION OF D*
+%------------------------
+\begin{lem}
+Let \,$\alpha \in D$;\, then:
+\begin{equation}\label{D_ast}
+\alpha \in D^\ast \iff
+\Norm{\alpha} = 1 \iff
+\cg\alpha \in D^\ast .
+\end{equation}
+\end{lem}
+%
+\begin{proof}
+%
+We start proving the first double implication of
+\eqref{D_ast}.
+
+\begin{itemize}
+
+\item $\alpha \in D^\ast \then \exists\, \beta \in D :
+\alpha\beta = 1 \then 1 = \Norm{1} = \Norm{\alpha\beta} =
+\Norm{\alpha}\Norm{\beta}  \then \Norm{\alpha} =
+\Norm{\beta} = 1$ (since $\Norm{\alpha}$ and $\Norm{\beta}$
+are natural numbers). We conclude that $\Norm{\alpha} = 1$.
+
+\item $\Norm{\alpha} = 1 \then {\alpha \cg\alpha} =
+\pm{\,\Norm{\alpha}} = \pm 1 \then
+(\alpha)(\pm{\cg\alpha}) = 1 \then \alpha \in D^\ast$\,
+(since if $\alpha \in D$ then $\cg\alpha \in D$ and thus
+also $\pm\cg\alpha \in D$).
+
+\end{itemize}
+
+Thus we have proved the first double implication of
+\eqref{D_ast}. The second double implication can easily
+be deduced from the first, noting that
+$\forall \gamma\in D:\: \Norm{\gamma}=\Norm{\cg\gamma}$.
+%
+\end{proof}
+
+%--------------------------------------------
+% FIRST LEMMA ON EXISTENCE OF FACTORIZATION
+% INTO IRREDUCIBLES IN A NORMED DOMAINS
+%--------------------------------------------
+\begin{lem} Let $\alpha, \beta\in D$ be such that
+$\beta \divides \alpha$.
+Then $\beta$ is associate to $\alpha$ if and only if
+$\Norm{\beta}=\Norm{\alpha}$.
+\end{lem}
+
+\begin{proof}
+%
+Assume first that $\beta$ is associate to $\alpha$, \ie
+$\beta=\epsilon \alpha$, for an appropriate
+$\epsilon\in D^\ast$. Thus we get immediatly
+$\Norm{\beta} = \Norm{\alpha}\Norm{\epsilon} =
+\Norm{\alpha}$.
+
+Viceversa, assume now that $\Norm{\beta} = \Norm{\alpha}$.
+We can distinguish two cases.
+
+\begin{enumerate}
+%
+\item[\textbf{1.}] $\beta \neq 0$,\, \ie\:$\Norm{\beta} \neq 0$.
+
+Write $\alpha = \beta\gamma$, with $\gamma \in D$.
+It follows:
+$$
+\Norm{\beta} = \Norm{\alpha} = \Norm{\beta}\Norm{\gamma}
+\then \Norm{\gamma} = 1.
+$$
+We conclude $\gamma \in D^\ast$, \ie $\alpha$ and
+$\beta$ are associate.
+%
+\item[\textbf{2.}] $\beta=0$.
+
+The assumption $\beta \divides \alpha$ implies now
+$\alpha=0$. So $\alpha = \beta = 0$ and, a fortiori,
+$\alpha$ and $\beta$ are associate.
+%
+\end{enumerate}
+%
+In both cases, our claim follows.
+\end{proof}
+
+%----------------------------------------------------
+% COROLLARY REGARDING THE EXISTENCE OF FACTORIZATION
+% INTO IRREDUCIBLES IN A NORMED DOMAINS
+%----------------------------------------------------
+The previous two lemmas immediately imply the
+following useful result:
+
+\begin{cor} Let $\alpha\in D\setminus\left(D^\ast\cup\{0\}\right)$.
+Then $\alpha$ is irreducible if and only if
+\begin{equation*}
+\forall\, \beta \in D:\enskip
+1 < \Norm{\beta} < \Norm{\alpha}\then
+\beta \notdivides \alpha
+\end{equation*}
+\end{cor}
+
+%--------------------------------------------
+% SECOND LEMMA ON EXISTENCE OF FACTORIZATION
+% INTO IRREDUCIBLES IN A NORMED DOMAINS
+%--------------------------------------------
+\begin{lem}\label{factorizationIntoIrreducibles}
+Every $\alpha \in D\minz$ can be written as a
+product of a finite number of irreducibles of $D$.
+\end{lem}
+
+\begin{proof}
+%
+By contradiction, let $\alpha \in D \minz$ do not
+satisfy our claim. Clearly we may assume that
+$\Norm{\alpha}$ has the least possible value. Since every
+unit and every irreducible obviously satisfy our claim,
+$\alpha$ must be reducible. By the previous Corollary
+there exists $\beta\in D$ such that $1 < \Norm{\beta} <
+\Norm{\alpha}$ and $\beta \divides \alpha$.
+Writing $\alpha = \beta\gamma$, $\gamma \in D$, we see
+that \mbox{$1 < \Norm{\gamma} < \Norm{\alpha}$}. By the
+minimality of $\Norm{\alpha}$ we have that $\beta$ and
+$\gamma$ can be written a finite product of irreducibles.
+Hence the same also holds for $\alpha = \beta\gamma$, a
+contradiction.
+%
+\end{proof}
+
+%--------------------------------------------------------
+% SOME NOTATIONS (intoductions of the subsets I, H, K of
+% a gived normed domain D)
+%--------------------------------------------------------
+\section{Some notations}\label{notations}
+
+Let $D$ be a domain in which every non-zero element can
+be written as a product of a finite number of irreducibles.
+
+We denote by $I$ the set of irreducibles in $D$, by $K$
+the set of those elements of $D$ whose factorization
+into irreducibles is essentially unique, and by $H$ the
+set of those elements of $D$ which do not have this
+property, \ie $H = D\setminus \left(K \cup \{0\}\right)$.
+
+Noting that every unit can be factorized only into $0$
+irreducibles, we have $D^\ast \subseteq K$. On the other
+hand, because every irreducible element has only trivial
+factorizations, we easily get $I\subseteq K$. We conclude
+that $D^\ast \cup I\subseteq K$.
+
+%------------------------------
+% A very useful property of K
+%-----------------------------
+\medskip
+With this notations the following useful result holds:
+
+\begin{lem}
+Let $\alpha \in K,\; \pi \in I$ such that $\pi \divides
+\alpha,\, $ and\, \mbox{$\alpha_1, \alpha_2 \in D$} such
+that \mbox{$\alpha = \alpha_1 \alpha_2$.}
+Then $\pi \divides \alpha_1$ or $\pi \divides \alpha_2$.
+\end{lem}
+
+\begin{proof}
+%
+If $\alpha_1=0$ or $\alpha_2=0$, obiouvsly $\pi \divides
+\alpha_1$ or $\pi \divides \alpha_2$.
+So we can suppose $\alpha_1 \neq 0$ and $\alpha_2\not=0$;
+we have then by our hypothesis on $D$ that $\alpha_1,
+\alpha_2$ can be written as product of finite number of
+irreducibles.
+So $\alpha_1 = \sigma_1 \cdots \sigma_r$, $\alpha_2 =
+\rho_1 \cdots \rho_s$ for appropriate $r,s \in \N$ and
+$\sigma_1, \ldots, \sigma_r, \rho_1, \ldots, \rho_s
+\,\in I$ (\ie irreducibles).
+Since \mbox{$\alpha = \alpha_1 \alpha_2$}, and
+$\alpha \in K$ we have then that:
+$$
+\alpha = \alpha_1 \alpha_2 =
+\sigma_1 \ldots \sigma_r \rho_1 \cdots \rho_s 
+$$
+is the \emph{essentially unique factorization} of $\alpha$
+as product of irreducibles.
+Since $\pi \divides \alpha$, we can then say that $\pi$
+must be associated with one of the irreducibles:
+$\sigma_1, \ldots \sigma_r, \rho_1, \ldots, \rho_s$.
+If $\pi$ is associated to a $\sigma_i$, then
+$\pi \divides \alpha_1$, while if $\pi$ is associated to
+a $\rho_j$, then $\pi \divides \alpha_2$, as desired. 
+%
+\end{proof}
+
+From previous result it immediatly derives by
+induction the following:
+
+\begin{cor}\label{basic_property_of_K}
+Let $\alpha \in K$, $\pi \in I$ such that
+$\pi \divides \alpha$, and
+\mbox{$\alpha_1, \ldots, \alpha_n \in D$} such that
+$\alpha = \alpha_1 \ldots \alpha_n$. Then exists
+$i \in \left\{ 1, \ldots n\right\}$ such that
+$\pi \divides \alpha_i$
+\end{cor}
+
+\section{Useful results in number theory}\label{number_theory}
+
+In this section we will present, briefly and without proof, some
+classical results in number theory, that we will use extensively
+later in our work.
+
+Proofs and background information about these results can be found
+in~\cite{H&W}, \cite{Childs} and~\cite{Dav}\footnote{%
+except for the proof of the Dirichlet's theorem, which is very
+difficult.}.
+
+We will also state and prove a simple technical lemma, which will be
+of paramount importance in chapter~\ref{notUFD}.
+
+\begin{thmen}[Chinese Remainder Theorem]
+Let $m_1, m_2, \ldots, m_n$ be pairwaise coprime positive integers, and
+let $a_1, a_2, \ldots, a_n$ be arbitrary integers; then there exists a
+solution $x = x_0\in\N$ of the system:
+
+\begin{equation*}
+%
+\left\{
+\begin{array}{ll}
+x \congruent a_1 & \pmod{m_1} \\
+x \congruent a_2 & \pmod{m_2} \\
+\quad \vdots & \quad\quad \vdots \\
+x \congruent a_n & \pmod{m_n} \\
+\end{array}
+\right.
+\end{equation*}
+
+Morever, any other integer solution of this system is given by\/
+$x = x_0 + k m_1 m_2 \cdots m_n$, for arbitrary $k\in\Z$.
+\end{thmen}
+
+\begin{defnen}[Quadratic residues]
+Let $p$ be a prime. Then $x \in \Z$ is said to be a\/
+\emph{quadratic residue of $p$\/} if there exists\/ $y\in\Z$\/ such
+that\/ $a \congruent y^2 \pmod p$, and a\/ \emph{quadratic non-residue
+of $p$\/} if no such $y\in\Z$ exists; if $x$ is a quadratic residue of
+$p$ and\/ $x \notcongruent 0 \pmod p$, then\/ $x$\/ is said to be a\/
+\emph{proper quadratic residue of $p$\/}.
+
+More generally, given an integer $m > 1$, we say that $x\in\Z$ is
+a\/ \emph{quadratic residue of $m$\/} if\/ $x \congruent y^2 \pmod m$\/
+for a suitable $y\in\Z$; on the contrary, $x\in\Z$ is said to be a\/
+\emph{quadratic non-residue of $m$\/} if\/ $x \notcongruent y^2 \pmod m$\,
+for every\/ $y\in\Z$.
+\end{defnen}
+
+\begin{defnen}[Legendre symbol]
+Let\/ $p$\/ be a prime and\/ $x$\/ an integer; the\/
+\emph{Legendre symbol\/} of\/ $x$\/ over\/ $p$\/ is defined as:
+\begin{equation*}
+\Leg{x}{p} :=
+\left\{ \begin{array}{ll}
+ +1 & \textrm{if \:} x \textrm{\, is a proper quadratic residue of } p\\
+ -1 & \textrm{if \:} x \textrm{\, is a quadratic non-residue of } p\\
+~~0 & \textrm{if \:} x \congruent 0\!\!\! \pmod p\\
+\end{array}
+\right.
+\end{equation*}
+\end{defnen}
+
+The most important properties of quadratic residues and of the Legendre
+symbol are summarized in the following proposition:
+\begin{thmen}
+Let $p$, $q$ be distinct odd primes, $a$, $b$ integers. Then:
+\begin{itemize}
+ \item[{\rm (i)\;}]
+   $\Leg{a^2}{p} = 1$\, if $p \notdivides a$
+ \item[{\rm (ii)\;}]
+   $\Leg{a}{p} = \Leg{b}{p}$\, if\/ $a \congruent b\! \pmod p$
+ \item[{\rm (iii)\;}]
+   $\Leg{ab}{p} = \Leg{a}{p} \Leg{b}{p}$
+ \item[{\rm (iv)\;}]
+   $\Leg{-1}{p} = {(-1)}^{\frac{p-1}{2}}$,\, or more explicitly:
+   \begin{itemize}
+     \item[$\bullet$]
+       $\Leg{-1}{p} = +1$\/ if\/ $p \congruent 1 \pmod 4$,
+     \item[$\bullet$]
+       $\Leg{-1}{p} = -1$\/ if\/ $p \congruent 3 \pmod 4$.
+   \end{itemize}
+\item[{\rm (v)\;}]
+   $\Leg{2}{p} = {(-1)}^{\frac{p^2-1}{8}}$,\, or more explicitly:
+   \begin{itemize}
+     \item[$\bullet$]
+        $\Leg{2}{p} = +1$\/ if\/ $p \congruent 1\textrm{ or }7 \pmod 8$,
+     \item[$\bullet$]
+        $\Leg{2}{p} = -1$\/ if\/ $p \congruent 3\textrm{ or }5 \pmod 8$.
+   \end{itemize}
+\item[{\rm (vi)\;}]
+   $\Leg{p}{q} = {(-1)}^{\frac{(p-1)(q-1)}{4}}\Leg{q}{p}$
+   \ \:\emph{(quadratic reciprocity law)},\; or more explicitly:
+  \begin{itemize}
+     \item[$\bullet$]
+        $\Leg{p}{q} = \Leg{q}{p}$\/ if\/ $p \congruent 1 \pmod 4$\/ or\/ 
+          $q \congruent 1 \pmod 4$,
+     \item[$\bullet$]
+        $\Leg{p}{q} = -\Leg{q}{p}$\/ if\/
+          $p \congruent q \congruent 3 \pmod 4$.
+  \end{itemize}
+\end{itemize}
+
+\end{thmen}
+
+\smallskip
+
+Here is a simple result on quadratic residues that will be useful
+in chapter~\ref{notUFD}:
+\begin{lem}\label{helper_lem_on_quadratic_residues}
+Let $m > 1$ integer, $p$ a prime such that $p \divides m$, and $x \in \Z$.
+If $x$ is a quadratic non-residue of $p$, then it is also a quadratic
+non-residue of $m$.
+\end{lem}
+\begin{proof}
+Argue by contradiction, assuming that there exists a suitable $y \in \Z$
+such that \mbox{$x \congruent y^2 \pmod m$}; then, since $p \divides m$,
+it's also \mbox{$x \congruent y^2 \pmod p$}, which contradicts the fact
+that $x$ is a quadratic non-residue of $p$.
+\end{proof}
+
+\medskip
+
+We'll need also the classical Dirichlet's theorem on primes in
+arithmetic progressions:
+
+\begin{thmen}[Dirichlet's thorem on primes in arithmetic progressions]
+~Let\/ $a$, $b$\, be integers with\/ $a>0$\/ and\/ $\gcd{a}{b} = 1$.
+Then the arithmetic progression $\left\{a n + b : \, n\in\N\right\}$
+contains infinite primes.
+\end{thmen}
+
+Let's finally see a quite simple and technical lemma that will
+be very useful in chapter~\ref{notUFD}.
+
+\begin{lem}\label{basic_technical_lem}
+Suppose given\, $n \in \N$\, such that \,$n \geq 1$,\,
+$ p_1,\, p_2,\, \ldots,\, p_n$\, distinct primes,\,
+$t \in \Z$\, such that\, $\forall\, i \in
+\{1, \ldots, n\}:\, p_i \notdivides t$,\, $a \in \Z$\, such that\,
+$\gcd{a}{t} = 1$ and\, $m \in \N$\, with\, $m \leq n$.
+
+Then there exist infinitely many primes $q$ such that:
+
+\begin{itemize}
+\item $\:q$ is a proper quadratic residue of\, $p_i$\, for\,
+      $i = 1,\, \ldots\, m$
+\item $\:q$ is a quadratic non-residue of\, $p_j$\, for\,
+      $j = m + 1,\, \ldots\, n$
+\item $\:q \congruent a\ \mathrm{(mod\ } t \mathrm{)}$
+\end{itemize}
+
+%
+\end{lem}
+
+\begin{proof}
+%
+As a first step, take
+\,$\xi_{m+1},\, \xi_{m+2},\, \ldots,\, \xi_n \in \Z$\,
+quadratic non-residue respectively of
+\,$p_{m+1},\, p_{m+2},\, \ldots,\, p_n$.
+
+Consider then the following system of linear congruences:
+\medskip
+\begin{equation}\label{congruences_system}
+%
+\left\{
+\begin{array}{ll}
+x \congruent 1 & \pmod{p_1} \\
+x \congruent 1 & \pmod{p_2} \\
+\quad \vdots & \quad\quad \vdots \\
+x \congruent 1 & \pmod{p_m} \\
+x \congruent \xi_{m+1} & \pmod{p_{m+1}}\\
+\quad \vdots & \quad\quad \vdots \\
+x \congruent \xi_n & \pmod{p_n} \\
+x \congruent a & \pmod{t} \\
+\end{array}
+\right.
+\end{equation}
+%
+
+\bigskip
+Write\, $M:= p_1 p_2 \cdots p_n t$.
+Since the $p_j$ are pairwise coprime and all coprime with $t$,
+we know from Chinese remainder theorem that \mbox{system
+(\ref{congruences_system})} is soluble, and that if
+$x_0 \in \Nzero$ is its minimal positive solution then
+$x_k := x_0 + kM$ is also a solution for every $k \in \Z$.
+
+Now, $\gcd{x_0}{M} = 1$, since:
+%
+\begin{itemize}
+
+\item
+for every $i \in  \{ 1,\, 2,\, \ldots, \, m \}$, is\,
+$x_0 \congruent 1 \pmod{p_i}$, so that\, $\gcd{x_0}{p_i} = 1$;
+
+\item
+for every $j \in \{m+1,\, m+2,\,\ldots,\,n\}$, is\,
+$x_0 \congruent \xi_j \pmod{p_j}$, so that\, $\gcd{x_0}{p_j} = 1$
+(since $p_j \notdivides \xi_j$ \,as\, $\xi_j$ is a
+quadratic non-residue of $p_j$);
+
+\item
+$x_0 \congruent a \pmod t$\, and\, $\gcd{a}{t} = 1$,\,
+so that\, $\gcd{x_0}{t} = 1$.
+
+\end{itemize}
+
+Thus, from Dirichlet theorem, we have that the set:
+$$
+\Gamma:= \left\{x_k:\, k \in \N\right\} =
+\left\{x_0 + kM:\, k \in \N\right\} \subseteq \N
+$$
+contains infinetely many primes $q$; each of this primes
+satisfies system~(\ref{congruences_system}), so that:
+%
+\begin{itemize}
+%
+\item
+$q \congruent a \pmod t$;
+%
+\item $\forall\:i \in \{1, 2,\,\ldots\, m\}:\:q \congruent
+1^2 \pmod{p_i}$,\, so that $q$ is a quadratic residue of
+$p_i$;
+%
+\item $\forall\:j \in \{m+1, m+2,\,\ldots\, n\}:\:q \congruent
+\xi_j \pmod{p_i}$\, with\, $\xi_j$ quadratic non-residue
+of $p_j$, so that $q$ is a quadratic non-residue of $p_j$;
+%
+\end{itemize}
+%
+and our claim follows.
+\end{proof}
+
+%********************************************************************
+
+%-------------------------------------------
+% DEFINITION OF THE SUBRINGS OF THE COMPLEX
+% FIELD C THAT WE ARE GOING TO DEAL
+%-------------------------------------------
+\section{Some subrings of\enskip$\C$}\label{C_subrings}
+
+We are now going to define the subrings of $\C$ which
+will be considered in this work. They can be subdivided
+into two classes, namely:
+
+\begin{enumerate}
+ \item the rings of the form $\ZZ{m}$, with $m$ a
+       non-square in $\Z$;
+ \item the rings of algebraic integers of quadratic
+       extensions of $\Q$.
+\end{enumerate}
+
+%-------------------------
+% DEFINITION OF Z[sqrt(m)]
+%-------------------------
+\begin{defn} Given $m$ in $\Z$ we define
+$\ZZ{m} := \{ a + b\sqrt m:\, a,b \in \Z \}$.
+\end{defn}
+%
+
+%------------------------------------------------------------
+% PRELIMINARIES FOR THE DEFINITIONS OF THE RINGS OF CLASS (2)
+%------------------------------------------------------------
+More attention is deserved by the rings which belong to the above class
+$(2)$, whose definition is somehow more elaborate and complex.
+All definitions and preliminar properties which we are now going to
+explain (quite schematically and without proofs) are analyzed in a more
+complete and organic form in chapter XIV of~\cite{H&W}.
+
+We begin recalling the definitions of ``algebraic number'',
+``algebraic integer'', ``algebraic field'' and ``quadratic
+field''.
+\begin{itemize}
+
+%---------------------------------
+% DEFINITION OF "ALGEBRAIC NUMBER"
+%---------------------------------
+\item A complex number $z \in \C$ is said to be an
+\emph{algebraic number\/} if there exist
+\mbox{$n \in \Nzero$}\, and\, $a_0, a_1, \ldots, a_n \in \Z$\,
+such that\, $a_n \neq 0$\, and\,
+$a_n z^n + a_{n-1} z^{n-1} + \ldots + a_1z + a_0 = 0$.
+Equivalently, $z \in \C$ is algebraic if an only if
+there exists a non-costant polynomial $P(x) \in \Z[x]$
+such that $P(z) = 0$.
+
+%----------------------------------
+% DEFINITION OF "ALGEBRAIC INTEGER"
+%----------------------------------
+\item A complex number $z \in \C$ is said to be an
+\emph{algebraic integer\/} if there exist
+\mbox{$n \in \Nzero$}\, and\,
+$a_0, a_1, \ldots, a_{n-1} \in \Z$\, such that\,
+$z^n + a_{n-1}z^{n-1} + \cdots + a_1z + a_0 = 0$.
+Equivalently, $z \in \C$ is an algebraic integer if an
+only if there exists a non-costant monic polynomial
+$P(x) \in \Z[x]$ such that $P(z) = 0$. It can be proved with
+standard algebraic methods that $z \in \C$ is an algebraic
+integer if and only if it is algebraic over $\Q$ and its
+minimal polynomial over $\Q$ has rational integer
+coefficients (see for example Theorem (236) in chapter XIV
+of~\cite{H&W}\footnote{which, as a matter of fact, is given
+in a slighty different but equivalent form.}).
+
+%--------------------------------
+% DEFINITION OF "ALGEBRAIC FIELD"
+%--------------------------------
+\item For every $\vartheta \in \C$, we define
+\begin{displaymath}
+\Q\left(\vartheta\right):= \left\{ \frac{P(\vartheta)}{Q(\vartheta)}:
+\ P(x),\, Q(x) \in \Q[x]\ \textrm{\,and\,}\ Q(\vartheta) \neq 0 \right\}
+\end{displaymath}
+and call it the simple extension of $\Q$ by $\vartheta$.
+
+This definition is consistent, since it can easily be
+proved that $\Q\left(\vartheta\right)$ is the smallest subfield
+of $\C$ which contains $\vartheta$. If $\vartheta$ is
+algebraic, we call it the \emph{algebraic field\/} on
+$\vartheta$.
+
+%--------------------------------
+% DEFINITION OF "QUADRATIC FIELD"
+%--------------------------------
+\item If $\xi \in \C$ is an irrational algebraic number
+which satisfies an equation of degree two with coefficients in $\Z$,
+then $\xi$ is said to be \emph{quadratic\/}. A \emph{quadratic field\/}
+(or \emph{quadratic estension of $\,\Q$\/}) is an algebraic field of the
+form $\Q\left(\xi\right)$, with $\xi \in \C$ quadratic.
+
+\end{itemize}
+
+%------------------------------------------------------------
+% EXPLICIT CHARACTERIZATION OF h(sqrt(m)) AND CLASSIFICATION
+% OF RINGS OF QUADRATIC ALGEBRAIC INTEGERS
+%------------------------------------------------------------
+\begin{defn}\label{h(sqrt(m))-definition}
+For every squarefree $m \in \Zzero$ we define:
+$$
+\hh{m} :=
+\left\{ \begin{array}{ll}
+
+\left\{ x + y\sqrt{m} :\ x,y \in \Z \right\} &
+    \mathrm{if}\ m \congruent 2\ \mathrm{or}\ 3
+    \mathrm{\ (mod\ 4)}
+
+\\ % this two newlines is useful for 
+\\ % having a right vertical space
+
+\left\{ \frac{x + y\sqrt{m}}{2}:\ x,y \in \Z\ \,
+   \mathrm{and}\ \, x \congruent y
+   \mathrm{\ (mod\ 2)}\right\} &
+   \mathrm{if}\ m \congruent 1\ \mathrm{(mod\ 4)} 
+
+\end{array} \right.
+$$
+\end{defn}
+
+For each algebraic number $\xi \in \C$ we define:
+$$
+A_{\xi}:= \left\{ z \in \C:\ z
+\textrm{ algebraic integer and } z \in \Q\left(\xi\right) \right\}.
+$$
+
+According to the terminology introduced above, it can be
+proved that the collection of sets:
+$$
+\left\{A_{\xi}:\ \xi \in \C \textrm{ quadratic }\right\}
+$$
+is precisly the collection of all the rings of the form $\hh{m}$
+for $m \in \Zzero$ squarefree.
+
+\medskip
+Finally we have:
+\begin{thm}
+For every $m \in \NotSquare$,\, $\ZZ{m}$ is a normed domain.
+Moreover, for every squarefree $m \in \Zzero$,
+$\hh{m}$ is a normed domain.
+\end{thm}
+
+\begin{proof}
+%
+First, it is easy to prove that $\ZZ{m}$ is a normed domain.
+
+From the equality
+\mbox{$\hh{m} = \ZZ{m}$}, holding for $m \congruent 2 \textrm{ or }
+3 \pmod 4$, we immediately have that $\hh{m}$ is a normed domain if
+$m \congruent 2 \textrm{ or } 3 \pmod 4$.
+
+Hence we have only to deal with the case $m \congruent 1 \pmod 4$,
+when it results:
+$$\hh{m} = \left\{ \frac{x + y\sqrt{m}}{2}:
+\ x,\,y \in \Z \textrm{ \,and\, }
+x \congruent y\!\!\! \pmod 2 \right\}.$$
+
+Let\, $x,y,X,Y \in \Z$\, such that\, $x \congruent y \pmod 2$\, and\,
+$X \congruent Y \pmod 2$;\, we have:
+
+\begin{itemize}
+
+\item
+$\left(\dfrac{x + y \sqrt{m}}{2}\right) +
+\left(\dfrac{X + Y \sqrt{m}}{2}\right)
+= \dfrac{(x + X) + (y + Y) \sqrt{m}}{2}\,
+\in \hh{m}\,$,\: since\\[6pt]
+$x + X \congruent y + Y \pmod 2$;
+\vspace{4pt}
+\item
+$\left(\dfrac{x + y \sqrt{m}}{2}\right)
+\left(\dfrac{X + Y \sqrt{m}}{2}\right)
+= \dfrac{(xX + myY) + (xY + Xy) \sqrt{m}}{4}
+= $\\[5pt]
+$ =
+\dfrac{a + b\sqrt{m}}{2} \in \hh{m}$,\: since:
+\begin{itemize}
+   %
+   \item[(1)] $ xY +  Xy \congruent xX + xX =
+   2xX \congruent 0  \pmod 2$, so that:\\
+   \mbox{$b = \frac{xY + Xy}{2} \in \Z$;}
+   %
+   \item[(2)] $ xX +  myY \congruent xX + yY
+   \congruent xX + Xx  = 2Xx \congruent 0 \pmod 2$, so that:\\
+   \mbox{$a = \frac{xX + myY}{2} \in \Z$;}
+   %
+   \item[(3)] $ 2a - 2b = (xX + myY) - (xY + Xy) = xX + myY - xY - Xy
+   \congruent xX + yY - xY -Xy \pmod 4 \then 2a - 2b \congruent
+   x(X - Y) - y(X - Y) = (x - y)(X - Y) \congruent 0 \pmod 4$\,
+   (since $2\divides (x - y)$ and $2 \divides (X - Y)$), so that:\\
+   $2a \congruent 2b\ \pmod 4 \then a \congruent b \pmod 2$;
+\end{itemize}
+
+\item
+$1 = \frac{2 + 0\sqrt{m}}{2}\, \in \hh{m}$\,
+(as obiouvsly $2 \congruent 0 \pmod 2$);
+
+\item
+if $\alpha \in \hh{m}$, then $\alpha = \frac{x + y \sqrt{m}}{2}$,
+for $x,y \in \Z$ such that $x \congruent y \pmod 2$; so\,
+$\cg{\alpha} = \frac{x - y \sqrt{m}}{2} \in \hh{m}$\, since\,
+$x \congruent y \congruent -y \pmod 2$,\, and also\,
+$\alpha \cg\alpha = \left(\frac{x^2 - my^2}{4}\right)\in \Z$,\, since:
+
+~~$x \congruent y \pmod 2 \then x^2 \congruent y^2 \pmod 4 \then
+x^2 - my^2 \congruent x^2 - y^2 \congruent 0 \pmod 4$.
+
+\end{itemize}
+
+The first three points of the precedent list prove that $\hh{m}$ is a
+subring of $\QQ{m}$, while the last point proves that $\hh{m}$ is normed.
+%
+\end{proof}

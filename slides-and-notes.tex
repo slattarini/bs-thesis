@@ -1,0 +1,1602 @@
+% -*- LaTeX -*-
+
+%==========================================================================
+
+%%--------------------------------%%
+%% uncomment this when debugging  %%
+%\def\bmdebug{1}                  %%
+%%--------------------------------%%
+
+\ifdefined\bmdebug
+  \documentclass[italian,draft]{beamer}
+\else
+  \documentclass[italian]{beamer}
+\fi
+
+%==========================================================================
+
+\usepackage[italian]{babel}
+\mode<presentation>{\usetheme{Warsaw}}
+
+\IfFileExists{hownotes.tex}{\input{hownotes.tex}}{}
+
+\ifdefined\onlynotes % produce notes' sheets
+  \usepackage{pgfpages}
+  \pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=5mm]
+  \setbeameroption{show only notes}
+  \newcommand{\bmlabel}[1]{}
+  \newcommand{\bmref}[1]{\textbf{??}}
+\else % produce slides
+  % workaround for a bug (maybe) in my beamer package
+  \catcode`\@ = 11
+  \providecommand{\beamer@notes}[0]{}
+  \providecommand{\beamer@noteitems}[0]{}
+  \catcode`\@ = 12
+  \setbeameroption{hide notes}
+  \ifdefined\bmdebug
+    % labels of slides to be compiled when debugging
+    \includeonlyframes{d0,d1,d2,d3,d4,d5,d6,d7,d8,d9} % change at pleasure
+    \newcommand{\bmlabel}[1]{}
+    \newcommand{\bmref}[1]{\textbf{??}}
+  \else
+    \newcommand{\bmlabel}[1]{\label{#1}}
+    \newcommand{\bmref}[1]{\ref{#1}}
+  \fi
+\fi
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Sommario: sezione \thesection.\thesubsection}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+%==========================================================================
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+
+%==========================================================================
+
+% Extend theorem-like environments.
+\IfFileExists{translator.sty}{
+  \usepackage{translator}
+  \usedictionary{translator-theorem-dictionary}
+}{}
+\providecommand\translate[2][]{#2}
+
+\newcommand{\G}[0]{\mathbb{G}}
+\newcommand{\eps}[0]{\epsilon}
+\newcommand{\pp}[1]{\text{propriet\`a~[#1]}}
+\newcommand{\PP}[1]{\text{Propriet\`a~[#1]}}
+\theoremstyle{example}
+\newtheorem{facts}[theorem]{\translate{Facts}{}}
+\theoremstyle{plain}
+
+% Personal LaTeX commands, shared with tesi.tex
+\include{defs}
+
+\usepackage{color}
+\definecolor{myblue}{rgb}{0, 0, .45}
+\definecolor{mygreen}{rgb}{0, .5, 0}
+\colorlet{darkred}{red!60!black}
+\colorlet{darkbrown}{brown!60!black}
+\xdefinecolor{darkgreen}{rgb}{0,0.35,0}
+\xdefinecolor{pale}{rgb}{0.75,0.75,0.75}
+\setbeamercolor{dullcolors}{fg=black,bg=pale}
+
+\newenvironment<>{myblock}[3]
+    {\setbeamercolor{block title}{bg=#1,fg=#2}\begin{block}#4{#3}}
+    {\end{block}}
+
+\newenvironment<>{property}[1]
+    {
+     \begin{myblock}%
+     {darkbrown}{white}{Propriet\`a~[{#1}]}
+    }
+    {\end{myblock}}
+
+%==========================================================================
+
+\title[Problemi di fattorizzazione per interi algebrici quadratici]%
+      {Problemi di fattorizzazione per interi algebrici quadratici}
+\subtitle[]{esplorati con metodi elementari}
+
+\author[Lattarini Stefano]{Lattarini Stefano}
+
+\institute{Universit\`a Cattolica del Sacro Cuore -- Sede di Brescia}
+
+\date{29 Aprile 2008}
+
+%##########################################################################
+
+\begin{document}
+
+%##########################################################################
+
+%%-------------------%%
+%%  FRAME TITLEPAGE  %%
+%%-------------------%%
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%##########################################################################
+
+\section{Introduzione}
+
+%==========================================================================
+
+\subsection{Introduzione al problema}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 01  %%
+%%------------%%
+
+\begin{frame}[t]{Due Parole Sul Problema}
+
+%** overlay 1 **%
+  \begin{itemize}
+
+    \item<1->
+      Nel lavoro di tesi abbiamo affrontato, usando metodi elementari, il
+      problema di determinare \alert<1>{quando valga\\ l'unicit\`a della
+      fattorizzazione} in irriducibili in alcuni\\ \alert<1>{sottoanelli}
+      del campo complesso $\C$, aventi per elementi\\
+      \alert<1>{interi algebrici quadratici}.
+
+  \note<1>{
+      La definizione e la caratterizzazione esatte dei sottoanelli
+      da noi studiati richiedono alcuni prerequisiti e definizioni
+      preliminari, e saranno quindi date a breve.
+  }
+
+%** overlay 2 **%
+    \vspace{5pt}
+    \item<2->
+      Nei sottoanelli da noi studiati, che pure sono tutti delle\\
+      estensioni di $\Z$,
+      \alert<2>{non \`e affatto ovvio che continui a valere\\
+      l'unicit\`a della fattorizzazione} %
+      in irriducibili (e in molti casi\\
+      questa in effetti non vale pi\`u).
+    
+  \note<2>{
+    \begin{itemize}
+      \item
+        Si pone quindi il problema interessante di determinari quali
+        sottoanelli posseggono un teorema di fattorizzazione unica
+        e quali no.
+      \item
+        Nella sua forma embrionale, questo problema risale a Gauss ed
+        Euler, ed ha contribuito molto a dare origine alla teoria
+        algebrica dei numeri.
+        Esso \`e stato poi studiato estensivamente, portando a risultati
+        profondi e generali.
+      \item
+        I risultati in questo campo sono interessanti sia dal punto di
+        vista teorico che nelle loro applicazioni ad altri notevoli
+        problemi di teoria dei numeri (ad esempio, la dimostrazione oggi
+        standard del caso $n = 3$ dell'Ultimo Teorema di Fermat si basa
+        su semplici risultati di teoria algebrica dei numeri).
+    \end{itemize}
+  } % end \note
+
+%** overlay 3 **%
+    \vspace{5pt}
+    \item<3->
+      Mostreremo ora alcuni esempi che possono dare un'idea\\
+      delle problematiche da affrontarsi.
+
+  \end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 02  %%
+%%------------%%
+
+\begin{frame}[t]{Alcuni Esempi Introduttivi}
+
+ {
+  \small
+  \vspace{-3pt}
+  
+  \begin{itemize}
+    
+%** overlay 1 **%
+    \item<1->
+      Indichiamo con $\G$ l'anello degli interi di Gauss, ossia quei
+      numeri complessi aventi parte reale e immaginaria intere.
+    
+%** overlay 2 **%
+    \item<2->
+      Le unit\`a negli interi di Gauss non sono pi\`u solo $+1$ e $-1$,
+      come in $\Z$, ma comprendono anche $+i$ e $-i$.
+
+%** overlay 3 **%
+    \item<3-> 
+      Negli interi di Gauss, $13$ non \`e pi\`u irriducibile:\\[2pt]
+      \begin{center}
+        $13 = (2 + 3i)\cdot(2 - 3i) = (3 - 2i)\cdot(3 + 2i)$
+      \end{center}
+
+%** overlay 4 **%
+    \item<4-> 
+      Le due precedenti fattorizzazioni di $13$ non sono realmente
+      distinte come potrebbe sembrare a prima vista; infatti i fattori
+      corrispondenti nelle due fattorizzazioni sono associati:\\[2pt]
+      \begin{center}
+        $2 + 3i = (3 - 2i)\cdot i$%
+          \quad~e~\quad~%
+        $2 - 3i = (3 + 2i)\cdot (-i)$
+      \end{center}
+
+%** overlay 5 **%
+  \item<5-> 
+    L'anello gli interi di Gauss possiede, al pari di $\Z$, un teorema di
+    fattorizzazione unica, come dimostreremo pi\`u avanti.
+  
+  \end{itemize}
+
+ }
+
+\end{frame}
+
+%==========================================================================
+
+\subsection{Definizioni e risultati preliminari}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 03  %%
+%%------------%%
+
+\begin{frame}[t]{UFD: Dominii A Fattorizzazione Unica}
+
+%** overlay 1 **%
+  \vspace{2pt}
+  \begin{definition}[UFD \,ovvero\, dominii a fattorizzazione unica]
+    Con ``\alert<1>{dominio a fattorizzazione unica}'',
+    o pi\`u brevemente ``dominio fattoriale'' o ``UFD''
+    (\textit{Unique Factorization Domain\/})
+    indichiamo un dominio di integrit\`a in cui
+    \alert<1>{ogni elemento non nullo pu\`o scriversi \emph{in maniera
+    essenzialmente unica\/} come prodotto di un numero finito di
+    irriducibili}.
+  \end{definition}
+
+%** overlay 2 **%
+\pause%
+  \vspace{10pt}
+  \begin{example}
+    Ad esempio, per il teorema fondamentale dell'aritmetica, l'anello
+    degli interi \alert<2>{$\Z$ \`e un dominio a fattorizzazione unica}.
+  \end{example}
+
+  \note<2>{
+    Una precisazione importante: quando parliamo di fattorizzazione in
+    irriducibili \emph{essenzialmente unica\/}, intendiamo che essa
+    \`e unica solo \emph{a meno di permutazioni dei fattori e di
+    moltiplicazione dei fattori stessi per opportuni elementi unitari}.
+    \\[7pt]
+    %
+    Ad esempio, in $\Z$, \,$15$\, ammette le due fattorizzazioni in
+    irriducibili:
+      $$ 15 = 3 \cdot 5 \text{~~~e~~~} 15 = 5 \cdot 3 $$
+    ma queste due fattorizzazioni chiaramente \emph{non\/} sono
+    essenzialmente distinte, in quanto ciascuna si ottiene dall'altra
+    con una permutazione dei fattori.    
+
+    D'altronde, \,$15$\, ammette anche le due fattorizzazioni:
+      $$ 15 = 3 \cdot 5 \text{~~~e~~~} 15 = (-3) \cdot (-5)$$
+    che pure \emph{non\/} sono essenzialmente distinte, in quanto
+    $-3$ \`e associato a $3$ e $-5$ \`e associato a $5$.
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 04  %%
+%%------------%%
+
+\begin{frame}{I Campi $\QQ{m}$: Definizione}
+
+%** overlay 1 **%
+
+  \note<1>[item]{
+    Dire letteralmente:
+    \begin{quote}
+      Tutti i dominii che abbiamo considerate nel nostro lavoro sono
+      sottoanelli di opportuni campi $\QQ{m}$, che ora definiremo.
+    \end{quote}
+  }
+
+  \vspace{-6pt}
+  \begin{definition}[campi $\QQ{m}$]
+    \vspace{3pt}
+    Sia dato un intero $m$\, (positivo o negativo) diverso da un
+    quadrato perfetto.\, Allora definiamo:
+      \vspace{-2pt}
+      $$\alert<1>{\QQ{m}:=\left\{ a+b\sqrt{m}:\; a,b\in\Q \right\}}$$
+      \vspace*{-12pt}
+  \end{definition}
+
+  \note<1>[item]{
+    Osservare che elementi come $-1$ e $-4$ non sono quadrati perfetti.
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 05  %%
+%%------------%%
+
+\begin{frame}{I Campi $\QQ{m}$: Propriet\`a Principali}
+  
+%** overlay 1 **%
+  \begin{facts}
+    
+    \vspace*{4pt}
+    \begin{itemize}
+      \item<1->
+        $\QQ{m}$ \`e un sottocampo di $\C$, ed in effetti il minimo\\
+        sottocampo di $\C$ che contiene $\sqrt{m}$.
+
+%** overlay 2 **%
+      \vspace*{2pt}
+      \item<2->
+        Se $m > 0$, $\QQ{m}$ \`e un sottocampo di $\R$.
+
+%** overlay 3 **%
+      \vspace*{2pt}
+      \item<3->
+        Dato $\xi \in \QQ{m}$ si pu\`o scrivere \,$\xi = a + b\sqrt{m}$\,
+          per\\
+        $a,b \in \Q$ \emph{unicamente determinati\/}.
+
+  \note<3>{
+    L'unicit\`a della rappresentazione di $\xi \in \QQ{m}$ nella forma
+    \,$\xi = a + b\sqrt{m}$ ($a,b \in \Q$) deriva dall'irrazionalit\`a
+    di $\sqrt{m}$.
+  }
+
+%** overlay 4 **%
+      \vspace*{2pt}
+      \item<4->
+        Se $m_1 = m_2A^2$ \,($A \in \Z$),\, allora\, $\QQ{m_1} = \QQ{m_2}$.
+  
+  \note<4>{
+    Quindi, studiando gli anelli $\QQ{m}$, si pu\`o in genere supporre
+    senza perdita di generalit\`a che $m$\, sia libero da quadrati.
+  }    
+    
+    \vspace*{3pt}
+    \end{itemize}
+  
+  \end{facts}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 06  %%
+%%------------%%
+
+\begin{frame}{I Campi $\QQ{m}$: Norma}
+
+%** overlay 1 **%
+
+  \note<1>[item]{
+    (In continuazione dalla slide precedente)
+    \begin{quote}
+      Grazie all'unicit\`a della rappresentazione degli elementi di
+      $\QQ{m}$ nella forma $a + b\sqrt{m}$, possiamo dare la seguente
+      definizione di norma di un elemento $\QQ{m}$:\:$\ldots$
+    \end{quote}
+  }
+
+  \begin{definition}[norma in $\QQ{m}$]
+    Per ogni $\xi \in \QQ{m}$ con $\alert<1>{\xi = a + b\sqrt m}$\,
+      ($a,b \in \Q$), definiamo\\[1pt]
+    la \alert<1>{norma \,$\Norm\xi$ di $\xi$}
+      come\, $\alert<1>{\Norm\xi := \abs{a^2 - mb^2}}$
+  \end{definition}
+
+  \note<1>[item]{
+    Ribadire che il concetto di norma ha senso poich\`e la scrittura di
+    $\xi \in \QQ{m}$ come $a + b\sqrt{m}$ \`e unica.
+  }
+  
+  \note<1>[item]{
+    Osservare che nel caso di campi $\QQ{m}$ complessi, la norma di un
+    elmento $\xi\in\QQ{m}$ coincide con l'usuale norma di $\xi$ in senso
+    complesso, \ie con il quadrato del modulo di $\xi$.
+  }
+
+%** overlay 2 **%
+\pause%
+  
+  \begin{theorem}[propriet\`a basilari della norma]
+    Per ogni $\xi,\xi_1,\xi_2 \in \QQ{m}$ si ha:
+    \begin{enumerate}
+      \item
+        $\Norm{\xi} \in \Q^{+}_0$
+      \item
+        $\Norm{\xi_1 \xi_2} = \Norm{\xi_1}\Norm{\xi_2}$
+      \item
+        $\Norm{\xi} = 0 \iff \xi = 0$
+      \item
+        $\Norm{{\xi}^{-1}} = {\left(\Norm{\xi}\right)}^{-1}$
+        se\, $\xi \neq 0$
+    \end{enumerate}
+  \end{theorem}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+\note{Possiamo ora dare l'esatta definizione dei dominii da noi studiati%
+      $\ldots$}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 07  %%
+%%------------%%
+
+\begin{frame}{I Dominii $\hh{m}$: Definizione}
+  
+%** overlay 1 **%
+  \begin{definition}[\,dominii $\hh{m}$\,]
+    \vspace*{3pt}
+    Sia \alert<1>{$m$} un intero \alert<1>{libero da quadrati}; allora:
+    
+    \vspace{2pt}
+    \begin{itemize}
+
+%** overlay 2 **%
+      \item<2->
+        Se\, \alert<2>{$m \congruent 2$ \,o\, $3 \pmod 4$}:\\[6pt]
+%** overlay 3 **%
+        \uncover<3->{
+          ~~~%
+          $\alert<3>{\hh{m} := \left\{ x + y\sqrt{m}:\; x,y\in\Z \right\}}$
+        }
+
+%** overlay 4 **%
+      \vspace{8pt}
+      \item<4->
+        Se\, \alert<4>{$m \congruent 1 \!\pmod 4$}:\\[6pt]
+%** overlay 5 **%
+        \uncover<5->{%
+          \alert<5>{%
+            \begin{math}
+              ~~~%
+              \hh{m} :=
+                \left\{ 
+                  \frac{x}{2} + \frac{y}{2}\sqrt{m} :\;  x,y \in \Z
+                  \text{ \small \:e\: } x \congruent y \!\pmod 2
+                \right\}
+            \end{math}
+           }
+         }
+    
+    \end{itemize}
+  
+  \note<5>{
+    \begin{itemize}
+      \item
+        Osservare che il caso $m \congruent 0 \pmod 4$ non si pone,
+        poich\`e $m$ deve essere libero da quadrati.
+      \item
+        Osservare che, come si dimostra facilmente, gli $\hh{m}$ sono
+        tutti sottoanelli di $\QQ{m}$.
+    \end{itemize}
+  }
+
+  \vspace*{3pt}
+  \end{definition}
+
+\end{frame}
+
+%%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 08  %%
+%%------------%%
+
+\begin{frame}{I Dominii $\hh{m}$: propriet\`a basilari}
+ 
+% ** overlay 1 **
+  \vspace{-8pt}
+  \begin{facts} 
+    Si dimostrano i seguenti fatti circa i dominii $\hh{m}$.
+    
+    \vspace{-1pt}
+    \begin{itemize}
+
+% ** overlay 2 **
+      \item<2->
+        La norma di un elemento di $\hh{m}$ \`e sempre intera:
+          \vspace{-7pt}
+          $$ \hspace{-25pt}\alpha \in \hh{m} \then \Norm\alpha \in \N $$
+
+% ** overlay 3 **
+      \vspace{-7pt}
+      \item<3->
+        Le unit\`a di $\hh{m}$ sono tutti e soli gli elementi di
+        norma $1$:
+          \vspace{-6pt}
+          $$ \hspace{-25pt}\alpha \in \hh{m}^\ast \iff \Norm\alpha = 1 $$
+
+% ** overlay 4 **
+      \vspace{-7pt}
+      \item<4->
+        Ogni $\alpha \in \hh{m} \minz$ pu\`o essere scritto come prodotto\\
+        di un numero finito di elementi irriducibili di $\hh{m}$.
+  
+  \note<5>{
+    Il teorema dell'esistenza della fattorizzazione in $\hh{m}$ si
+    dimostra facilmente ragionando per induzione sulla norma di $\alpha$
+    (ricordando che ogni unit\`a \`e vista come prodotto di zero
+    irriducibili).
+  }
+
+% ** overlay 5 **
+      \vspace{2pt}
+      \item<5->
+        Il dominio $\hh{m}$ \`e l'anello degli interi algebrici del\\[2pt]
+        campo $\QQ{m}$.
+
+  \note<5>{
+    \begin{itemize}
+      \item
+        Ricordare brevemente la definizione di \emph{intero algebrico\/}:
+        un numero complesso che sia radice di un polinomio monico
+        (non-costante) a coefficienti interi.
+      \item
+        Citare che la dimostrazione standard del caso $n = 3$ dell'Ultimo
+        Teorema di Fermat si fa usando il fatto $\hhm{3}$ \`e un UFD.
+    \end{itemize}
+  }
+    
+      \vspace*{2pt}
+    \end{itemize}
+
+  \end{facts} 
+
+\end{frame}
+
+%##########################################################################
+
+\section{Dominii che sono UFD}
+
+%==========================================================================
+
+\subsection{Sommario del lavoro svolto nella prima parte}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 09  %%
+%%------------%%
+
+\begin{frame}{Sommario Del Lavoro Svolto (Prima Parte)}
+
+%** overlay 1 **%
+
+\begin{itemize}
+    
+    \vspace*{-8pt}
+    \item<1->
+      Nella prima parte del nostro lavoro ci siamo concentrati
+      sul problema di trovare
+      \alert<1>{condizioni \emph{sufficienti\/} per la fattorialit\`a di
+                un dominio $\hh{m}$}.
+      \vspace*{5pt}
+
+%** overlay 2 **%
+
+    \item<2->
+      Questo ci ha portati a \alert<2>{ritrovare la nota classi dei
+      dominii euclidei rispetto alla norma}, seguendo per\`o una via
+      diversa da quella usuale.
+      \vspace*{5pt}
+    
+%** overlay 3 **%
+
+    \item<3->
+      Il \alert<3>{punto di partenza} \`e stato una \alert<3>{nuova
+      dimostrazione della fattorialit\`a degli interi di Gauss},
+      che ora presenteremo.
+      \vspace*{5pt}
+  
+  \end{itemize}
+
+\end{frame}
+
+%==========================================================================
+
+\subsection{Fattorizzazione unica negli interi di Gauss}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 10  %%
+%%------------%%
+
+\begin{frame}{Interi Di Gauss}
+
+%** overlay 1 **%
+  
+  \vspace*{-2pt}
+  \begin{definition}[interi di Gauss]
+    ~~Scriviamo
+      \alert<1>{$\G:=\hh{-1} = \left\{\, x+y\sqrt{-1}:\; x,y\in\Z \,\right\}$},\,
+      e\\[1pt]
+    ~~chiamiamo $\G$ l'anello degli \alert<1>{interi di Gauss}.
+  \end{definition}
+
+  \note<1>[item]{
+    $\G$ pu\`o anche caratterizzarsi come l'insieme di tutti i numeri
+    complessi aventi la parte reale e la parte immaginaria intere.
+  }
+  
+  \note<1>[item]{
+    Storicamente, $\G$ \`e stato uno dei primi anelli di interi algebrici
+    ad essere studiato, e per cui \`e stata dimostrata l'unicit\`a della
+    fattorizzazione in irriducibili.\\
+    Esso fu introdotto ed utilizzato da Gauss intorno al 1830 nelle sue
+    ricerche sulla legge di reciprocit\`a biquadratica (da cui il nome
+    ``interi di Gauss'').
+  }
+
+%** overlay 2 **%
+\pause
+  
+  \vspace{2pt}
+  \textbf{Osservazioni.}
+  \vspace*{-1pt}
+  
+  \begin{itemize}
+    
+%** overlay 2 **%
+    
+    \item <2->
+        La dimostrazione standard del fatto che $\G$ \`e un UFD si\\
+        fa sulla falsariga di quella per $\Z$.
+  
+  \note<2>{
+    \begin{itemize}
+      \item
+        La dimostrazione standard del fatto che $\G$ \`e un UFD si fa
+        sulla falsariga di quella per $\Z$.
+      \item
+        Ossia, si dimostra che la norma in $\G$ \`e una funzione euclidea,
+        e quindi $\G$ ha un algoritmo Euclideo per trovare il M.C.D.,
+        eccetera.
+      \item
+        Oppure piu` brevemente si osserva che
+          \begin{center}
+            $\G$ euclideo $\then$ $\G$ a ideali principali 
+            $\then$ $\G$ fattoriale.
+          \end{center}
+         \end{itemize}
+  } % end \note<2>
+
+%** overlay 3 **%
+    
+    \item<3->
+      \alert<3>{%
+        Noi procederemo per\`o in modo diverso, cio\`e adattando\\
+        al caso di $\G$ una dimostrazione della fattorialit\`a di $\Z$\\
+        diversa da quella canonica.
+      }
+      
+%** overlay 4 **%
+    
+    \item<4>
+        La nostra dimostrazione sar\`a basata sul principio del\\
+        minimo intero, e su di un semplice lemma-chiave che\\
+        ora presenteremo.
+  
+  \end{itemize}
+  
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 11  %%
+%%------------%%
+
+\begin{frame}{Un Utile Lemma}
+  
+ %** overlay 1 **%
+  
+  \note<1>[item]{
+    Vediamo ora un lemma che, seppur semplice, \`e la chiave
+    per la nostra dimostrazione della fattorialit\`a di $\G$.
+  }
+  
+  \vspace{-10pt}
+  \begin{lemma}<1->[lemma chiave per $\G$]
+    Sia $\tau \in \C\minz$ tale che \,$\Norm{\tau} \leq 1$. Allora esiste
+    $\epsilon \in \G$ unitario tale che \,$\Norm{\tau - \epsilon} < 1$.
+  \end{lemma}
+
+  \note<1>[item]{
+    Osserviamo che qui \,$\Normop$\, indica la norma canonica dei numeri
+    complessi; questo non \`e tuttavia un problema, poich\`e abbiamo gi\`a
+    osservato che, quando $m < 0$, la norma in $\hh{m}$ coincide con
+    l'usuale norma complessa.
+  }
+
+%** overlay 2 **%
+  \vspace{7pt}
+  \begin{myblock}<2->{brown}{white}{Interpretazione geometrica del lemma}
+    Il disegno a pagina seguente offre un'interpretazione \\
+    geometrica del lemma, mostrando visivamente che
+      l'unione \\
+    dei quattro cerchi unitari \emph{aperti\/} di centri 
+      rispettivamente \\
+    $(-1,0)$, \,$(0,-1)$, \,$(+1,0)$, \,$(0,+1)$\, ricopre
+      completamente il \\
+    cerchio unitario \emph{chiuso\/} centrato nell'origine
+      \,$(0, 0)$,\, \emph{esclusa\/}\\
+    \emph{l'origine stessa\/}.
+  \end{myblock}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 12  %%
+%%------------%%
+
+\begin{frame}{Interpretazione Geometrica Del Lemma}
+
+ %** overlay 1 **%
+
+  \begin{picture}(340,140)(-30, +0)
+    
+    % cerchio centrale
+    \put(100, 80){\color{myblue}\circle{40}}
+    \put(100, 80){\color{myblue}\circle{40}}
+    
+    \put(100, 60){\color{mygreen}\circle{40}}
+    \put(100, 60){\color{mygreen}\circle{40}}
+    
+    \put(100, 100){\color{mygreen}\circle{40}}
+    \put(100, 100){\color{mygreen}\circle{40}}
+    
+    \put(80, 80){\color{mygreen}\circle{40}}
+    \put(80, 80){\color{mygreen}\circle{40}}
+    
+    \put(120, 80){\color{mygreen}\circle{40}}
+    \put(120, 80){\color{mygreen}\circle{40}}
+    
+    \put(20, 80){\vector(1,0){165}}
+    \put(20, 80){\vector(1,0){165}}
+    
+    \put(100, 20){\vector(0,1){120}}
+    \put(100, 20){\vector(0,1){120}}
+    
+    % origine
+    \put(100, 80){\color{red}\circle*{2}}
+    \put(100, 80){\color{red}\circle*{2}}
+    
+    \put(178,70){\mbox{\textit{x}}}
+    
+    \put(105,135){\mbox{\textit{y}}}
+  
+  \end{picture}
+
+  \vspace{-10pt}
+  {
+    \small
+    Tutti i punti del piano complesso che distano \emph{al pi\`u 1\/}
+    dall'origine distano \emph{meno di 1\/} da almeno un elemento unitario
+    di $\C$ (fatta eccezione per l'origine stessa).
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 13  %%
+%%------------%%
+
+\begin{frame}{Gli Interi Di Gauss sono un UFD}
+\framesubtitle{Enunciato e dimostrazione}
+
+%** overlay 1 **%
+  
+  \begin{theorem}
+    L'anello $\G$ degli interi gaussiani \`e un dominio fattoriale.
+  \end{theorem}
+  
+  \note<1>{
+    Vedremo la dimostrazione di questo teorema alquanto dettagliatamente,
+    poich\`e essa costituisce il punto di partenza ed il ``cuore'' della
+    prima parte del nostro lavoro.
+  }
+
+%** overlay 2 **%
+\pause
+  
+  \vspace{4pt}
+  \textbf{\textsc{Dimostrazione.}}
+  
+  \vspace{2pt}
+  Siano:
+  
+  \note<2>{
+    Iniziamo suddividendo gli elementi non nulli di $\G$ in due
+    sottoinsiemi $K$ e $H$, in base alle loro propriet\`a di
+    fattorizzazione.
+  }
+
+  \begin{itemize}
+%** overlay 3 **%
+    \item<3->
+      \alert<3>{$K$}\, l'insieme degli \alert<3>{elementi di $\G$}
+      aventi \alert<3>{fattorizzazione} in irriducibili essenzialmente
+      \alert<3>{unica};
+%** overlay 4 **%
+    \item<4->
+      \alert<4>{$H$}\, l'insieme degli \alert<5>{elementi di $\G$} aventi
+      \alert<4>{almeno due fattorizzazioni} in irriducibili essenzialmente
+      \alert<4>{distinte}.
+  \end{itemize}
+  
+%** overlay 5 **%
+  \uncover<5>{
+    \begin{center}
+      \fbox{\alert{Vogliamo dimostrare che $H = \emptyset$}}
+    \end{center}
+  }
+
+\end{frame}
+  
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 14  %%
+%%------------%%
+
+\begin{frame}[t]{Gli Interi Di Gauss sono un UFD}
+\framesubtitle{Dimostrazione (continua)}
+  
+%** overlay 1 **%
+
+  \begin{itemize}
+    
+    \vspace{5pt}
+    \item<1->
+      \alert<1>{Procediamo per assurdo},
+      assumendo che $H \neq \emptyset$
+
+%** overlay 2 **%
+   \vspace{3pt}
+   \item<2->
+      Possiamo scegliere allora
+      \alert<2>{$\xi_0 \in H$ avente norma minima}
+
+  %** overlay 3 **%
+    \vspace{3pt}
+    \item<3->
+      Quindi 
+      \alert<3>{$\xi_0$ ha due fattorizzazioni essenzialmente distinte
+      ciascuna delle quali ha almeno due fattori}, ossia:
+      \vspace{-6pt}
+      \begin{equation}\bmlabel{two_factorizations_1}
+          \xi_0 = \pi_1\pi_2\cdots\pi_r = \sigma_1\sigma_2\cdots\sigma_s
+      \end{equation}
+      \vspace{-16pt}\\ % do *not* remove this line break
+      con $r,s \geq 2$, per opportuni $\pi_k,\sigma_h$ irriducibili
+  
+  \note<3>{
+    \begin{itemize}
+      \item
+        Dire che non sappiamo se $r = s$, e questo in effetti non ci
+        interessa.
+      \item
+        Spiegare un attimo perch\`e $r,s \geq 2$.
+    \end{itemize}
+  }
+
+    
+%** overlay 4 **%
+    \vspace{5pt}
+    \item<4->
+      Dalla minimalit\`a di $\Norm{\xi_0}$ deriva facilmente che
+      \alert<4>{nessun $\pi_i$ pu\`o essere associato ad alcun $\sigma_j$}
+  
+  \end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 15  %%
+%%------------%%
+
+\begin{frame}{Gli Interi Di Gauss sono un UFD}
+\framesubtitle{Dimostrazione (continua)}
+
+%** overlay 1 **%
+  \vspace{-4pt} 
+  \begin{itemize}
+    
+    \item<1->
+      Per simmetria possiamo supporre che\,
+      \alert<1>{$ \Norm{\pi_1} \leq \Norm{\sigma_1}$}
+    
+%** overlay 2 **%
+    \item<2->
+      Poniamo $\alert<2>{\tau := \frac{\pi_1}{\sigma_1}}\in \C$
+    
+%** overlay 3 **%
+    \item<3-> 
+      Allora si ha \alert<3>{$\tau \neq 0$}\, e\,
+      \alert<3>{$\Norm\tau \leq 1$}
+
+%** overlay 4 **%
+    \item<4->
+      Per il lemma chiave su $\G$, esiste
+      \alert<4>{$\eps \in \G^\star$} tale che:\\
+      \begin{center}
+        \alert<4>{$\Norm{\tau - \eps} < 1$}
+      \end{center}
+
+%** overlay 5 **%
+    \item<5->
+      Ci\`o si pu\`o equivalentemente riscrivere come:\\
+      \begin{center}
+        \alert<5>{$\Norm{-\eps\sigma_1 + \pi_1} < \Norm{\sigma_1}$}
+      \end{center}
+
+%** overlay 6 **%
+    \item<6->
+      Definiamo ora~\;\alert<6>{%
+          \begin{math}
+           \psi :=
+              -\eps\,\xi_0 + \pi_1\sigma_2\cdots\sigma_s
+           \end{math}
+        }
+
+  \end{itemize}
+
+%%%** overlay 7 **%
+  \vspace{-8pt} 
+  \uncover<7->{
+    \begin{center}
+      \fbox{
+        \begin{minipage}{3.2in}
+          \begin{center}
+            \alert<7>{Dobbiamo ora arrivare ad una contraddizione\\
+                      analizzando le propriet\`a di $\psi$}
+          \end{center}
+        \end{minipage}
+      }
+    \end{center}
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 16  %%
+%%------------%%
+
+\begin{frame}{Gli Interi Di Gauss sono un UFD}
+\framesubtitle{Dimostrazione (continua)}
+  
+%** overlay 1 **%
+  \begin{itemize}
+    
+    \vspace{-1pt}
+    \item<1->
+      Poich\`e $\pi_1$ e $\sigma_1$ non sono associati, si ha\,
+      \alert<1>{$\psi \neq 0$}
+
+%** overlay 2 **%
+    \item<2->
+      Dalla disuguaglianza
+      \,$\Norm{-\eps\sigma_1 + \pi_1} < \Norm{\sigma_1}$\,
+      si ricava:\\[7pt]
+      \begin{center}
+        $ \alert<2>{\Norm{\psi} < \Norm{\xi_0}} $
+      \end{center}
+        \vspace*{-2pt}
+        \small
+        Infatti:
+        \\[-15pt]
+        \begin{eqnarray*}
+            \Norm{\psi} &
+          \!\!\! = \!\! &
+             \Norm{-\eps\xi_0 + \pi_1\sigma_2\cdots\sigma_s}
+          =\,
+             \Norm{%
+               -\eps\sigma_1\sigma_2\cdots\sigma_s +%
+               \pi_1\sigma_2\cdots\sigma_s%
+             }
+          \\[2pt]
+          & \!\!\! = \!\! &
+            {
+             \Norm{-\eps\sigma_1 + \pi_1}
+             \Norm{\sigma_2\cdots\sigma_s}
+            }
+          {~<~\,}
+            \Norm{\sigma_1}\Norm{\sigma_2\cdots\sigma_s}
+          \\[2pt]
+          & \!\!\! = \!\! & 
+            \Norm{\sigma_1\cdots\sigma_s} 
+          {~=~\,}
+            \Norm{\xi_0}
+        \end{eqnarray*}
+        \\[-17pt]
+
+  \note<2>{
+    Eccoci ora al punto focale della dimostrazione: $$ \psi \in K $$
+  }
+
+%** overlay 3 **%
+    \item<3->
+      Vista la propriet\`a di minimo di $\xi_0$, se ne deduce che\\
+      \alert<3>{$\psi \in K$,\, ossia \,$\psi$\,\ ha una
+                fattorizzazione in irriducibili essenzialmente unica}
+  
+  \end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 17  %%
+%%------------%%
+
+\begin{frame}{Gli Interi Di Gauss sono un UFD}
+\framesubtitle{Dimostrazione (continua)}
+  
+%** overlay 1 **%
+  \begin{itemize}
+      
+    \item<1->
+      Riscriviamo per chiarezza la definizione di $\psi$:
+      \\[-9pt]
+      \begin{equation}\bmlabel{psidefs}
+        \hspace{-0.16in}\alert<1>{%
+          \psi = -\eps\,\xi_0 + \pi_1\sigma_2\cdots\sigma_s = 
+          \left( -\eps\sigma_1 + \pi_1 \right)
+          \left( \sigma_2\cdots\sigma_s  \right)
+         }
+       \end{equation}
+      \\[-11pt]
+
+%** overlay 2 **%
+    \item<2->
+      Poich\`e $\pi_1 \divides \xi_0$, si ha evidentetemente anche\,
+      \alert<2>{$\pi_1 \divides \psi$}
+  
+%** overlay 3 **%
+    \item<3->
+      Poich\`e $\pi_1$ non \`e associato ad alcun $\sigma_j$,
+      dall'equazione~(\bmref{psidefs}) segue allora facilmente che:\\[2pt]
+      \begin{center}
+        \alert<3>{$\pi_1 \divides \left(-\eps\sigma_1 + \pi_1\right)$}
+      \end{center}
+
+%** overlay 4 **%
+    \item<4->
+      \alert<4>{Osservazione Fondamentale}: nel dedurre ci\`o ha giocato
+      un ruolo \emph{fondamentale\/} il fatto che $\psi \in K$, i.e.~che
+      $\psi$~ha una fattorizzazione in irriducibili essenzialmente
+      unica
+
+  \note<4>{
+    In effetti, in generale, se $x$ \`e un elemento avente fattorizzazione
+    unica in irriducibili e $p$ \`e un irriducibile che divide $x$, allora
+    se $x = x_1 x_2$ si ha $p \divides x_1$ o $p \divides x_2$.
+    Vedasi ``allegato.pdf'' per una dimostrazione.
+  }
+
+  \end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 18  %%
+%%------------%%
+
+\begin{frame}{Gli Interi Di Gauss sono un UFD}
+\framesubtitle{Dimostrazione (conclusione)}
+  
+%%%** overlay 1 **%
+  \uncover<1->{
+    \vspace{-3pt}
+    \begin{center}
+      \fbox{
+        \begin{minipage}{3in}
+          \begin{center}
+            \alert<1>{Ma a questo punto abbiamo raggiunto\\
+                      la contraddizione cercata}
+          \end{center}
+        \end{minipage}
+      }
+    \end{center}
+  }
+
+%** overlay 2 **%
+\pause
+  Infatti:
+  
+  \begin{itemize}    
+%** overlay 3 **%
+    \item<3->
+      Poich\`e\,
+        $\pi_1 \divides \left(-\eps\sigma_1 + \pi_1\right)$
+      \,ed \,$\eps$\, \`e unitario, otteniamo:\\
+      \vspace{-2pt}
+       \begin{center}
+         \alert<3>{$\pi_1 \divides \sigma_1$}
+       \end{center}
+%** overlay 4 **%
+    \item<4->
+       Quindi, essendo $\pi_1$ e $\sigma_1$ irrudicibili, si ha
+       che \alert<4>{$\pi_1$ e $\sigma_1$ sono associati}
+%** overlay 5 **%
+    \item<5->
+       \alert<5>{Ma questa \`e una contraddizione}, poich\`e sappiamo
+       che nessun $\pi_i$ pu\`o essere associato ad alcun $\sigma_j$
+  \end{itemize}
+
+%** overlay 6 **%
+  \uncover<6>{
+    \vspace{-10pt}
+    \begin{center}
+      \fbox{\alert<6>{E la dimostrazione \`e conclusa}}
+    \end{center}
+  }
+
+\end{frame}
+
+%==========================================================================
+
+\subsection{Generalizzazione ad altri dominii}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 19  %%
+%%------------%%
+
+\begin{frame}[t]{Generalizzazione Del Nostro Metodo Ad Altri Dominii}
+  
+%** overlay 1 **%
+  \begin{itemize}
+    
+    \vspace{3pt}
+    \item<1->
+      ~La dimostrazione appena esposta dell'unicit\`a della\\
+      ~fattorizzazione in $\G$ \`e in effetti pi\`u generale di quanto\\
+      ~sembri a prima vista.
+  
+%** overlay 2 **%
+    \vspace{3pt}
+    \item<2->
+        ~Pi\`u precisamente, essa pu\`o essere facilmente adattata\\
+        ~per dimostrare che%
+        \alert<2,3>{
+          ogni dominio $\hh{m}$ che soddisfa\\
+          ~la seguente propriet\`a \`e fattoriale%
+        }:
+  \end{itemize}
+
+%** overlay 3 **%
+  \uncover<3->{
+    \vspace{-8pt}
+    \begin{center}
+      \begin{minipage}{4in}
+        \begin{beamercolorbox}[shadow=true,rounded=true,center]{dullcolors}
+          $\,\forall \tau \in \QQ{m}$\, tale che
+            \,$\Norm{\tau} \leq 1$\, e 
+            \,$\tau \neq 0$\, e 
+            \,$\tau \notin \hh{m}^\ast$,\\[2pt]
+          $\exists\;\theta \in \hh{m}$\, tale che\,
+            $\Norm{\theta\tau + 1} < 1$
+        \end{beamercolorbox}
+      \end{minipage}
+    \end{center}
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 20  %%
+%%------------%%
+
+\begin{frame}[t]{Forme Equivalenti Per I Nostri Risultati (1)}
+
+%** overlay 1 **%
+  \begin{itemize}
+    
+    \item<1->
+      La propriet\`a appena vista non sembra certo molto chiara n\'e
+      ``amichevole''; risulta quindi naturale chiedersi se essa possa
+      essere \alert<1>{riformulata in modo da risultare pi\`u maneggevole}.
+
+  \note<1>{
+    Citare il fatto che la propriet\`a in questione pu\`o essere usata
+    direttamente e.g.~per dimostrare che $\hh{2}$ \`e fattoriale, ma i
+    calcoli risultanti sono ingombranti, tediosi e per niente ovvi.
+  }
+
+%** overlay 2 **%
+    \vspace{4pt}
+    \item<2->
+      La risposta \`e positiva, ed in effetti risulta che la propriet\`a
+      poco fa enunciata \`e \alert<2>{equivalente alla seguente}:
+      
+      \begin{minipage}{3.8in}
+      \begin{property}{$F$}
+        \vspace*{2pt}
+        ~~~~$\,\forall\, \alpha, \beta \in \hh{m}$\, tali che\,
+            $\beta \neq 0$\, e\, $\Norm{\alpha} \geq \Norm{\beta}$,\\[2pt]
+        ~~~~$\exists\; \theta,\rho \in \hh{m}$ con\, $\alpha =
+              \beta\theta + \rho$\, e\, $\Norm{\rho} < \Norm{\alpha}$
+        \end{property}
+      \end{minipage}
+      \vspace*{3pt}
+
+  \end{itemize}
+
+  \note<2>{
+    La chiamiamo ``\pp{$F$}'' per ricordarci che implica la fattorialit\`a.
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 21  %%
+%%------------%%
+
+\begin{frame}[t]{Forme Equivalenti Per I Nostri Risultati (2)}
+
+%** overlay 1 **%
+  \begin{itemize}
+    
+    \vspace*{2pt} 
+    \item<1->
+      Ricordiamo che un dominio $\hh{m}$ si dice \alert<1>{normo-euclideo}\\
+      quando soddisfa la seguente propriet\`a:
+
+      \vspace*{-1pt} 
+      \begin{minipage}{3.8in}
+        \begin{property}{$E$}
+        \vspace*{2pt}
+          \hspace{0.16in}$\,\forall\; \alpha, \beta \in \hh{m}$\, con\,
+             $\beta \neq 0$,~\;$\exists\; \theta,\rho \in \hh{m}$\, con\\[1pt]
+          \hspace{0.16in}~~\,$\alpha = \beta\theta + \rho$\, e\,
+               $\Norm{\rho} < \Norm{\beta}$
+        \end{property}
+      \end{minipage}
+    
+%** overlay 2 **%
+    \vspace*{12pt} 
+    \item<2->
+      Si dimostra che la \alert<2>{\pp{$E$}} e la \alert<2>{\pp{$F$}} sono\\
+      effettivamente \alert<2>{equivalenti}
+  
+  \note<2>{
+    Il fatto che \,$(\pp{$E$}) \then (\pp{$F$})$\, \`e pressoch\`e evidente
+    ed immediato a dimostrasi; il fatto veramente interessante \`e che\,
+    $(\pp{$F$}) \then (\pp{$E$})$. Ci\`o pu\`o dimostrarsi facilmente
+    usando il principio del minimo intero.
+  }
+
+%** overlay 3 **%
+    \vspace*{4pt} 
+    \item<3->
+      Perci\`o, come promesso nell'introduzione, \alert<3>{abbiamo ora \\
+      ritrovato per una via inusuale la nota classe dei dominii \\
+      euclidei rispetto alla norma}
+  
+  \end{itemize}
+
+  \note<3>{
+    Sottolineare bene il fatto che, come promesso, abbiamo ritrovato per
+    una via inusuale la nota classe dei dominii euclidei rispetto alla
+    norma.\\
+    Ripercorrere brevemente i passaggi che ci hanno portato fin qui:
+    \begin{itemize}
+      \item
+        Nuova dimostrazione della fattorialit\`a di $\G$.
+      \item
+        Generalizzazione del nostro metodo alla classe dei dominii $\hh{m}$
+        che soddisfano la \pp{$F$}.
+      \item
+        Dimostrazione del fatto che la \pp{$F$} e la \pp{$E$} sono
+        equivalenti, e quindi che la classe dei dominii fattoriali da noi
+        trovata coincide con l'usuale classe dei dominii euclidei rispetto
+        alla norma.
+    \end{itemize}
+  }
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 22  %%
+%%------------%%
+
+\begin{frame}[t]{Identificazione dei dominii normo-euclidei}
+ 
+ {
+ \small
+
+%** overlay 1 **%
+  \begin{itemize}
+    
+    \item<1->
+      Vista l'equivalenza tra la \pp{$F$} e la \pp{$E$}, siamo costretti
+      a concludere che \alert<1>{il nostro criterio di fattorialit\`a
+      non pu\`o applicarsi a quei dominii che non sono normo-euclidei}.
+    
+%** overlay 2 **%
+    \item<2->
+      Sfortunatamente, essi sono la maggioranza, come illustrato dal
+      \alert<2>{seguente classico risultato} di teoria dei numeri, che
+      mostra insieme \alert<2>{le potenzialit\`a ed i limiti del nostro
+      metodo}:
+ 
+ \normalsize
+
+      \begin{theorem}[classificazione dei dominii normo-euclidei]
+        Il dominio $\hh{m}$ \`e normo-euclideo per tutti e soli i %
+        seguenti\\[2pt]
+        valori di\, $m$:\\[-18pt]
+        \begin{eqnarray*}
+          m & \!\! = \!\! &
+            -11,\,
+            -7,\,
+            -3,\,
+            -2,\,
+            -1,\;
+             2,\;
+             3,\;
+             5,\;
+             6,\;
+             7,\;
+            11,\;
+            13,\;
+            17,\;
+            19,\\
+          & &
+            21,\;
+            29,\;
+            33,\;
+            37,\;
+            41,\;
+            57,\;
+            73
+        \end{eqnarray*}
+      \end{theorem}
+
+  \end{itemize}
+
+ }
+
+\end{frame}
+
+%##########################################################################
+
+\section{Dominii che non sono UFD}
+
+%==========================================================================
+
+\subsection{Sommario del lavoro svolto nella seconda parte}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 23  %%
+%%------------%%
+
+\begin{frame}{Sommario Del Lavoro Svolto (Seconda Parte)}
+
+%** overlay 1 **%
+  \begin{itemize}
+    
+    \vspace{-12pt}
+    \item<1->
+      Nella prima parte del nostro lavoro ci eravamo concentrati\\
+      sul problema di trovare condizioni sufficienti affinch\`e un\\
+      certo dominio $\hh{m}$ sia \emph{fattoriale\/}.
+    
+%** overlay 2 **%
+    \vspace{12pt}
+    \item<2->
+      Nella seconda parte ci siamo invece rivolti al problema\\
+      opposto, ossia quello di trovare \alert<2>{condizioni sufficienti}\\
+      affinch\`e un certo dominio
+      \alert<2>{$\hh{m}$ sia \emph{non fattoriale\/}}.
+    
+  \end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 24  %%
+%%------------%%
+
+\begin{frame}{Sommario Del Lavoro Svolto (Seconda Parte)}
+
+%** overlay 1 **%
+  \begin{itemize}
+
+    \vspace{-6pt}
+    \item<1->
+      Usando risultati basilari di teoria dei numeri, siamo\\
+      riusciti a ricavare condizioni abbastanza generali\\
+      e interessanti
+    
+%** overlay 2 **%
+    \vspace{6pt}
+    \item<2->
+      I risultati pi\`u importanti da noi utilizzati sono stati:
+      \begin{itemize}
+        \item il teorema cinese del resto
+        \item il teorema di reciprocit\`a quadratica
+        \item il teorema di Dirichlet sui primi nelle progressioni
+              aritmetiche
+      \end{itemize}
+    
+%** overlay 3 **%
+    \vspace{3pt}
+    \item<3->
+      Per mancanza di tempo, daremo \alert{solo un sommario\\
+      dei risultati ottenuti}, senza approfondimenti e senza\\
+      dimostrazioni
+  
+  \end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 25  %%
+%%------------%%
+
+\begin{frame}{Condizioni per la fattorialit\`a di $\hhm{m}$ e $\hh{m}$}
+
+%** overlay 1 **%
+  \vspace*{-7pt}
+  \begin{theorem}[\,c.n.~fattorialit\`a di $\hhm{m}$\,]
+    Sia \,$m > 1$ un intero libero da quadrati tale che \,$\hhm{m}$ sia\\
+    un dominio fattoriale. Allora o \,$m = 2$, oppure $m$ \`e un numero\\
+    \emph{primo\/} della forma \,$m = 4q - 1$\, per \,$q > 1$ anch'esso
+    primo.
+  \end{theorem}
+
+%** overlay 1 **%
+\pause
+  \vspace*{2pt}
+  \begin{theorem}[\,c.n. fattorialit\`a di $\hh{m}$\,]
+    Sia $m > 1$ un intero libero da quadrati tale che \,$\hh{m}$ sia
+    un dominio fattoriale. Allora:
+    \begin{itemize}
+      \item 
+        $m$ \`e primo,\: oppure:
+      \item 
+        $m = 2p$\, per $p$ primo con \,$p \congruent 3 \!\pmod 4$,\:
+        oppure:
+      \item
+        $m = pq$\, per $p$, $q$ primi con\,
+        $p \congruent q \congruent 3 \!\pmod 4$.
+    \end{itemize}
+  \end{theorem}
+
+  \note<2>{
+    Osservare che questo risultato \`e abbastanza buono, considerato il
+    fatto che \`e stato ottenuto con metodi assolutamente elementari.\\
+    In effetti, tuttoggi ancora non si sa se i dominii reali $\hh{m}$
+    fattoriali siano finiti o infiniti (si congettura che siano infiniti,
+    contrariamente a quanto accade per i dominii complessi).
+  }
+
+\end{frame}
+
+%##########################################################################
+
+\section{Conclusioni e Sommario}
+
+\begin{frame}<beamer>{Conclusioni e Sommario}
+  \tableofcontents[currentsection,currentsubsection]
+\end{frame}
+
+%--------------------------------------------------------------------------
+
+%%------------%%
+%%  FRAME 26  %%
+%%------------%%
+
+\begin{frame}[t]{Conclusioni e Sommario}
+ 
+ % Keep the summary *very short*.
+ {
+  \small
+  
+  \begin{itemize}
+
+%** overlay 1 **%
+  \item<1->
+    Nel nostro lavoro, abbiamo dato una \alert<1>{nuova dimostrazione\\
+    della fattorialit\`a di $\G$}.
+%** overlay 2 **%
+  \vspace{2pt}
+  \item<2->
+    Abbiamo poi \alert<2>{generalizzato questa tecnica dimostrativa},\\
+    mostrando che tutti i dominii \alert<2>{$\hh{m}$ soddisfacenti una\\
+    certa \pp{$F$} sono fattoriali}.
+%** overlay 3 **%
+  \vspace{2pt}
+  \item<3->
+    Abbiamo quindi mostrato come il fatto che $\hh{m}$ soddisfi\\
+    questa \pp{$F$} equivalga all'essere $\hh{m}$ euclideo\\
+    rispetto alla norma,
+    \alert<3>{%
+      ritrovando quindi, per una via diversa\\
+      da quella usuale, la nota classe dei dominii euclidei rispetto\\
+      alla norma%
+    }.
+%** overlay 4 **%
+  \vspace{2pt}
+  \item<4->
+    Infine, \alert<4>{usando tecniche e risultati elementari} 
+      ma non banali\\
+    di teoria dei numeri, abbiamo trovato \alert<4>{interessanti
+      condizioni\\
+    necessarie per la fattorialit\`a dei dominii $\hh{m}$}\,
+      (per $m$\, sia\\
+    positivo che negativo).
+  
+  \end{itemize}
+ 
+ }
+
+\end{frame}
+
+%##########################################################################
+
+\end{document}
+
+% vim: ft=tex ts=2 sw=2 et

@@ -1,0 +1,61 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+
+\begin{document}
+
+\baselineskip4ex
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\textwidth 14.7cm
+\topmargin -1.0cm
+\headheight 1cm
+\headsep 1.2cm
+\textheight 22.5cm
+\parindent 0.0em
+
+\input{defs.tex}
+\newtheorem*{xthm}{Theorem}
+
+\begin{xthm}
+  Se $x$ \`e un elemento avente fattorizzazione unica in irriducibili e
+  $p$ \`e un irriducibile che divide $x$, allora se $x = x_1 x_2$ si ha
+  $p \divides x_1$ o $p \divides x_2$.
+\end{xthm}
+
+\textsf{Dimostrazione.}\\[3pt]
+  \hspace*{8pt}Procediamo per assurdo, assumendo che $p \notdivides x_1$
+    e $p \notdivides x_2$.
+  %
+  \begin{itemize}
+    
+    \item
+      Siccome \,$p \divides x$, abbiamo \,$x = pX$; fattorizzando $X$
+      come \,$X = P_1 P_2 \cdots P_r$\, (non ci interessa se questa
+      fattorizzazione sia unica o meno), abbiamo:
+        $$ x = p P_1 P_2 \cdots P_r $$
+      che \`e una fattorizzazione in irriducibili di $x$ contenente $p$.
+    
+    \item
+      Poich\`e \,$p \notdivides x_1$\, e \,$p \notdivides x_1$, abbiamo
+      che essi ammettono due fattorizzazioni del tipo:
+      \begin{eqnarray*}
+        x_1 & \!=\! & q_{1,1} q_{1,2} \cdots q_{1,s_1}\\
+        x_2 & \!=\! & q_{2,1} q_{2,2} \cdots q_{2,s_2}
+      \end{eqnarray*}
+      ove nessun $q_{i,j}$ \`e associato a $p$; ma allora:
+      $$
+        x = x_1 x_2 =  q_{1,1} q_{1,2} \cdots q_{1,s_1}
+                      q_{2,1} q_{2,2} \cdots q_{2,s_2}
+      $$
+      \`e una fattorizzazione in irriducibili di $x$ ove nessun fattore
+      irriducibile \`e asssociato a $p$.
+    
+    \item
+      Ma ci\`o contraddice il fatto che $x$ ammetta una scomposizione in
+      fattori essenzialmente unica. \qed
+  
+  \end{itemize}
+
+\end{document}
+     

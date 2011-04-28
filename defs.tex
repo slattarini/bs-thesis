@@ -1,0 +1,67 @@
+% "minus zero"
+\newcommand{\minz}{\setminus\left\{0\right\}}
+
+% natural numbers
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\N\minz}
+% integers
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zzero}{\Z\minz}
+% rational numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qzero}{\Q\minz}
+% real numbers
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rzero}{\R\minz}
+% complex numbers
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Czero}{\C\minz}
+% set of non-square integers
+\newcommand{\NotSquare}{\Z\setminus\{h^2: h\in\Z\}}
+
+%%
+%% shortands for recurring normed domains
+%%
+
+% A "dirty hack" to give some parenthes the rigth size.
+% NOTE: phnatom is a fragile command, so protect it.
+\newcommand{\hh}[1]{h\big(\sqrt{\protect\phantom{m}\!\!\!\!\!#1}\,\big)}
+\newcommand{\hhm}[1]{h\big(\sqrt{-\protect\phantom{m}\!\!\!\!\!#1}\,\big)}
+\newcommand{\QQ}[1]{\Q\big(\sqrt{\protect\phantom{m}\!\!\!\!\!#1}\,\big)}
+\newcommand{\QQM}[1]{\Q\big(\sqrt{-\protect\phantom{m}\!\!\!\!\!#1}\,\big)}
+\newcommand{\ZZ}[1]{\Z\big[\sqrt{\protect\phantom{m}\!\!\!\!\!#1}\,\big]}
+\newcommand{\ZZM}[1]{\Z\big[\sqrt{-\protect\phantom{m}\!\!\!\!\!#1}\,\big]}
+
+% symbol for conjugate (alias of "\overline")
+\newcommand{\cg}[1]{\overline{#1}}
+
+% norm operator
+\newcommand{\Normop}[0]{\mathcal{N}}
+% norm
+\newcommand{\Norm}[1]{\Normop\left(#1\right)}
+% modulus of a real or complex number
+\newcommand{\abs}[1]{\left|#1\right|}
+
+% Legendre symbol
+\newcommand{\Leg}[2]{\left(\frac{#1}{#2}\right)}
+
+% congruence relation between integers
+\newcommand{\congruent}{\equiv}
+\newcommand{\notcongruent}{\not\equiv}
+
+% relation of division in domains
+\newcommand{\divides}{\mid}
+\newcommand{\notdivides}{\nmid}
+
+% great common divisor and least common multiple
+\renewcommand{\gcd}[2]{\mathrm{g.c.d.}\left({#1},\,{#2}\right)}
+\newcommand{\mgcd}[1]{\mathrm{g.c.d.}\left({#1}\right)}
+\newcommand{\lcm}[2]{\mathrm{l.c.m.}\left({#1},\,{#2}\right)}
+\newcommand{\mlcm}[1]{\mathrm{l.c.m.}\left({#1}\right)}
+
+% "id est" with right spacing
+\newcommand{\ie}{\text{i.e.\ }}
+
+% "elegant" implication/bimplication symbols
+\newcommand{\then}{\:\Longrightarrow\:}
+\renewcommand{\iff}{\:\Longleftrightarrow\:}
