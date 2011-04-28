@@ -72,18 +72,16 @@ DIST_FILES = Makefile $(PRJ).kilepr $(PRJ_SRCS) \
 #--------------------------------------------------------------------------
 
 default: pdf
-dvi: $(PRJ)-for-display.dvi
 pdf $(PRJ): $(PRJ)-for-display.pdf
 pdfprint $(PRJ)print: $(PRJ)-for-print.pdf
 slides: $(PRJ)-slides.pdf
 notes: $(PRJ)-notes.pdf allegato-notes-$(PRJ).pdf
 tex: $(PRJ_SRCS)
 dist zip: $(PRJ).zip
-.PHONY: default dvi pdf pdfprint $(PRJ) $(PRJ)print dist tex slides notes
+.PHONY: default pdf pdfprint $(PRJ) $(PRJ)print dist tex slides notes
 
 # hack needed
 all: tex slides notes dist
-	$(MAKE) dvi
 	$(MAKE) pdf
 	$(MAKE) pdfprint
 .PHONY: all
@@ -103,11 +101,6 @@ $(PRJ)-for-display.tex: $(PRJ).tex
 	$(CP) $(PRJ).tex $(PRJ)-for-display.tex
 $(PRJ)-for-print.tex: $(PRJ).tex
 	$(CP) $(PRJ).tex $(PRJ)-for-print.tex
-
-$(PRJ)-for-display.dvi: $(PRJ_SRCS) defs.tex $(PRJ)-for-display.tex
-	echo '\relax' > howlinks.tex
-	$(LATEXMK) -dvi -nonstopmode $(PRJ)-for-display </dev/null
-	$(RM_F) howlinks.tex
 
 $(PRJ)-for-display.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-display.tex
 	echo '\relax' > howlinks.tex
