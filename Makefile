@@ -12,9 +12,6 @@ GNUTAR = tar
 LATEXMK = latexmk
 PYTHON = python
 
-# shell common settings
-shell_settings = { set -e; if (set -u) >/dev/null 2>&1; then set -u; fi; }
-
 #--------------------------------------------------------------------------
 
 # project name
