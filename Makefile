@@ -104,12 +104,12 @@ $(PRJ)-for-print.tex: $(PRJ).tex
 
 $(PRJ)-for-display.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-display.tex
 	echo '\relax' > howlinks.tex
-	$(LATEXMK) -pdf -nonstopmode $(PRJ)-for-display </dev/null
+	$(LATEXMK) -pdf $(PRJ)-for-display </dev/null
 	$(RM_F) howlinks.tex
 
 $(PRJ)-for-print.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-print.tex
 	echo '\def\nolinks{1}' > howlinks.tex
-	$(LATEXMK) -pdf -nonstopmode $(PRJ)-for-print </dev/null
+	$(LATEXMK) -pdf $(PRJ)-for-print </dev/null
 	$(RM_F) howlinks.tex
 
 #--------------------------------------------------------------------------
@@ -120,16 +120,16 @@ $(PRJ)-notes.tex: slides-and-notes.tex
 	$(CP) slides-and-notes.tex $@
 
 allegato-notes-$(PRJ).pdf: allegato-notes-$(PRJ).tex defs.tex
-	$(LATEXMK) -pdf -nonstopmode allegato-notes-$(PRJ) </dev/null
+	$(LATEXMK) -pdf allegato-notes-$(PRJ) </dev/null
 
 $(PRJ)-slides.pdf: $(PRJ)-slides.tex $(SLIDES_SRCS) defs.tex
 	echo '\relax' > hownotes.tex
-	$(LATEXMK) -pdf -nonstopmode $(PRJ)-slides </dev/null
+	$(LATEXMK) -pdf $(PRJ)-slides </dev/null
 	$(RM_F) hownotes.tex
 
 $(PRJ)-notes.pdf: $(PRJ)-notes.tex $(SLIDES_SRCS) defs.tex
 	echo '\def\onlynotes{1}' > hownotes.tex
-	$(LATEXMK) -pdf -nonstopmode $(PRJ)-notes </dev/null
+	$(LATEXMK) -pdf $(PRJ)-notes </dev/null
 	$(RM_F) hownotes.tex
 
 #--------------------------------------------------------------------------
