@@ -12,8 +12,6 @@
 
 ZIP = zip
 
-KPSEWHICH = kpsewhich
-
 LATEXMK = latexmk
 LATEX_CLEAN = latex-clean
 
@@ -45,9 +43,6 @@ PRJ_SRCS = \
 # sources for slides/notes, remove if not needed
 SLIDES_SRCS = 
 
-# non-standard packages, to be put in the distributed tarball
-PRJ_PKGS = # stepkg.sty
-	
 DIST_FILES = Makefile $(PRJ).kilepr $(PRJ_SRCS) \
 			 calcgen1.py calcgen2.py calcgen3.py \
              defs.tex $(SLIDES_SRCS) allegato-notes-$(PRJ).tex \
@@ -125,20 +120,6 @@ $(PRJ).zip: $(DIST_FILES)
 	 rm -rf dist.tmpdir; \
 	 mkdir -p dist.tmpdir/$(PRJ); \
 	 cp $(DIST_FILES) dist.tmpdir/$(PRJ); \
-	 for pkg in : $(PRJ_PKGS); do \
-	 	if test x"$$pkg" = x":"; then \
-		  : do nothing; \
-		else \
-	 		pkgpath=`( $(KPSEWHICH) -must-exist "$$pkg" || true )`; \
-			if test -n "$$pkgpath"; then \
-		    	cp "$$pkgpath" dist.tmpdir/$(PRJ); \
-		  	else \
-		    	echo "ERROR: cannot find package '$$pkg'" \
-					 "in your TeX system" >&2; \
-				exit 1; \
-			fi; \
-		fi; \
-	 done; \
 	 cd dist.tmpdir; \
 	 $(ZIP) -r $@ ./$(PRJ); \
 	 mv -f $@ ..; \
