@@ -114,7 +114,7 @@ $(PRJ).zip: $(DIST_FILES)
 	 mkdir -p dist.tmpdir/$(PRJ); \
 	 cp $(DIST_FILES) dist.tmpdir/$(PRJ); \
 	 cd dist.tmpdir; \
-	 $(ZIP) -r $@ ./$(PRJ); \
+	 tar czvf $@ ./$(PRJ); \
 	 mv -f $@ ..; \
 	 cd ..; \
 	 rm -rf dist.tmpdir;

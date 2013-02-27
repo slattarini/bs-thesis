@@ -15,7 +15,7 @@
 /*.snm
 /*.dep
 /*.fdb_latexmk
-/*.zip
+/*.tar.gz
 /calcgen[123].tex
 /howlinks.tex
 /tesi-for-display.tex
