@@ -8,7 +8,6 @@ MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 
 # useful programs
 
-ZIP = zip
 GNUTAR = tar
 LATEXMK = latexmk
 PYTHON = python
@@ -52,7 +51,7 @@ pdfprint $(PRJ)print: $(PRJ)-for-print.pdf
 slides: $(PRJ)-slides.pdf
 notes: $(PRJ)-notes.pdf allegato-notes-$(PRJ).pdf
 tex: $(PRJ_SRCS)
-dist: $(PRJ).zip
+dist: $(PRJ).tar.gz
 .PHONY: default pdf pdfprint $(PRJ) $(PRJ)print dist tex slides notes
 
 # hack needed
@@ -105,7 +104,7 @@ $(PRJ)-notes.pdf: $(PRJ)-notes.tex $(SLIDES_SRCS) defs.tex
 
 #--------------------------------------------------------------------------
 
-$(PRJ).zip: $(DIST_FILES)
+$(PRJ).tar.gz: $(DIST_FILES)
 	@rm -f $@ $@-t \
 	  && $(GNUTAR) --transform 's|^|./tesi/|' $(DIST_FILES) -cvzf $@-t \
 	  && chmod a-w $@-t && mv -f $@-t $@
@@ -115,7 +114,7 @@ clean:
 	rm -rf *.tmpdir
 	rm -f *.aux *.log *.toc *.lof *.blg *.bbl *.out *.nav *.snm *.dep
 	rm -f *.fdb_latexmk
-	rm -f $(PRJ).zip
+	rm -f $(PRJ).tar.gz
 	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
 	rm -f $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
 	rm -f calcgen[123].tex
