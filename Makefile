@@ -67,12 +67,8 @@ all: tex slides notes dist
 
 #--------------------------------------------------------------------------
 
-calcgen1.tex: calcgen1.py
-	$(PYTHON) calcgen1.py
-calcgen2.tex: calcgen2.py
-	$(PYTHON) calcgen2.py
-calcgen3.tex: calcgen3.py
-	$(PYTHON) calcgen3.py
+calcgen%.tex: calcgen%.py Makefile
+	rm -f $@ && $(PYTHON) $< && chmod a-w $@
 
 #--------------------------------------------------------------------------
 
