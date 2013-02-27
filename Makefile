@@ -87,12 +87,12 @@ $(PRJ)-for-print.tex: $(PRJ).tex
 	cp $(PRJ).tex $(PRJ)-for-print.tex
 
 $(PRJ)-for-display.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-display.tex
-	echo '\relax' > howlinks.tex
+	printf '\\relax\n' > howlinks.tex
 	$(LATEXMK) -pdf $(PRJ)-for-display </dev/null
 	rm -f howlinks.tex
 
 $(PRJ)-for-print.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-print.tex
-	echo '\def\nolinks{1}' > howlinks.tex
+	printf '\\def\\nolinks{1}\n' > howlinks.tex
 	$(LATEXMK) -pdf $(PRJ)-for-print </dev/null
 	rm -f howlinks.tex
 
@@ -107,12 +107,12 @@ allegato-notes-$(PRJ).pdf: allegato-notes-$(PRJ).tex defs.tex
 	$(LATEXMK) -pdf allegato-notes-$(PRJ) </dev/null
 
 $(PRJ)-slides.pdf: $(PRJ)-slides.tex $(SLIDES_SRCS) defs.tex
-	echo '\relax' > hownotes.tex
+	printf '\\relax\n' > hownotes.tex
 	$(LATEXMK) -pdf $(PRJ)-slides </dev/null
 	rm -f hownotes.tex
 
 $(PRJ)-notes.pdf: $(PRJ)-notes.tex $(SLIDES_SRCS) defs.tex
-	echo '\def\onlynotes{1}' > hownotes.tex
+	printf '\\def\\onlynotes{1}\n' > hownotes.tex
 	$(LATEXMK) -pdf $(PRJ)-notes </dev/null
 	rm -f hownotes.tex
 
