@@ -1,8 +1,5 @@
 #-*- Makefile -*-
 
-# be posix compatible asap
-.POSIX:
-
 # no builtin rules
 .SUFFIXES:
 
@@ -67,7 +64,7 @@ all: tex slides notes dist
 
 #--------------------------------------------------------------------------
 
-calcgen%.tex: calcgen%.py Makefile
+calcgen%.tex: calcgen%.py
 	rm -f $@ && $(PYTHON) $< && chmod a-w $@
 
 #--------------------------------------------------------------------------
