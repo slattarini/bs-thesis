@@ -154,7 +154,7 @@ framecount.txt: slides-and-notes.tex $(SLIDES_SRCS)
      c=`grep -c '^\\\\begin{frame}' $$srcs`; \
 	 c=`expr $$c - 2`; \
 	 echo $$c | tee $@.tmp; \
-	 $(UNIX2DOS) $@.tmp && mv $@.tmp $@;
+	 chmod a-w $@.tmp && && mv -f $@.tmp $@;
 framecount: framecount.txt
 .PHONY: framecount
 
