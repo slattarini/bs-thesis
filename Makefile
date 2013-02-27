@@ -125,6 +125,7 @@ clean:
 	rm -f *.tmp *.tmp[0-9]
 	rm -rf *.tmpdir
 	rm -f *.aux *.log *.toc *.lof *.blg *.bbl *.out *.nav *.snm *.dep
+	rm -f *.fdb_latexmk
 	rm -f $(PRJ).zip
 	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
 	rm -f $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
