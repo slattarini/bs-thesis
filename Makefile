@@ -4,20 +4,14 @@
 .SUFFIXES:
 MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 
-#--------------------------------------------------------------------------
-
-# useful programs
-
 GNUTAR = tar
 LATEXMK = latexmk
 PYTHON = python
 
 #--------------------------------------------------------------------------
 
-# project name
 PRJ = tesi
 
-# sources for article/book
 PRJ_SRCS = \
 	$(PRJ).tex \
 	biblio.bib \
@@ -32,7 +26,6 @@ PRJ_SRCS = \
 	calcgen3.tex
 
 
-# sources for slides/notes, remove if not needed
 SLIDES_SRCS = 
 
 DIST_FILES = Makefile $(PRJ_SRCS) \
