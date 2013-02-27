@@ -122,8 +122,7 @@ $(PRJ).zip: $(DIST_FILES)
 
 #--------------------------------------------------------------------------
 
-# clean project directory
-clean: clean2
+clean:
 	rm -f *.tmp *.tmp[0-9]
 	rm -rf *.tmpdir
 	$(LATEX_CLEAN) -a
@@ -131,11 +130,8 @@ clean: clean2
 	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
 	rm -f $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
 	rm -f *.dep  # sometimes left by latexmk when interrupted
-.PHONY: clean
-
-# additional cleaning
-clean2:
 	rm -f calcgen[123].tex
+.PHONY: clean
 
 #--------------------------------------------------------------------------
 
