@@ -128,19 +128,6 @@ $(PRJ).zip: $(DIST_FILES)
 
 #--------------------------------------------------------------------------
 
-framecount.txt: slides-and-notes.tex $(SLIDES_SRCS)
-	@$(shell_settings); \
-	 srcs='slides-and-notes.tex $(SLIDES_SRCS)'; \
-	 printf '%s' 'Frames Number: '; \
-     c=`grep -c '^\\\\begin{frame}' $$srcs`; \
-	 c=`expr $$c - 2`; \
-	 echo $$c | tee $@.tmp; \
-	 chmod a-w $@.tmp && && mv -f $@.tmp $@;
-framecount: framecount.txt
-.PHONY: framecount
-
-#--------------------------------------------------------------------------
-
 # clean project directory
 clean: clean2
 	rm -f *.tmp *.tmp[0-9]
@@ -150,7 +137,6 @@ clean: clean2
 	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
 	rm -f $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
 	rm -f *.dep  # sometimes left by latexmk when interrupted
-	rm -f framecount.txt
 .PHONY: clean
 
 # additional cleaning
