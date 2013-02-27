@@ -53,7 +53,7 @@ pdfprint $(PRJ)print: $(PRJ)-for-print.pdf
 slides: $(PRJ)-slides.pdf
 notes: $(PRJ)-notes.pdf allegato-notes-$(PRJ).pdf
 tex: $(PRJ_SRCS)
-dist zip: $(PRJ).zip
+dist: $(PRJ).zip
 .PHONY: default pdf pdfprint $(PRJ) $(PRJ)print dist tex slides notes
 
 # hack needed
