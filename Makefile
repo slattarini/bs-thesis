@@ -1,7 +1,8 @@
 #-*- Makefile -*-
 
-# no builtin rules
+# No builtin rules nor variables.
 .SUFFIXES:
+MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 
 #--------------------------------------------------------------------------
 
