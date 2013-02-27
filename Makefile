@@ -35,7 +35,7 @@ PRJ_SRCS = \
 # sources for slides/notes, remove if not needed
 SLIDES_SRCS = 
 
-DIST_FILES = Makefile $(PRJ).kilepr $(PRJ_SRCS) \
+DIST_FILES = Makefile $(PRJ_SRCS) \
 			 calcgen1.py calcgen2.py calcgen3.py \
              defs.tex $(SLIDES_SRCS) allegato-notes-$(PRJ).tex \
 			 slides-and-notes.tex
