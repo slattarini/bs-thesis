@@ -46,7 +46,7 @@ PRJ_SRCS = \
 SLIDES_SRCS = 
 
 # non-standard packages, to be put in the distributed tarball
-PRJ_PKGS = srcltx.sty # stepkg.sty
+PRJ_PKGS = # stepkg.sty
 	
 DIST_FILES = Makefile $(PRJ).kilepr $(PRJ_SRCS) \
 			 calcgen1.py calcgen2.py calcgen3.py \
