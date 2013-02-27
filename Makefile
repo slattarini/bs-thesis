@@ -10,23 +10,7 @@
 
 # useful programs
 
-TRUE = true
-FALSE = false
-
-CP = cp
-MV = mv
-RM = rm
-RM_F = $(RM) -f
-RM_RF = $(RM) -rf
-MKDIR = mkdir
-
 ZIP = zip
-
-PRINTF = printf
-GREP = grep
-SED = sed
-EXPR = expr
-UNIX2DOS = unix2dos
 
 KPSEWHICH = kpsewhich
 
@@ -98,26 +82,26 @@ calcgen3.tex: calcgen3.py
 #--------------------------------------------------------------------------
 
 $(PRJ)-for-display.tex: $(PRJ).tex
-	$(CP) $(PRJ).tex $(PRJ)-for-display.tex
+	cp $(PRJ).tex $(PRJ)-for-display.tex
 $(PRJ)-for-print.tex: $(PRJ).tex
-	$(CP) $(PRJ).tex $(PRJ)-for-print.tex
+	cp $(PRJ).tex $(PRJ)-for-print.tex
 
 $(PRJ)-for-display.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-display.tex
 	echo '\relax' > howlinks.tex
 	$(LATEXMK) -pdf $(PRJ)-for-display </dev/null
-	$(RM_F) howlinks.tex
+	rm -f howlinks.tex
 
 $(PRJ)-for-print.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-print.tex
 	echo '\def\nolinks{1}' > howlinks.tex
 	$(LATEXMK) -pdf $(PRJ)-for-print </dev/null
-	$(RM_F) howlinks.tex
+	rm -f howlinks.tex
 
 #--------------------------------------------------------------------------
 
 $(PRJ)-slides.tex: slides-and-notes.tex
-	$(CP) slides-and-notes.tex $@
+	cp -f slides-and-notes.tex $@
 $(PRJ)-notes.tex: slides-and-notes.tex
-	$(CP) slides-and-notes.tex $@
+	cp -f slides-and-notes.tex $@
 
 allegato-notes-$(PRJ).pdf: allegato-notes-$(PRJ).tex defs.tex
 	$(LATEXMK) -pdf allegato-notes-$(PRJ) </dev/null
@@ -125,29 +109,29 @@ allegato-notes-$(PRJ).pdf: allegato-notes-$(PRJ).tex defs.tex
 $(PRJ)-slides.pdf: $(PRJ)-slides.tex $(SLIDES_SRCS) defs.tex
 	echo '\relax' > hownotes.tex
 	$(LATEXMK) -pdf $(PRJ)-slides </dev/null
-	$(RM_F) hownotes.tex
+	rm -f hownotes.tex
 
 $(PRJ)-notes.pdf: $(PRJ)-notes.tex $(SLIDES_SRCS) defs.tex
 	echo '\def\onlynotes{1}' > hownotes.tex
 	$(LATEXMK) -pdf $(PRJ)-notes </dev/null
-	$(RM_F) hownotes.tex
+	rm -f hownotes.tex
 
 #--------------------------------------------------------------------------
 
 # Create a distribution tarball
 $(PRJ).zip: $(DIST_FILES)
 	@$(shell_settings); \
-	 $(RM_F) $@; \
-	 $(RM_RF) dist.tmpdir; \
-	 $(MKDIR) dist.tmpdir && $(MKDIR) dist.tmpdir/$(PRJ); \
-	 $(CP) $(DIST_FILES) dist.tmpdir/$(PRJ); \
+	 rm -f $@; \
+	 rm -rf dist.tmpdir; \
+	 mkdir -p dist.tmpdir/$(PRJ); \
+	 cp $(DIST_FILES) dist.tmpdir/$(PRJ); \
 	 for pkg in : $(PRJ_PKGS); do \
 	 	if test x"$$pkg" = x":"; then \
 		  : do nothing; \
 		else \
-	 		pkgpath=`( $(KPSEWHICH) -must-exist "$$pkg" || $(TRUE) )`; \
+	 		pkgpath=`( $(KPSEWHICH) -must-exist "$$pkg" || true )`; \
 			if test -n "$$pkgpath"; then \
-		    	$(CP) "$$pkgpath" dist.tmpdir/$(PRJ); \
+		    	cp "$$pkgpath" dist.tmpdir/$(PRJ); \
 		  	else \
 		    	echo "ERROR: cannot find package '$$pkg'" \
 					 "in your TeX system" >&2; \
@@ -157,18 +141,18 @@ $(PRJ).zip: $(DIST_FILES)
 	 done; \
 	 cd dist.tmpdir; \
 	 $(ZIP) -r $@ ./$(PRJ); \
-	 $(MV) $@ ..; \
+	 mv -f $@ ..; \
 	 cd ..; \
-	 $(RM_RF) dist.tmpdir;
+	 rm -rf dist.tmpdir;
 
 #--------------------------------------------------------------------------
 
 framecount.txt: slides-and-notes.tex $(SLIDES_SRCS)
 	@$(shell_settings); \
 	 srcs='slides-and-notes.tex $(SLIDES_SRCS)'; \
-	 $(PRINTF) '%s' 'Frames Number: '; \
-     c=`$(GREP) -c '^\\\\begin{frame}' $$srcs`; \
-	 c=`$(EXPR) $$c - 2`; \
+	 printf '%s' 'Frames Number: '; \
+     c=`grep -c '^\\\\begin{frame}' $$srcs`; \
+	 c=`expr $$c - 2`; \
 	 echo $$c | tee $@.tmp; \
 	 $(UNIX2DOS) $@.tmp && mv $@.tmp $@;
 framecount: framecount.txt
@@ -178,19 +162,19 @@ framecount: framecount.txt
 
 # clean project directory
 clean: clean2
-	$(RM_F) *.tmp *.tmp[0-9]
-	$(RM_RF) *.tmpdir
+	rm -f *.tmp *.tmp[0-9]
+	rm -rf *.tmpdir
 	$(LATEX_CLEAN) -a
-	$(RM_F) $(PRJ).zip
-	$(RM_F) $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
-	$(RM_F) $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
-	$(RM_F) *.dep  # sometimes left by latexmk when interrupted
-	$(RM_F) framecount.txt
+	rm -f $(PRJ).zip
+	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
+	rm -f $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
+	rm -f *.dep  # sometimes left by latexmk when interrupted
+	rm -f framecount.txt
 .PHONY: clean
 
 # additional cleaning
 clean2:
-	$(RM_F) calcgen[123].tex
+	rm -f calcgen[123].tex
 
 #--------------------------------------------------------------------------
 
