@@ -9,9 +9,8 @@ MAKEFLAGS += --no-builtin-rules --no-builtin-variables
 # useful programs
 
 ZIP = zip
-
+GNUTAR = tar
 LATEXMK = latexmk
-
 PYTHON = python
 
 # shell common settings
@@ -106,20 +105,10 @@ $(PRJ)-notes.pdf: $(PRJ)-notes.tex $(SLIDES_SRCS) defs.tex
 
 #--------------------------------------------------------------------------
 
-# Create a distribution tarball
 $(PRJ).zip: $(DIST_FILES)
-	@$(shell_settings); \
-	 rm -f $@; \
-	 rm -rf dist.tmpdir; \
-	 mkdir -p dist.tmpdir/$(PRJ); \
-	 cp $(DIST_FILES) dist.tmpdir/$(PRJ); \
-	 cd dist.tmpdir; \
-	 tar czvf $@ ./$(PRJ); \
-	 mv -f $@ ..; \
-	 cd ..; \
-	 rm -rf dist.tmpdir;
-
-#--------------------------------------------------------------------------
+	@rm -f $@ $@-t \
+	  && $(GNUTAR) --transform 's|^|./tesi/|' $(DIST_FILES) -cvzf $@-t \
+	  && chmod a-w $@-t && mv -f $@-t $@
 
 clean:
 	rm -f *.tmp *.tmp[0-9]
