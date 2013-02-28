@@ -2,6 +2,8 @@
 
 % inclusion of mathematical packages
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
+% give proper PDF anchors and links to the bibliography
+\usepackage[nottoc]{tocbibind}
 
 % tell if hyperref should be used or not
 \IfFileExists{howlinks.tex}{\input{howlinks.tex}}{}
@@ -95,7 +97,6 @@
 \include{chapter3}
 \include{chapter4}
 
-\addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{alpha}
 \bibliography{biblio}
 
