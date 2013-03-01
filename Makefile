@@ -47,13 +47,13 @@ all: pdf tex slides notes dist
 
 #--------------------------------------------------------------------------
 
-calcgen%.tex: calcgen%.py
+calcgen%.tex: calcgen%.py Makefile
 	rm -f $@ && $(PYTHON) $< && chmod a-w $@
 
 #--------------------------------------------------------------------------
 
-$(PRJ).pdf: $(PRJ_SRCS) defs.tex
-	$(LATEXMK) -pdf $(PRJ)-for-display </dev/null
+$(PRJ).pdf: $(PRJ_SRCS) defs.tex Makefile
+	$(LATEXMK) -pdf $(PRJ) </dev/null
 
 #--------------------------------------------------------------------------
 
@@ -89,7 +89,6 @@ clean:
 	rm -f *.fdb_latexmk
 	rm -f $(PRJ).tar.gz
 	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
-	rm -f $(PRJ)-for-display.tex $(PRJ)-for-print.tex howlinks.tex
 	rm -f calcgen[123].tex
 .PHONY: clean
 
