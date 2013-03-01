@@ -5,23 +5,16 @@
 % give proper PDF anchors and links to the bibliography
 \usepackage[nottoc]{tocbibind}
 
-% tell if hyperref should be used or not
-\IfFileExists{howlinks.tex}{\input{howlinks.tex}}{}
-
 %**NOTE**: hyperref should be the last package to be loaded.
-\ifdefined\nolinks
-  \relax
-\else
-  \usepackage{hyperref}
-  \hypersetup{
+\usepackage{hyperref}
+\hypersetup{
     backref,
     pdfauthor={Lattarini Stefano},
     pdftitle={Factorization problems for quadratic algebraic integers},
-    colorlinks,
+    ocgcolorlinks,
     linkcolor=blue,
     pdfpagelabels
- }
-\fi
+}
 
  % STYLE PARAMETERS
 \oddsidemargin 0cm

@@ -25,7 +25,6 @@ PRJ_SRCS = \
 	calcgen2.tex \
 	calcgen3.tex
 
-
 SLIDES_SRCS = 
 
 DIST_FILES = Makefile $(PRJ_SRCS) \
@@ -36,18 +35,14 @@ DIST_FILES = Makefile $(PRJ_SRCS) \
 #--------------------------------------------------------------------------
 
 default: pdf
-pdf $(PRJ): $(PRJ)-for-display.pdf
-pdfprint $(PRJ)print: $(PRJ)-for-print.pdf
+pdf: $(PRJ).pdf
 slides: $(PRJ)-slides.pdf
 notes: $(PRJ)-notes.pdf allegato-notes-$(PRJ).pdf
 tex: $(PRJ_SRCS)
 dist: $(PRJ).tar.gz
-.PHONY: default pdf pdfprint $(PRJ) $(PRJ)print dist tex slides notes
+.PHONY: default pdf dist tex slides notes
 
-# hack needed
-all: tex slides notes dist
-	$(MAKE) pdf
-	$(MAKE) pdfprint
+all: pdf tex slides notes dist
 .PHONY: all
 
 #--------------------------------------------------------------------------
@@ -57,20 +52,8 @@ calcgen%.tex: calcgen%.py
 
 #--------------------------------------------------------------------------
 
-$(PRJ)-for-display.tex: $(PRJ).tex
-	cp $(PRJ).tex $(PRJ)-for-display.tex
-$(PRJ)-for-print.tex: $(PRJ).tex
-	cp $(PRJ).tex $(PRJ)-for-print.tex
-
-$(PRJ)-for-display.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-display.tex
-	printf '\\relax\n' > howlinks.tex
+$(PRJ).pdf: $(PRJ_SRCS) defs.tex
 	$(LATEXMK) -pdf $(PRJ)-for-display </dev/null
-	rm -f howlinks.tex
-
-$(PRJ)-for-print.pdf: $(PRJ_SRCS) defs.tex $(PRJ)-for-print.tex
-	printf '\\def\\nolinks{1}\n' > howlinks.tex
-	$(LATEXMK) -pdf $(PRJ)-for-print </dev/null
-	rm -f howlinks.tex
 
 #--------------------------------------------------------------------------
 
