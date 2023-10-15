@@ -85,7 +85,7 @@ $(PRJ).tar.gz: $(DIST_FILES)
 clean:
 	rm -f *.tmp *.tmp[0-9]
 	rm -rf *.tmpdir
-	rm -f *.aux *.log *.toc *.lof *.blg *.bbl *.out *.nav *.snm *.dep
+	rm -f *.aux *.log *.toc *.lof *.blg *.bbl *.out *.nav *.snm *.dep *.fls
 	rm -f *.fdb_latexmk
 	rm -f $(PRJ).tar.gz
 	rm -f $(PRJ)-slides.tex $(PRJ)-notes.tex hownotes.tex
